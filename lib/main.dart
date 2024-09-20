@@ -1,13 +1,19 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:iu_mushaf/app/app.dart';
+import 'package:iu_mushaf/core/imports/imports.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  initServiceLocator();
+  await sl<Cache>().init();
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
-      builder: (context) => const UIMushafApp(),
+      builder: (context) => BlocProvider(
+        create: (context) => GlobalCubit(),
+        child: const UIMushafApp(),
+      ),
     ),
   );
 }

@@ -1,0 +1,34 @@
+import 'package:iu_mushaf/core/imports/imports.dart';
+
+class SplashTitleAndSubtitle extends StatelessWidget {
+  const SplashTitleAndSubtitle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 22.responsiveWidth(context)),
+      child: Column(
+        children: [
+          SizedBox(height: 82.responsiveHeight(context)),
+          //! Title
+          Text(
+            AppStrings.iuMushaf.tr(context),
+            style: Styles.style28Bold(context),
+          ),
+          SizedBox(height: 16.responsiveHeight(context)),
+          //! Subtitle
+          Text(
+            AppStrings.splashSubtitle.tr(context),
+            style: Styles.style18(context).copyWith(
+              overflow: TextOverflow.clip,
+              color: AppColors.grey,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
