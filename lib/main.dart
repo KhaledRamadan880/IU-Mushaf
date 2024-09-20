@@ -1,6 +1,13 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:iu_mushaf/app/app.dart';
 
 void main() {
-  runApp(const UIMushafApp());
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => const UIMushafApp(),
+    ),
+  );
 }
