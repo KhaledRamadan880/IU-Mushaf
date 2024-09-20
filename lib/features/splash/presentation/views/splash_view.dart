@@ -18,7 +18,7 @@ class SplashView extends StatelessWidget {
               //! Logo
               Image.asset(
                 Assets.imagesMushafImage,
-                height: 430.responsiveHeight(context),
+                height: 435.responsiveHeight(context),
                 width: 374.responsiveWidth(context),
                 fit: BoxFit.fill,
               ),
@@ -38,7 +38,7 @@ class SplashView extends StatelessWidget {
                 },
                 title: AppStrings.arabic.tr(context),
               ),
-              SizedBox(height: 61.responsiveHeight(context)),
+              SizedBox(height: 51.responsiveHeight(context)),
             ],
           ),
         );
