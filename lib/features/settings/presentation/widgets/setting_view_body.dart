@@ -20,7 +20,7 @@ class SettingViewBody extends StatelessWidget {
             horizontal: 18.responsiveWidth(context),
           ),
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color: Theme.of(context).secondaryHeaderColor,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Column(

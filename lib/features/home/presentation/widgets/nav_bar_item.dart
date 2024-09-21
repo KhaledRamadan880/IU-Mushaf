@@ -3,9 +3,18 @@ import 'package:iu_mushaf/core/imports/imports.dart';
 
 customNavBarItem(String image) {
   return PersistentBottomNavBarItem(
-    icon: SvgPicture.asset(
-      image,
-      colorFilter: const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
+    icon: BlocBuilder<GlobalCubit, GlobalState>(
+      builder: (context, state) {
+        return SvgPicture.asset(
+          image,
+          colorFilter: ColorFilter.mode(
+            context.read<GlobalCubit>().isDark
+                ? AppColors.white
+                : AppColors.black,
+            BlendMode.srcIn,
+          ),
+        );
+      },
     ),
     inactiveIcon: SvgPicture.asset(
       image,

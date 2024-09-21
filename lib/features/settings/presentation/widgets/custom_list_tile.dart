@@ -14,14 +14,24 @@ class CustomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: onTap,
-      leading: Text(
-        title.tr(context),
-        style: Styles.style18(context),
-      ),
-      trailing: trailing ?? const Icon(Icons.arrow_forward_ios_outlined),
-      contentPadding: EdgeInsets.zero,
+    return BlocBuilder<GlobalCubit, GlobalState>(
+      builder: (context, state) {
+        return ListTile(
+          onTap: onTap,
+          leading: CustomText(
+            title.tr(context),
+            style: Styles.style18(context),
+          ),
+          trailing: trailing ??
+              Icon(
+                Icons.arrow_forward_ios_outlined,
+                color: context.read<GlobalCubit>().isDark
+                    ? AppColors.white
+                    : AppColors.grey,
+              ),
+          contentPadding: EdgeInsets.zero,
+        );
+      },
     );
   }
 }

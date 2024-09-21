@@ -16,7 +16,7 @@ class SettingViewHeader extends StatelessWidget {
       margin: EdgeInsets.only(
         bottom: 12.responsiveHeight(context),
       ),
-      color: AppColors.white,
+      color: Theme.of(context).secondaryHeaderColor,
       child: Center(
         child: Text(
           AppStrings.setting.tr(context),

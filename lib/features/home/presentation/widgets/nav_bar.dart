@@ -19,19 +19,19 @@ class CustomNavBar extends StatelessWidget {
         customNavBarItem(Assets.imagesSaveIcon),
         customNavBarItem(Assets.imagesSettingsIcon),
       ],
-      backgroundColor: AppColors.white,
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       margin: EdgeInsets.symmetric(
         horizontal: 24.responsiveWidth(context),
         vertical: 32.responsiveHeight(context),
       ),
-      decoration: NavBarDecoration(
+      decoration: NavBarDecoration(        
         borderRadius: BorderRadius.circular(40),
         boxShadow: [
         BoxShadow(
           color: AppColors.black.withOpacity(0.2),
           blurRadius: 2,
-        ),
-      ]
+          ),        
+        ],
       ),
       animationSettings: const NavBarAnimationSettings(
         navBarItemAnimation: ItemAnimationSettings(

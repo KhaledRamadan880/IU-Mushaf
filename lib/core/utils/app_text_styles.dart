@@ -1,9 +1,10 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
 
-abstract class Styles {
+abstract class Styles {      
+
   static TextStyle style28Bold(context) {
     return TextStyle(
-      color: AppColors.black,
+      color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,
       fontSize: 28.responsiveText(context),
       overflow: TextOverflow.ellipsis,
       fontFamily: "Poppins",
@@ -13,7 +14,7 @@ abstract class Styles {
 
   static TextStyle style18(context) {
     return TextStyle(
-      color: AppColors.black,
+      color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,
       fontSize: 18.responsiveText(context),
       overflow: TextOverflow.ellipsis,
       fontFamily: "Poppins",
@@ -23,7 +24,7 @@ abstract class Styles {
 
   static TextStyle style18SemiBold(context) {
     return TextStyle(
-      color: AppColors.black,
+      color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,
       fontSize: 18.responsiveText(context),
       overflow: TextOverflow.ellipsis,
       fontFamily: "Poppins",
