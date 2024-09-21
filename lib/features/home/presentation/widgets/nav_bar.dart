@@ -26,6 +26,12 @@ class CustomNavBar extends StatelessWidget {
       ),
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(40),
+        boxShadow: [
+        BoxShadow(
+          color: AppColors.black.withOpacity(0.2),
+          blurRadius: 2,
+        ),
+      ]
       ),
       animationSettings: const NavBarAnimationSettings(
         navBarItemAnimation: ItemAnimationSettings(
