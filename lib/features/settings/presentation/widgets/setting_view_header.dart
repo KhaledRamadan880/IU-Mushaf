@@ -18,7 +18,7 @@ class SettingViewHeader extends StatelessWidget {
       ),
       color: Theme.of(context).secondaryHeaderColor,
       child: Center(
-        child: Text(
+        child: CustomText(
           AppStrings.setting.tr(context),
           style: Styles.style18SemiBold(context),
         ),
