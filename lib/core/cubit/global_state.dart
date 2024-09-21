@@ -5,3 +5,7 @@ sealed class GlobalState {}
 final class GlobalInitial extends GlobalState {}
 
 final class ChangeLanguageState extends GlobalState {}
+
+final class ChangeThemeModState extends GlobalState {}
+
+final class ChangeNotificationPermissionState extends GlobalState {}

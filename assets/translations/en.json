@@ -1,6 +1,17 @@
 {
-    "iuMushaf" : "IU Mushaf",
-    "english" : "English",
-    "arabic" : "العربية",
-    "splashSubtitle" : "The best amongst you is the one who learns the Qur'an and teaches it"
+    "iuMushaf": "IU Mushaf",
+    "english": "English",
+    "arabic": "العربية",
+    "splashSubtitle": "The best amongst you is the one who learns the Qur'an and teaches it",
+    
+    "setting" : "Setting",
+    "prefranceSettings" : "Prefrance Settings",
+    "pushNotifications" : "Push notifications",
+    "darkMode" : "Dark mode",
+    "changeLanguage" : "Change language",
+    "more" : "More",
+    "aboutUs" : "About us",
+    "privacyPolicy" : "Privacy policy",
+    "termsAndConditions" : "Terms and conditions",
+    "contactUs" : "Contact us"
 }

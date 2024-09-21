@@ -12,4 +12,21 @@ class GlobalCubit extends Cubit<GlobalState> {
     language = newlanguage;
     emit(ChangeLanguageState());
   }
+
+  //! Theme Mod
+  bool isDark = sl<Cache>().getBoolData("IsDark") ?? false;
+  changeThemeMod() {
+    isDark = !isDark;
+    sl<Cache>().setData("IsDark", isDark);
+    emit(ChangeThemeModState());
+  }
+
+  //! Push Notification
+  bool isPushNotification =
+      sl<Cache>().getBoolData("IsPushNotification") ?? false;
+  changeNotificationPermission() {
+    isPushNotification = !isPushNotification;
+    sl<Cache>().setData("IsPushNotification", isPushNotification);
+    emit(ChangeNotificationPermissionState());
+  }
 }

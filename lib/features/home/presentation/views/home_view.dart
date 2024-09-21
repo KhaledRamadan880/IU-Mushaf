@@ -1,5 +1,6 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/home/presentation/widgets/nav_bar.dart';
+import 'package:iu_mushaf/features/settings/presentation/views/settings_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -9,7 +10,8 @@ class HomeView extends StatelessWidget {
       const Placeholder(),
       const Placeholder(),
       const Placeholder(),
-      const Placeholder(),
+      //! Setting Screen
+      const SettingsView(),
     ];
   }
 

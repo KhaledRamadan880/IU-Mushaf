@@ -1,6 +1,17 @@
 {
-    "iuMushaf" : "مصحف الجامعة",
-    "english" : "English",
-    "arabic" : "العربية",
-    "splashSubtitle" : "خيركم من تعلم القران وعلمه"
+    "iuMushaf": "مصحف الجامعة",
+    "english": "English",
+    "arabic": "العربية",
+    "splashSubtitle": "خيركم من تعلم القران وعلمه",
+
+    "setting": "الاعدادات",
+    "prefranceSettings": "اعدادات التفضيل",
+    "pushNotifications": "الاشعارات",
+    "darkMode": "الوضع الليلي",
+    "changeLanguage": "تغيير اللغة",
+    "more": "المزيد",
+    "aboutUs": "من نحن",
+    "privacyPolicy": "الخصوصية",
+    "termsAndConditions": "الشروط والاحكام",
+    "contactUs": "تواصل معنا"
 }

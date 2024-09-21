@@ -17,7 +17,9 @@ class UIMushafApp extends StatelessWidget {
           supportedLocales: supportedLocalesList,
           locale: Locale(context.read<GlobalCubit>().language),
           //! Theme
-          theme: theme(),
+          theme:
+              context.read<GlobalCubit>().isDark ? darkTheme() : lightTheme(),
+          //! Home
           home: const SplashView(),
         );
       },
