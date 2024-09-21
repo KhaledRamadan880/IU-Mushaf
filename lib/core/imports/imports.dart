@@ -9,3 +9,4 @@ export 'package:iu_mushaf/core/utils/app_assets.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:iu_mushaf/core/services/service_locator.dart';
 export 'package:iu_mushaf/core/cubit/global_cubit.dart';
+export 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';

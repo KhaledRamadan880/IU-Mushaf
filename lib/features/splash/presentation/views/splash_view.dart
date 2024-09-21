@@ -1,4 +1,5 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/home/presentation/views/home_view.dart';
 import 'package:iu_mushaf/features/splash/presentation/widgets/custom_elevated_button.dart';
 import 'package:iu_mushaf/features/splash/presentation/widgets/splash_title_and_subtitle.dart';
 
@@ -26,6 +27,10 @@ class SplashView extends StatelessWidget {
               //! English Button
               CustomElevatedButton(
                 onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeView()),
+                  );
                   context.read<GlobalCubit>().changeLanguage("en");
                 },
                 title: AppStrings.english.tr(context),
@@ -34,6 +39,10 @@ class SplashView extends StatelessWidget {
               //! Arabic Button
               CustomElevatedButton(
                 onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeView()),
+                  );
                   context.read<GlobalCubit>().changeLanguage("ar");
                 },
                 title: AppStrings.arabic.tr(context),
