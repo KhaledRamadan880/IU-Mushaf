@@ -31,4 +31,24 @@ abstract class Styles {
       fontWeight: FontWeight.w600,
     );
   }
+
+  static TextStyle style14(context) {
+    return TextStyle(
+      color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,
+      fontSize: 14.responsiveText(context),
+      overflow: TextOverflow.ellipsis,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w400,
+    );
+  }
+
+  static TextStyle style14Medium(context) {
+    return TextStyle(
+      color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,
+      fontSize: 14.responsiveText(context),
+      overflow: TextOverflow.ellipsis,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w500,
+    );
+  }
 }

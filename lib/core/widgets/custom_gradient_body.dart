@@ -45,7 +45,11 @@ class EllipsePainter extends CustomPainter {
     final Paint paint = Paint()
       ..color = Theme.of(context).primaryColor.withOpacity(.7)
       ..style = PaintingStyle.fill
-      ..imageFilter = ImageFilter.blur(sigmaX: 200, sigmaY: 50);
+      ..imageFilter = ImageFilter.blur(
+        sigmaX: 50.responsiveWidth(context),
+        sigmaY: 70.responsiveHeight(context),
+        tileMode: TileMode.decal,
+      );
     Rect rect = Rect.fromLTWH(
         0, 0, 717.responsiveText(context), 269.responsiveHeight(context));
 

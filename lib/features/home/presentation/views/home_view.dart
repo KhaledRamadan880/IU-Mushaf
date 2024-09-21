@@ -1,5 +1,6 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/home/presentation/widgets/nav_bar.dart';
+import 'package:iu_mushaf/features/mushaf/presentation/views/mushaf_view.dart';
 import 'package:iu_mushaf/features/settings/presentation/views/settings_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -7,7 +8,8 @@ class HomeView extends StatelessWidget {
 
   List<Widget> screens() {
     return [
-      const Placeholder(),
+      //! Mushaf Screen
+      const MushafView(),
       const Placeholder(),
       const Placeholder(),
       //! Setting Screen

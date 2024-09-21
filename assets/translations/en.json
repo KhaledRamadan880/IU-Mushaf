@@ -4,6 +4,12 @@
     "arabic": "العربية",
     "splashSubtitle": "The best amongst you is the one who learns the Qur'an and teaches it",
     
+    "warsh" : "Warsh",
+    "hafs" : "Hafs",
+    "mushaf" : "Mushaf",
+    "accent" : "accent",
+    "by" : "by",
+
     "setting" : "Setting",
     "prefranceSettings" : "Prefrance Settings",
     "pushNotifications" : "Push notifications",

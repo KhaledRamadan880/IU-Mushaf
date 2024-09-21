@@ -2,6 +2,14 @@
 class Assets {
   Assets._();
   
+  /// Assets for imagesBookIcon
+  /// assets/images/book_icon.svg
+  static const String imagesBookIcon = "assets/images/book_icon.svg";
+
+  /// Assets for imagesMainLogo
+  /// assets/images/main_logo.png
+  static const String imagesMainLogo = "assets/images/main_logo.png";
+
   /// Assets for imagesMushafIcon
   /// assets/images/mushaf_icon.svg
   static const String imagesMushafIcon = "assets/images/mushaf_icon.svg";

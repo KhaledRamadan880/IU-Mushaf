@@ -5,6 +5,12 @@ abstract class AppStrings {
   static const String english = "english";
   static const String arabic = "arabic";
   static const String splashSubtitle = "splashSubtitle";
+  //! Mushaf
+  static const String warsh = "warsh";
+  static const String hafs = "hafs";
+  static const String mushaf = "mushaf";
+  static const String accent = "accent";
+  static const String by = "by";
   //! Settings
   static const String setting = "setting";
   static const String prefranceSettings = "prefranceSettings";
