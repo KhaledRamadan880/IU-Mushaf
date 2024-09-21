@@ -14,7 +14,7 @@ class MushafCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 131.responsiveHeight(context),
+      height: 140.responsiveHeight(context),
       margin: EdgeInsets.only(
         bottom: 36.responsiveHeight(context),
       ),
