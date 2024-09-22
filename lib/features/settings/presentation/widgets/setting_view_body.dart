@@ -19,13 +19,14 @@ class SettingViewBody extends StatelessWidget {
             vertical: 28.responsiveHeight(context),
             horizontal: 18.responsiveWidth(context),
           ),
+          margin: EdgeInsets.only(top: 12.responsiveHeight(context)),
           decoration: BoxDecoration(
             color: Theme.of(context).secondaryHeaderColor,
             borderRadius: BorderRadius.circular(16),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: [              
               //! Prefrance Settings
               Text(
                 AppStrings.prefranceSettings.tr(context),

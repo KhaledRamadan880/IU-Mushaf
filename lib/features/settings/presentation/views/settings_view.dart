@@ -1,18 +1,17 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/core/widgets/custom_app_bar.dart';
 import 'package:iu_mushaf/features/settings/presentation/widgets/setting_view_body.dart';
-import 'package:iu_mushaf/features/settings/presentation/widgets/setting_view_header.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: CustomGradientBody(
+    return Scaffold(
+      appBar: customAppBar(context, title: AppStrings.setting),
+      body: const CustomGradientBody(
         body: Column(
           children: [
-            //! Header
-            SettingViewHeader(),
             //! Body
             SettingViewBody(),
           ],
