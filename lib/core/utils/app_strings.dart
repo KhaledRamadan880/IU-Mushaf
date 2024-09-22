@@ -11,6 +11,7 @@ abstract class AppStrings {
   static const String mushaf = "mushaf";
   static const String accent = "accent";
   static const String by = "by";
+  static const String page = "page";
   //! Quran Audio
   static const String quranAudio = "quranAudio";
   static const String surah = "surah";

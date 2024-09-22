@@ -1,4 +1,5 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/mushaf/presentation/views/mushaf_reading_view.dart';
 import 'package:iu_mushaf/features/mushaf/presentation/widgets/mushaf_card.dart';
 
 class MushafCardsListView extends StatelessWidget {
@@ -31,6 +32,15 @@ class MushafCardsListView extends StatelessWidget {
               mushafType: mushafs[index]["mushafType"],
               accent: mushafs[index]["accent"],
               by: mushafs[index]["by"],
+              onTap: () {
+                PersistentNavBarNavigator.pushDynamicScreen(
+                  context,
+                  screen: MaterialPageRoute(
+                    builder: (context) => const MushafReadingView(),
+                  ),
+                  withNavBar: false,
+                );
+              },
             );
           },
         ),
