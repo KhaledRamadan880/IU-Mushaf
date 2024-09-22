@@ -52,6 +52,16 @@ abstract class Styles {
     );
   }
 
+  static TextStyle style15SemiBold(context) {
+    return TextStyle(
+      color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,
+      fontSize: 15.responsiveText(context),
+      overflow: TextOverflow.ellipsis,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w600,
+    );
+  }
+
   static TextStyle style14(context) {
     return TextStyle(
       color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,
@@ -72,6 +82,26 @@ abstract class Styles {
     );
   }
 
+  static TextStyle style13Light(context) {
+    return TextStyle(
+      color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,
+      fontSize: 13.responsiveText(context),
+      overflow: TextOverflow.ellipsis,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w300,
+    );
+  }
+
+  static TextStyle style13(context) {
+    return TextStyle(
+      color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,
+      fontSize: 13.responsiveText(context),
+      overflow: TextOverflow.ellipsis,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w400,
+    );
+  }
+  
   static TextStyle style12(context) {
     return TextStyle(
       color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,

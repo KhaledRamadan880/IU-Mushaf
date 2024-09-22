@@ -29,4 +29,11 @@ class GlobalCubit extends Cubit<GlobalState> {
     sl<Cache>().setData("IsPushNotification", isPushNotification);
     emit(ChangeNotificationPermissionState());
   }
+
+  //! Bottom Navigation Bar
+  bool isNavBarVisible = true;
+  void navBarVisibliltyToggle(value) {
+    isNavBarVisible = value;
+    emit(NavBarVisibliltyToggleState());
+  }
 }

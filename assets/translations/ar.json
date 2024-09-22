@@ -13,6 +13,10 @@
     "quranAudio" : "المصحف الصوتي",
     "surah" : "السور",
 
+    "bookmark" : "المحفوظات",
+    "goToAyah" : "الذهاب الى الاية",
+    "deleteAyah" : "حذف الاية",
+
     "setting": "الاعدادات",
     "prefranceSettings": "اعدادات التفضيل",
     "pushNotifications": "الاشعارات",

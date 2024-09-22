@@ -14,6 +14,10 @@ abstract class AppStrings {
   //! Quran Audio
   static const String quranAudio = "quranAudio";
   static const String surah = "surah";
+  //! Bookmark
+  static const String bookmark = "bookmark";
+  static const String goToAyah = "goToAyah";
+  static const String deleteAyah = "deleteAyah";
   //! Settings
   static const String setting = "setting";
   static const String prefranceSettings = "prefranceSettings";

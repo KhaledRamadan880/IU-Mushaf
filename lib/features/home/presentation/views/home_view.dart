@@ -1,4 +1,5 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/bookmark/presentation/views/bookmark_view.dart';
 import 'package:iu_mushaf/features/home/presentation/widgets/nav_bar.dart';
 import 'package:iu_mushaf/features/mushaf/presentation/views/mushaf_view.dart';
 import 'package:iu_mushaf/features/quran_audio/presentation/views/quran_audio_view.dart';
@@ -13,7 +14,8 @@ class HomeView extends StatelessWidget {
       const MushafView(),
       //! Quran Audio Screen
       const QuranAudioView(),
-      const Placeholder(),
+      //! Bookmark Screen
+      const BookmarkView(),
       //! Setting Screen
       const SettingsView(),
     ];

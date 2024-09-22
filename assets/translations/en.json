@@ -13,6 +13,10 @@
     "quranAudio" : "Quran Audio",
     "surah" : "Surah",
 
+    "bookmark" : "Bookmark",
+    "goToAyah" : "Go To Ayah",
+    "deleteAyah" : "Delete Ayah",
+
     "setting" : "Setting",
     "prefranceSettings" : "Prefrance Settings",
     "pushNotifications" : "Push notifications",

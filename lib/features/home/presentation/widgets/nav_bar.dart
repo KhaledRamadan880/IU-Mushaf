@@ -8,36 +8,41 @@ class CustomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
-      context,
-      navBarStyle: NavBarStyle.style6,
-      navBarHeight: 64.responsiveHeight(context),
-      screens: screens,
-      items: [
-        customNavBarItem(Assets.imagesMushafIcon),
-        customNavBarItem(Assets.imagesRecoedIcon),
-        customNavBarItem(Assets.imagesSaveIcon),
-        customNavBarItem(Assets.imagesSettingsIcon),
-      ],
-      backgroundColor: Theme.of(context).secondaryHeaderColor,
-      margin: EdgeInsets.symmetric(
-        horizontal: 24.responsiveWidth(context),
-        vertical: 32.responsiveHeight(context),
-      ),
-      decoration: NavBarDecoration(        
-        borderRadius: BorderRadius.circular(40),
-        boxShadow: [
-        BoxShadow(
-          color: AppColors.black.withOpacity(0.2),
-          blurRadius: 2,
-          ),        
-        ],
-      ),
-      animationSettings: const NavBarAnimationSettings(
-        navBarItemAnimation: ItemAnimationSettings(
-          duration: Duration(microseconds: 1000),
-        ),
-      ),
+    return BlocBuilder<GlobalCubit, GlobalState>(
+      builder: (context, state) {
+        return PersistentTabView(
+          context,
+          isVisible: context.read<GlobalCubit>().isNavBarVisible,
+          navBarStyle: NavBarStyle.style6,
+          navBarHeight: 64.responsiveHeight(context),
+          screens: screens,
+          items: [
+            customNavBarItem(Assets.imagesMushafIcon),
+            customNavBarItem(Assets.imagesRecoedIcon),
+            customNavBarItem(Assets.imagesSaveIcon),
+            customNavBarItem(Assets.imagesSettingsIcon),
+          ],
+          backgroundColor: Theme.of(context).secondaryHeaderColor,
+          margin: EdgeInsets.symmetric(
+            horizontal: 24.responsiveWidth(context),
+            vertical: 32.responsiveHeight(context),
+          ),
+          decoration: NavBarDecoration(
+            borderRadius: BorderRadius.circular(40),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.black.withOpacity(0.2),
+                blurRadius: 2,
+              ),
+            ],
+          ),
+          animationSettings: const NavBarAnimationSettings(
+            navBarItemAnimation: ItemAnimationSettings(
+              duration: Duration(microseconds: 0),
+            ),
+          ),
+        );
+      },
     );
   }
 }

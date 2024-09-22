@@ -4,11 +4,12 @@ class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton({
     super.key,
     required this.onPressed,
-    required this.title,
+    required this.title, this.textColor,
   });
 
   final Function() onPressed;
   final String title;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,8 @@ class CustomElevatedButton extends StatelessWidget {
       ),
       child: Text(
         title,
-        style: Styles.style18SemiBold(context).copyWith(color: AppColors.black),
+        style: Styles.style18SemiBold(context)
+            .copyWith(color: textColor ?? AppColors.black),
       ),
     );
   }

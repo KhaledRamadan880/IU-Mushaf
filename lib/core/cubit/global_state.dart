@@ -9,3 +9,5 @@ final class ChangeLanguageState extends GlobalState {}
 final class ChangeThemeModState extends GlobalState {}
 
 final class ChangeNotificationPermissionState extends GlobalState {}
+
+final class NavBarVisibliltyToggleState extends GlobalState {}

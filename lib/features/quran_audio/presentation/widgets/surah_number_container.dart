@@ -9,22 +9,24 @@ class SurahNumberContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 36.responsiveHeight(context),
+      width: 36.responsiveWidth(context),
       height: 36.responsiveHeight(context),
       child: Stack(
         children: [
-          BlocBuilder<GlobalCubit, GlobalState>(
-            builder: (context, state) {
-              return SvgPicture.asset(
-                Assets.imagesMuslimIcon,
-                colorFilter: ColorFilter.mode(
-                  context.read<GlobalCubit>().isDark
-                      ? AppColors.white
-                      : AppColors.black,
-                  BlendMode.srcIn,
-                ),
-              );
-            },
+          Center(
+            child: BlocBuilder<GlobalCubit, GlobalState>(
+              builder: (context, state) {
+                return SvgPicture.asset(
+                  Assets.imagesMuslimIcon,
+                  colorFilter: ColorFilter.mode(
+                    context.read<GlobalCubit>().isDark
+                        ? AppColors.white
+                        : AppColors.black,
+                    BlendMode.srcIn,
+                  ),
+                );
+              },
+            ),
           ),
           Center(
             child: CustomText(
