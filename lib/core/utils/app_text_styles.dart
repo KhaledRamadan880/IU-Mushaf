@@ -32,6 +32,26 @@ abstract class Styles {
     );
   }
 
+  static TextStyle style16SemiBold(context) {
+    return TextStyle(
+      color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,
+      fontSize: 16.responsiveText(context),
+      overflow: TextOverflow.ellipsis,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w600,
+    );
+  }
+
+  static TextStyle style16(context) {
+    return TextStyle(
+      color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,
+      fontSize: 16.responsiveText(context),
+      overflow: TextOverflow.ellipsis,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w400,
+    );
+  }
+
   static TextStyle style14(context) {
     return TextStyle(
       color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,
@@ -49,6 +69,16 @@ abstract class Styles {
       overflow: TextOverflow.ellipsis,
       fontFamily: "Poppins",
       fontWeight: FontWeight.w500,
+    );
+  }
+
+  static TextStyle style12(context) {
+    return TextStyle(
+      color: sl<GlobalCubit>().isDark ? AppColors.white : AppColors.black,
+      fontSize: 12.responsiveText(context),
+      overflow: TextOverflow.ellipsis,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w400,
     );
   }
 }

@@ -10,6 +10,9 @@
     "accent" : "لهجة",
     "by" : "by",
 
+    "quranAudio" : "المصحف الصوتي",
+    "surah" : "السور",
+
     "setting": "الاعدادات",
     "prefranceSettings": "اعدادات التفضيل",
     "pushNotifications": "الاشعارات",

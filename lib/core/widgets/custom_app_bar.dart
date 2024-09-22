@@ -19,5 +19,6 @@ AppBar customAppBar(
     ],
     backgroundColor: Theme.of(context).secondaryHeaderColor,
     toolbarHeight: 62.responsiveHeight(context),
+    surfaceTintColor: AppColors.transparent,
   );
 }
