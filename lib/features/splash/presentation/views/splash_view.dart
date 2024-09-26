@@ -18,7 +18,7 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     showButtons = widget.showButtons!;
-    if (sl<Cache>().getBoolData("IsFirstStart") == true) {
+    if (sl<Cache>().getBoolData("IsFirstStart") != false) {
       Future.delayed(
         const Duration(seconds: 2),
         () {
