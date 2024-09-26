@@ -2,6 +2,7 @@ import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/settings/presentation/widgets/components/dark_mode_switch.dart';
 import 'package:iu_mushaf/features/settings/presentation/widgets/components/push_notification_switch.dart';
 import 'package:iu_mushaf/features/settings/presentation/widgets/custom_list_tile.dart';
+import 'package:iu_mushaf/features/splash/presentation/views/splash_view.dart';
 
 class SettingViewBody extends StatelessWidget {
   const SettingViewBody({
@@ -12,6 +13,7 @@ class SettingViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GlobalCubit, GlobalState>(
       builder: (context, state) {
+        final cubit = context.read<GlobalCubit>();
         return Container(
           width: 357.responsiveWidth(context),
           height: 628.responsiveHeight(context),
@@ -26,7 +28,7 @@ class SettingViewBody extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [              
+            children: [
               //! Prefrance Settings
               Text(
                 AppStrings.prefranceSettings.tr(context),
@@ -48,7 +50,19 @@ class SettingViewBody extends StatelessWidget {
               //* Change Language
               CustomListTile(
                 title: AppStrings.changeLanguage,
-                onTap: () {},
+                onTap: () {
+                  PersistentNavBarNavigator.pushNewScreen(
+                    context,
+                    screen: const SplashView(
+                      showButtons: true,
+                    ),
+                    withNavBar: false,
+                  ).whenComplete(
+                    () {
+                      cubit.navBarController.jumpToTab(3);
+                    },
+                  );
+                },
               ),
 
               //! Divider

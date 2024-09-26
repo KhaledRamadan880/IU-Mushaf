@@ -12,6 +12,7 @@ class CustomNavBar extends StatelessWidget {
       builder: (context, state) {
         return PersistentTabView(
           context,
+          controller: context.read<GlobalCubit>().navBarController,
           isVisible: context.read<GlobalCubit>().isNavBarVisible,
           navBarStyle: NavBarStyle.style6,
           navBarHeight: 64.responsiveHeight(context),

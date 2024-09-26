@@ -31,6 +31,7 @@ class GlobalCubit extends Cubit<GlobalState> {
   }
 
   //! Bottom Navigation Bar
+  PersistentTabController navBarController = PersistentTabController();
   bool isNavBarVisible = true;
   void navBarVisibliltyToggle(value) {
     isNavBarVisible = value;

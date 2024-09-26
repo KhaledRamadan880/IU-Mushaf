@@ -13,13 +13,13 @@ class SplashTitleAndSubtitle extends StatelessWidget {
         children: [
           SizedBox(height: 82.responsiveHeight(context)),
           //! Title
-          Text(
+          CustomText(
             AppStrings.iuMushaf.tr(context),
             style: Styles.style28Bold(context),
           ),
           SizedBox(height: 16.responsiveHeight(context)),
           //! Subtitle
-          Text(
+          CustomText(
             AppStrings.splashSubtitle.tr(context),
             style: Styles.style18(context).copyWith(
               overflow: TextOverflow.clip,
