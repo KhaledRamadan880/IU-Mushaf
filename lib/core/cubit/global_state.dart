@@ -12,4 +12,3 @@ final class ChangeNotificationPermissionState extends GlobalState {}
 
 final class NavBarVisibliltyToggleState extends GlobalState {}
 
-final class ReadingPageSwipState extends GlobalState {}

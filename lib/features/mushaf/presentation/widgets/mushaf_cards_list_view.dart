@@ -1,5 +1,4 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
-import 'package:iu_mushaf/features/mushaf/presentation/cubit/mushaf_cubit.dart';
 import 'package:iu_mushaf/features/mushaf/presentation/views/mushaf_reading_view.dart';
 import 'package:iu_mushaf/features/mushaf/presentation/widgets/mushaf_card.dart';
 
@@ -21,14 +20,16 @@ class MushafCardsListView extends StatelessWidget {
               mushafType: globalCubit.mushafsModel!.mushafs[index].mushafTypeEn,
               accent: globalCubit.mushafsModel!.mushafs[index].accentEn,
               by: globalCubit.mushafsModel!.mushafs[index].byEn,
-              onTap: () {
-                globalCubit.addAyahsToList();
+              onTap: () {                
                 PersistentNavBarNavigator.pushDynamicScreen(
                   context,
                   screen: MaterialPageRoute(
                     builder: (context) => BlocProvider(
                       create: (context) =>
-                          MushafCubit()..hideLayoutAfterNavigate(),
+                          MushafCubit()
+                        ..surModel = globalCubit.surModel!
+                        ..addAyahsToList()
+                        ..hideLayoutAfterNavigate(),
                       child: const MushafReadingView(),
                     ),
                   ),

@@ -1,7 +1,5 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
-import 'package:iu_mushaf/features/mushaf/presentation/cubit/mushaf_cubit.dart';
 import 'package:iu_mushaf/features/mushaf/presentation/widgets/mushaf_reading_ayah_focus_overlay.dart';
-import 'package:iu_mushaf/features/splash/presentation/widgets/custom_elevated_button.dart';
 
 import '../widgets/mushaf_reading_container.dart';
 import '../widgets/mushaf_reading_header.dart';

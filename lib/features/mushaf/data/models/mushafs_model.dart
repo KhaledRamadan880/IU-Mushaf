@@ -17,16 +17,5 @@ class MushafsModel {
       byAr: "حفص",
       sur: [],
     ),
-    //! Mushaf 2
-    MushafModel(
-      id: 2,
-      mushafTypeEn: "Hafs",
-      mushafTypeAr: "حفص",
-      accentEn: "Narrated",
-      accentAr: "القارء",
-      byEn: "Hafs",
-      byAr: "حفص",
-      sur: [],
-    ),
   ];
 }

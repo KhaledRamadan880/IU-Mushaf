@@ -1,5 +1,4 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
-import 'package:iu_mushaf/features/mushaf/presentation/cubit/mushaf_cubit.dart';
 
 class MushafReadingHeader extends StatelessWidget {
   const MushafReadingHeader({
@@ -36,8 +35,7 @@ class MushafReadingHeader extends StatelessWidget {
                   const Spacer(),
                   //! Title
                   CustomText(
-                    AppStrings.mushaf.tr(context) +
-                        AppStrings.warsh.tr(context),
+                    "${AppStrings.mushaf.tr(context)} ${AppStrings.warsh.tr(context)}",
                     style: Styles.style18SemiBold(context),
                   ),
                   const Spacer(),

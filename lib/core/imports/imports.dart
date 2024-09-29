@@ -12,3 +12,6 @@ export 'package:iu_mushaf/core/cubit/global_cubit.dart';
 export 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 export 'package:iu_mushaf/core/widgets/custom_text.dart';
 export 'package:iu_mushaf/core/widgets/custom_gradient_body.dart';
+export 'package:iu_mushaf/features/mushaf/presentation/cubit/mushaf_cubit.dart';
+export 'package:iu_mushaf/features/mushaf/data/models/mushafs_model.dart';
+export 'package:iu_mushaf/features/mushaf/data/models/sur_model.dart';
