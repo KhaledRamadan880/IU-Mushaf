@@ -1,4 +1,5 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/mushaf/presentation/cubit/mushaf_cubit.dart';
 import 'package:iu_mushaf/features/mushaf/presentation/views/mushaf_reading_view.dart';
 import 'package:iu_mushaf/features/mushaf/presentation/widgets/mushaf_card.dart';
 
@@ -7,36 +8,29 @@ class MushafCardsListView extends StatelessWidget {
     super.key,
   });
 
-  static List mushafs = [
-    {
-      "mushafType": "Warch",
-      "accent": "Narrated",
-      "by": "Warsh",
-    },
-    {
-      "mushafType": "Hafs",
-      "accent": "Narrated",
-      "by": "hafs",
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final globalCubit = context.read<GlobalCubit>();
     return Expanded(
       child: SizedBox(
         width: 326.responsiveWidth(context),
         child: ListView.builder(
-          itemCount: 2,
+          itemCount: globalCubit.mushafsModel!.mushafs.length,
           itemBuilder: (context, index) {
             return MushafCard(
-              mushafType: mushafs[index]["mushafType"],
-              accent: mushafs[index]["accent"],
-              by: mushafs[index]["by"],
+              mushafType: globalCubit.mushafsModel!.mushafs[index].mushafTypeEn,
+              accent: globalCubit.mushafsModel!.mushafs[index].accentEn,
+              by: globalCubit.mushafsModel!.mushafs[index].byEn,
               onTap: () {
+                globalCubit.addAyahsToList();
                 PersistentNavBarNavigator.pushDynamicScreen(
                   context,
                   screen: MaterialPageRoute(
-                    builder: (context) => const MushafReadingView(),
+                    builder: (context) => BlocProvider(
+                      create: (context) =>
+                          MushafCubit()..hideLayoutAfterNavigate(),
+                      child: const MushafReadingView(),
+                    ),
                   ),
                   withNavBar: false,
                 );

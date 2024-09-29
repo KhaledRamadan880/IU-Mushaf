@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/core/local/localization_settings.dart';
 import 'package:iu_mushaf/core/theme/theme.dart';
@@ -8,9 +9,20 @@ class UIMushafApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return BlocBuilder<GlobalCubit, GlobalState>(
       builder: (context, state) {
         return MaterialApp(
+          builder: (context, child) {
+            return MediaQuery(
+              data: MediaQuery.of(context)
+                  .copyWith(textScaler: TextScaler.noScaling),
+              child: child!,
+            );
+          },
           debugShowCheckedModeBanner: false,
           //!Localization Settings
           localizationsDelegates: localizationsDelegatesList,

@@ -9,9 +9,10 @@ void main() async {
   await sl<Cache>().init();
   runApp(
     DevicePreview(
-      enabled: !kReleaseMode,
+      // enabled: !kReleaseMode,
+      enabled: false,
       builder: (context) => BlocProvider(
-        create: (context) => GlobalCubit(),
+        create: (context) => GlobalCubit()..loadMushafFromJson(),
         child: const UIMushafApp(),
       ),
     ),

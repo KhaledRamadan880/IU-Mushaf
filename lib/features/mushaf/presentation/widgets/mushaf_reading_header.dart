@@ -1,4 +1,5 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/mushaf/presentation/cubit/mushaf_cubit.dart';
 
 class MushafReadingHeader extends StatelessWidget {
   const MushafReadingHeader({
@@ -7,37 +8,49 @@ class MushafReadingHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 62.responsiveHeight(context),
-      margin: EdgeInsets.symmetric(
-        horizontal: 9.responsiveWidth(context),
-      ),
-      decoration: BoxDecoration(
-        color: Theme.of(context).secondaryHeaderColor,
-      ),
-      child: Row(
-        children: [
-          //! Pop Button
-          CustomButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icons.arrow_back,
+    return BlocBuilder<MushafCubit, MushafState>(
+      builder: (context, state) {
+        return GestureDetector(
+          onTap: () {},
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 250),
+            opacity: context.read<MushafCubit>().isLayoutHiddin ? 0 : 1,
+            child: Container(
+              width: double.infinity,
+              height: 62.responsiveHeight(context),
+              margin: EdgeInsets.symmetric(
+                horizontal: 9.responsiveWidth(context),
+              ),
+              decoration: BoxDecoration(
+                color: Theme.of(context).secondaryHeaderColor,
+              ),
+              child: Row(
+                children: [
+                  //! Pop Button
+                  CustomButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icons.arrow_back,
+                  ),
+                  const Spacer(),
+                  //! Title
+                  CustomText(
+                    AppStrings.mushaf.tr(context) +
+                        AppStrings.warsh.tr(context),
+                    style: Styles.style18SemiBold(context),
+                  ),
+                  const Spacer(),
+                  CustomButton(
+                    onPressed: () {},
+                    icon: Icons.search,
+                  ),
+                ],
+              ),
+            ),
           ),
-          const Spacer(),
-          //! Title
-          CustomText(
-            AppStrings.mushaf.tr(context) + AppStrings.warsh.tr(context),
-            style: Styles.style18SemiBold(context),
-          ),
-          const Spacer(),
-          CustomButton(
-            onPressed: () {},
-            icon: Icons.search,
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

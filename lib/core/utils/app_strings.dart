@@ -12,6 +12,10 @@ abstract class AppStrings {
   static const String accent = "accent";
   static const String by = "by";
   static const String page = "page";
+  static const String listenToAyah = "listenToAyah";
+  static const String meanOfAyah = "meanOfAyah";
+  static const String aboutayah = "aboutayah";
+  static const String addToBookmark = "addToBookmark";
   //! Quran Audio
   static const String quranAudio = "quranAudio";
   static const String surah = "surah";

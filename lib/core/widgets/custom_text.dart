@@ -42,6 +42,7 @@ class CustomText extends StatelessWidget {
           ),
           textDirection: textDirection ?? TextDirection.ltr,
           textAlign: textAlign ?? TextAlign.start,
+          
         );
       },
     );

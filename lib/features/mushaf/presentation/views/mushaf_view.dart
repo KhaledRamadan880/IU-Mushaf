@@ -16,12 +16,13 @@ class MushafView extends StatelessWidget {
           child: Column(
             children: [
               //! Title
-              Align(
-                alignment: Alignment.centerLeft,
-                child: CustomText(
-                  AppStrings.iuMushaf.tr(context),
-                  style: Styles.style28Bold(context),
-                ),
+              Row(
+                children: [
+                  CustomText(
+                    AppStrings.iuMushaf.tr(context),
+                    style: Styles.style28Bold(context),
+                  ),
+                ],
               ),
               //! Cards List View
               const MushafCardsListView(),
