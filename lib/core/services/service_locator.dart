@@ -5,4 +5,6 @@ final sl = GetIt.instance;
 void initServiceLocator() {
   sl.registerLazySingleton(() => Cache());
   sl.registerLazySingleton(() => GlobalCubit());
+  //! Medai Player
+  sl.registerLazySingleton(()=> MediaPlayer());
 }

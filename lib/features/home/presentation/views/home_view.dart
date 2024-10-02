@@ -13,7 +13,10 @@ class HomeView extends StatelessWidget {
       //! Mushaf Screen
       const MushafView(),
       //! Quran Audio Screen
-      const QuranAudioView(),
+      BlocProvider(
+        create: (context) => QuranAudioCubit(),
+        child: const QuranAudioView(),
+      ),
       //! Bookmark Screen
       const BookmarkView(),
       //! Setting Screen

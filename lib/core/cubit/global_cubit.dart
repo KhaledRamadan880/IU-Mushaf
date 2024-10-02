@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/quran_audio/data/models/sur_readers_audios_model.dart';
 
 part 'global_state.dart';
 
@@ -49,5 +50,16 @@ class GlobalCubit extends Cubit<GlobalState> {
     String jsonString = await rootBundle.loadString("assets/json/quran.json");
     Map<String, dynamic> jsonMap = jsonDecode(jsonString);
     surModel = SurModel.fromJson(jsonMap);
+  }
+
+  //! Load Sur Audios
+  SurReadersAudiosModel? surReadersAudiosModel;
+  Future<void> loadSurAudiosFromJson() async {
+    emit(LoadSurReaderLoadingState());
+    String jsonString =
+        await rootBundle.loadString("assets/json/sur_readers_audios.json");
+    Map<String, dynamic> jsonMap = jsonDecode(jsonString);
+    surReadersAudiosModel = SurReadersAudiosModel.fromJson(jsonMap);
+    emit(LoadSurReaderSuccessState());
   }
 }

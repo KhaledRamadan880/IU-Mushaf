@@ -1,104 +1,53 @@
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iu_mushaf/core/imports/imports.dart';
+
+import 'components/audio_setting_button.dart';
+import 'components/audio_skip_backward_button.dart';
+import 'components/audio_skip_forward_button.dart';
+import 'components/audio_start_and_end_time.dart';
+import 'components/custom_slider.dart';
+import 'components/play_and_pause_button.dart';
+import 'components/surah_and_qari_name.dart';
 
 class QuranAudioPlayer extends StatelessWidget {
   const QuranAudioPlayer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GlobalCubit, GlobalState>(
-      builder: (context, state) {
-        final bool isDark = context.read<GlobalCubit>().isDark;
-        return Column(
-          children: [
-            SizedBox(height: 24.responsiveHeight(context)),
-            //! Sourah Name And Qari
-            Text(
-              "Surah Al-Baqarah - *Qari Name*",
-              style: Styles.style18SemiBold(context).copyWith(
-                color: AppColors.green,
-              ),
-            ),
-            //! Progress Indicator
-            Slider(
-              value: .3,
-              max: 1,
-              onChanged: (value) {},
-              activeColor: isDark ? AppColors.white : AppColors.black,
-              inactiveColor: AppColors.grey,
-            ),
-            //! timing
-            Row(
-              children: [
-                SizedBox(width: 20.responsiveWidth(context)),
-                //! Current Time
-                CustomText(
-                  "13:00",
-                  style: Styles.style12(context),
-                ),
-                const Spacer(),
-                //! Total Time
-                CustomText(
-                  "13:00",
-                  style: Styles.style12(context),
-                ),
-                SizedBox(width: 20.responsiveWidth(context)),
-              ],
-            ),
-            //! Controllers
-            SizedBox(
-              height: 64.responsiveHeight(context),
-              child: Stack(
+    return Column(
+      children: [
+        SizedBox(height: 24.responsiveHeight(context)),
+        //! Sourah Name And Qari
+        const SurahAndQariName(),
+        SizedBox(height: 24.responsiveHeight(context)),
+        //! Slider
+        const CustomSlider(),
+        SizedBox(height: 12.responsiveHeight(context)),
+        //! Start & End Time
+        const AudioStrartAndEndTime(),
+        //! Audio Controllers
+        SizedBox(
+          height: 64.responsiveHeight(context),
+          child: const Stack(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                textDirection: TextDirection.ltr,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      //! Skip Previous Button
-                      Icon(
-                        Icons.skip_previous,
-                        size: 48.responsiveHeight(context),
-                        color: isDark ? AppColors.white : AppColors.black,
-                      ),
-                      //! Play & Pause Button
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 24.responsiveWidth(context)),
-                        child: CircleAvatar(
-                          radius: 32.responsiveHeight(context),
-                          backgroundColor:
-                              isDark ? AppColors.white : AppColors.black,
-                          child: Icon(
-                            Icons.play_arrow,
-                            color: !isDark ? AppColors.white : AppColors.black,
-                            size: 38.responsiveHeight(context),
-                          ),
-                        ),
-                      ),
-                      //! Skip Next Button
-                      Icon(
-                        Icons.skip_next,
-                        size: 48.responsiveHeight(context),
-                        color: isDark ? AppColors.white : AppColors.black,
-                      ),
-                    ],
-                  ),
-                  //! Setting Button
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: SvgPicture.asset(
-                      Assets.imagesSettingsIcon,
-                      colorFilter: const ColorFilter.mode(
-                        AppColors.grey,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
+                  //! Skip Previous Button
+                  AudioSkipBackwardButton(),
+                  //! Play & Pause Button
+                  PlayAndPauseButton(),
+                  //! Skip Next Button
+                  AudioSkipForwardButton(),
                 ],
               ),
-            ),
-          ],
-        );
-      },
+              //! Setting Button
+              AudioSettingButton(),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
+

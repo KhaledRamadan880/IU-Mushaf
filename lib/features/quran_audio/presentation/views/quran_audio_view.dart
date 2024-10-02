@@ -22,15 +22,19 @@ class QuranAudioView extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             horizontal: 20.responsiveWidth(context),
           ),
-          child: const Column(
-            children: [
-              //! Title & Divider
-              QuranAudioTitleAndDivider(),
-              //! Surah List View
-              QuranAudioSurahListView(),
-              //! Audio Player
-              QuranAudioPlayer(),
-            ],
+          child: BlocBuilder<QuranAudioCubit, QuranAudioState>(
+            builder: (context, state) {
+              return const Column(
+                children: [
+                  //! Title & Divider
+                  QuranAudioTitleAndDivider(),
+                  //! Surah List View
+                  QuranAudioSurahListView(),
+                  //! Audio Player
+                  QuranAudioPlayer(),
+                ],
+              );
+            },
           ),
         ),
       ),
