@@ -9,7 +9,7 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   QuranAudioCubit() : super(QuranAudioInitial());
 
   int selectedSurahNumber = 0;
-  int selectedReader = 0;
+  int selectedReciter = sl<Cache>().getIntData("reciter")!;
   SurReadersAudiosModel? surReadersAudiosModel;
   SurModel? surModel;
   String? language;
@@ -31,10 +31,10 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   Future<void> setAudioPLaylist() async {
     playList = ConcatenatingAudioSource(
       children: List.generate(
-        surReadersAudiosModel!.surReadersAudios[0].surUrls.length,
+        surReadersAudiosModel!.surReadersAudios[selectedReciter].surUrls.length,
         (index) {
-          String url =
-              surReadersAudiosModel!.surReadersAudios[0].surUrls[index].url;
+          String url = surReadersAudiosModel!
+              .surReadersAudios[selectedReciter].surUrls[index].url;
           if (url.startsWith("http://") || url.startsWith("https://")) {
             return AudioSource.uri(
               Uri.parse(url),
@@ -42,9 +42,9 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
                 id: "$selectedSurahNumber",
                 album: language == "en"
                     ? surReadersAudiosModel!
-                        .surReadersAudios[0].readerNameEnglish
+                        .surReadersAudios[selectedReciter].readerNameEnglish
                     : surReadersAudiosModel!
-                        .surReadersAudios[0].readerNameArabic,
+                        .surReadersAudios[selectedReciter].readerNameArabic,
                 title: language == "en"
                     ? surModel!.sur[index].englishName
                     : surModel!.sur[index].name,
@@ -79,7 +79,7 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
     await audioPlayer.setAudioSource(
       playList!,
       initialIndex: initialIndex ?? 0,
-      preload: false,      
+      preload: false,
     );
     await audioPlayer.setLoopMode(LoopMode.all);
     audioPlayer.play();
@@ -95,5 +95,18 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   Future<void> playAndPauseToggle() async {
     audioPlayer.playing ? audioPlayer.pause() : audioPlayer.play();
     emit(SelectSurahState());
+  }
+
+  //! Change Reciter
+  void changeReciter(int index) {
+    if (selectedReciter != index) {
+      final int currentSurah = audioPlayer.currentIndex!;
+      selectedReciter = index;
+      sl<Cache>().setData("reciter", selectedReciter);
+      audioPlayer.stop();
+      setAudioPLaylist();
+      playSurah(initialIndex: currentSurah);
+      emit(ChangeReciterState());
+    }
   }
 }

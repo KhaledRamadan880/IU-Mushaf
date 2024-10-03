@@ -26,7 +26,9 @@ class CustomNavBar extends StatelessWidget {
           backgroundColor: Theme.of(context).secondaryHeaderColor,
           margin: EdgeInsets.symmetric(
             horizontal: 24.responsiveWidth(context),
-            vertical: 32.responsiveHeight(context),
+            vertical: context.read<GlobalCubit>().isNavBarVisible
+                ? 32.responsiveHeight(context)
+                : 0,
           ),
           decoration: NavBarDecoration(
             borderRadius: BorderRadius.circular(40),

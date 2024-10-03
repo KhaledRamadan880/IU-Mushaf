@@ -461,6 +461,468 @@
                     "surah_url": "https://server8.mp3quran.net/afs/114.mp3"
                 }
             ]
+        },        
+        {
+            "reader_name_english": "Fares Abbad",
+            "reader_name_arabic": "فارس عباد",
+            "sur_url": [
+                {
+                    "surah_number": 1,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/002.mp3"
+                },
+                {
+                    "surah_number": 2,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/002.mp3"
+                },
+                {
+                    "surah_number": 3,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/003.mp3"
+                },
+                {
+                    "surah_number": 4,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/004.mp3"
+                },
+                {
+                    "surah_number": 5,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/005.mp3"
+                },
+                {
+                    "surah_number": 6,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/006.mp3"
+                },
+                {
+                    "surah_number": 7,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/007.mp3"
+                },
+                {
+                    "surah_number": 8,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/008.mp3"
+                },
+                {
+                    "surah_number": 9,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/009.mp3"
+                },
+                {
+                    "surah_number": 10,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/010.mp3"
+                },
+                {
+                    "surah_number": 11,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/011.mp3"
+                },
+                {
+                    "surah_number": 12,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/012.mp3"
+                },
+                {
+                    "surah_number": 13,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/013.mp3"
+                },
+                {
+                    "surah_number": 14,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/014.mp3"
+                },
+                {
+                    "surah_number": 15,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/015.mp3"
+                },
+                {
+                    "surah_number": 16,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/016.mp3"
+                },
+                {
+                    "surah_number": 17,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/017.mp3"
+                },
+                {
+                    "surah_number": 18,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/018.mp3"
+                },
+                {
+                    "surah_number": 19,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/019.mp3"
+                },
+                {
+                    "surah_number":  20,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/020.mp3"
+                },
+                {
+                    "surah_number":  21,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/021.mp3"
+                },
+                {
+                    "surah_number":  22,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/022.mp3"
+                },
+                {
+                    "surah_number":  23,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/023.mp3"
+                },
+                {
+                    "surah_number":  24,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/024.mp3"
+                },
+                {
+                    "surah_number":  25,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/025.mp3"
+                },
+                {
+                    "surah_number":  26,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/026.mp3"
+                },
+                {
+                    "surah_number":  27,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/027.mp3"
+                },
+                {
+                    "surah_number":  28,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/028.mp3"
+                },
+                {
+                    "surah_number":  29,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/029.mp3"
+                },
+                {
+                    "surah_number":  30,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/030.mp3"
+                },
+                {
+                    "surah_number":  31,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/031.mp3"
+                },
+                {
+                    "surah_number":  32,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/032.mp3"
+                },
+                {
+                    "surah_number":  33,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/033.mp3"
+                },
+                {
+                    "surah_number":  34,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/034.mp3"
+                },
+                {
+                    "surah_number":  35,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/035.mp3"
+                },
+                {
+                    "surah_number":  36,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/036.mp3"
+                },
+                {
+                    "surah_number":  37,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/037.mp3"
+                },
+                {
+                    "surah_number":  38,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/038.mp3"
+                },
+                {
+                    "surah_number":  39,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/039.mp3"
+                },
+                {
+                    "surah_number":  40,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/040.mp3"
+                },
+                {
+                    "surah_number":  41,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/041.mp3"
+                },
+                {
+                    "surah_number":  42,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/042.mp3"
+                },
+                {
+                    "surah_number":  43,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/043.mp3"
+                },
+                {
+                    "surah_number":  44,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/044.mp3"
+                },
+                {
+                    "surah_number":  45,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/045.mp3"
+                },
+                {
+                    "surah_number":  46,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/046.mp3"
+                },
+                {
+                    "surah_number":  47,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/047.mp3"
+                },
+                {
+                    "surah_number":  48,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/048.mp3"
+                },
+                {
+                    "surah_number":  49,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/049.mp3"
+                },
+                {
+                    "surah_number":  50,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/050.mp3"
+                },
+                {
+                    "surah_number":  51,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/051.mp3"
+                },
+                {
+                    "surah_number":  52,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/052.mp3"
+                },
+                {
+                    "surah_number":  53,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/053.mp3"
+                },
+                {
+                    "surah_number":  54,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/054.mp3"
+                },
+                {
+                    "surah_number":  55,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/055.mp3"
+                },
+                {
+                    "surah_number":  56,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/056.mp3"
+                },
+                {
+                    "surah_number":  57,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/057.mp3"
+                },
+                {
+                    "surah_number":  58,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/058.mp3"
+                },
+                {
+                    "surah_number":  59,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/059.mp3"
+                },
+                {
+                    "surah_number":  60,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/060.mp3"
+                },
+                {
+                    "surah_number":  61,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/061.mp3"
+                },
+                {
+                    "surah_number":  62,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/062.mp3"
+                },
+                {
+                    "surah_number":  63,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/063.mp3"
+                },
+                {
+                    "surah_number":  64,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/064.mp3"
+                },
+                {
+                    "surah_number":  65,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/065.mp3"
+                },
+                {
+                    "surah_number":  66,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/066.mp3"
+                },
+                {
+                    "surah_number":  67,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/067.mp3"
+                },
+                {
+                    "surah_number":  68,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/068.mp3"
+                },
+                {
+                    "surah_number":  69,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/069.mp3"
+                },
+                {
+                    "surah_number":  70,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/070.mp3"
+                },
+                {
+                    "surah_number":  71,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/071.mp3"
+                },
+                {
+                    "surah_number":  72,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/072.mp3"
+                },
+                {
+                    "surah_number":  73,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/073.mp3"
+                },
+                {
+                    "surah_number":  74,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/074.mp3"
+                },
+                {
+                    "surah_number":  75,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/075.mp3"
+                },
+                {
+                    "surah_number":  76,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/076.mp3"
+                },
+                {
+                    "surah_number":  77,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/077.mp3"
+                },
+                {
+                    "surah_number":  78,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/078.mp3"
+                },
+                {
+                    "surah_number":  79,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/079.mp3"
+                },
+                {
+                    "surah_number":  80,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/080.mp3"
+                },
+                {
+                    "surah_number":  81,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/081.mp3"
+                },
+                {
+                    "surah_number":  82,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/082.mp3"
+                },
+                {
+                    "surah_number":  83,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/083.mp3"
+                },
+                {
+                    "surah_number":  84,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/084.mp3"
+                },
+                {
+                    "surah_number":  85,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/085.mp3"
+                },
+                {
+                    "surah_number":  86,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/086.mp3"
+                },
+                {
+                    "surah_number":  87,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/087.mp3"
+                },
+                {
+                    "surah_number":  88,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/088.mp3"
+                },
+                {
+                    "surah_number":  89,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/089.mp3"
+                },
+                {
+                    "surah_number":  90,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/090.mp3"
+                },
+                {
+                    "surah_number":  91,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/091.mp3"
+                },
+                {
+                    "surah_number":  92,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/092.mp3"
+                },
+                {
+                    "surah_number":  93,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/093.mp3"
+                },
+                {
+                    "surah_number":  94,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/094.mp3"
+                },
+                {
+                    "surah_number":  95,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/095.mp3"
+                },
+                {
+                    "surah_number":  96,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/096.mp3"
+                },
+                {
+                    "surah_number":  97,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/097.mp3"
+                },
+                {
+                    "surah_number":  98,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/098.mp3"
+                },
+                {
+                    "surah_number":  99,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/099.mp3"
+                },
+                {
+                    "surah_number": 100,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/100.mp3"
+                },
+                {
+                    "surah_number": 101,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/101.mp3"
+                },
+                {
+                    "surah_number": 102,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/102.mp3"
+                },
+                {
+                    "surah_number": 103,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/103.mp3"
+                },
+                {
+                    "surah_number": 104,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/104.mp3"
+                },
+                {
+                    "surah_number": 105,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/105.mp3"
+                },
+                {
+                    "surah_number": 106,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/106.mp3"
+                },
+                {
+                    "surah_number": 107,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/107.mp3"
+                },
+                {
+                    "surah_number": 108,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/108.mp3"
+                },
+                {
+                    "surah_number": 109,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/109.mp3"
+                },
+                {
+                    "surah_number": 110,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/110.mp3"
+                },
+                {
+                    "surah_number": 111,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/111.mp3"
+                },
+                {
+                    "surah_number": 112,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/112.mp3"
+                },
+                {
+                    "surah_number": 113,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/113.mp3"
+                },
+                {
+                    "surah_number": 114,
+                    "surah_url": "https://server8.mp3quran.net/frs_a/114.mp3"
+                }
+            ]
         }
     ]
 }

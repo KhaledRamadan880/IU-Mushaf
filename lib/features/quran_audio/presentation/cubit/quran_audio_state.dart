@@ -14,3 +14,5 @@ final class LoadingAudioState extends QuranAudioState {}
 final class AudioIdleState extends QuranAudioState {}
 
 final class AudioStopState extends QuranAudioState {}
+
+final class ChangeReciterState extends QuranAudioState {}

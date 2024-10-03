@@ -19,6 +19,7 @@ abstract class AppStrings {
   //! Quran Audio
   static const String quranAudio = "quranAudio";
   static const String surah = "surah";
+  static const String chooseReciter = "chooseReciter";
   //! Bookmark
   static const String bookmark = "bookmark";
   static const String goToAyah = "goToAyah";
