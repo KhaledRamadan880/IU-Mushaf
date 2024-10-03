@@ -3,6 +3,7 @@ import 'package:iu_mushaf/core/widgets/custom_app_bar.dart';
 import 'package:iu_mushaf/features/quran_audio/presentation/widgets/quran_audio_player.dart';
 import 'package:iu_mushaf/features/quran_audio/presentation/widgets/quran_audio_surah_listview.dart';
 
+import '../widgets/components/search_text_field.dart';
 import '../widgets/quran_audio_search_button.dart';
 import '../widgets/quran_audio_title_and_divider.dart';
 
@@ -12,6 +13,7 @@ class QuranAudioView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: customAppBar(
         context,
         title: AppStrings.quranAudio,
@@ -20,24 +22,21 @@ class QuranAudioView extends StatelessWidget {
       body: BlocBuilder<GlobalCubit, GlobalState>(
         builder: (context, state) {
           return CustomGradientBody(
-            body: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20.responsiveWidth(context),
-              ),
-              child: BlocBuilder<QuranAudioCubit, QuranAudioState>(
-                builder: (context, state) {
-                  return const Column(
-                    children: [
-                      //! Title & Divider
-                      QuranAudioTitleAndDivider(),
-                      //! Surah List View
-                      QuranAudioSurahListView(),
-                      //! Audio Player
-                      QuranAudioPlayer(),
-                    ],
-                  );
-                },
-              ),
+            body: BlocBuilder<QuranAudioCubit, QuranAudioState>(
+              builder: (context, state) {
+                return const Column(
+                  children: [
+                    //! Search
+                    SearchTextField(),
+                    //! Title & Divider
+                    QuranAudioTitleAndDivider(),
+                    //! Surah List View
+                    QuranAudioSurahListView(),
+                    //! Audio Player
+                    QuranAudioPlayer()
+                  ],
+                );
+              },
             ),
           );
         },

@@ -16,3 +16,7 @@ final class AudioIdleState extends QuranAudioState {}
 final class AudioStopState extends QuranAudioState {}
 
 final class ChangeReciterState extends QuranAudioState {}
+
+final class ChangeSearchTextFieldVisibilityState extends QuranAudioState {}
+
+final class SearchOnChangeState extends QuranAudioState {}

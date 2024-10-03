@@ -9,9 +9,10 @@ class QuranAudioSurahCard extends StatelessWidget {
     super.key,
     required this.title,
     required this.onTap,
+    required this.surahNumber,
   });
 
-  final int index;
+  final int index, surahNumber;
   final String title;
   final Function() onTap;
 
@@ -30,7 +31,7 @@ class QuranAudioSurahCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 //! Surah Number
-                SurahNumberContainer(index),
+                SurahNumberContainer(surahNumber),
                 SizedBox(width: 23.responsiveWidth(context)),
                 //! Surah Name
                 CustomText(

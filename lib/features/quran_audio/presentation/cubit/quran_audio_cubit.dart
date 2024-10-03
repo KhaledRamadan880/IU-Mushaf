@@ -1,4 +1,5 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/mushaf/data/models/surah_model.dart';
 import 'package:iu_mushaf/features/quran_audio/data/models/sur_readers_audios_model.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
@@ -108,5 +109,41 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
       playSurah(initialIndex: currentSurah);
       emit(ChangeReciterState());
     }
+  }
+
+  //! Search
+  TextEditingController searchController = TextEditingController();
+  bool showSearchTextField = false;
+  FocusNode searchFocusNode = FocusNode();
+
+  void changeSearchTextFieldVisibility(bool isVisible) {
+    showSearchTextField = isVisible;
+    emit(ChangeSearchTextFieldVisibilityState());
+  }
+
+  List<SurahModel> searchedSur = [];
+  void search(String value) {
+    searchedSur.clear();
+    if (value.isNotEmpty) {
+      for (var surah in surModel!.sur) {
+        if (removeArabicDiacritics(surah.name).contains(value) ||
+            surah.englishName.toLowerCase().contains(value.toLowerCase())) {
+          searchedSur.add(surModel!.sur[surah.number - 1]);
+        }
+      }
+    }
+    emit(SearchOnChangeState());
+  }
+
+  String removeArabicDiacritics(String text) {
+    RegExp regExp = RegExp(
+        r'[\u064B-\u065F\u0670-\u0672\u0674-\u0675\u0678-\u0679\u06D6-\u06ED]');
+
+    String cleanedText = text.replaceAll(regExp, '');
+
+    cleanedText = cleanedText.replaceAll('ٱ', 'ا');
+
+    cleanedText = cleanedText.replaceAll('ل', 'ل'); // Ensure space remains
+    return text.replaceAll(regExp, '');
   }
 }

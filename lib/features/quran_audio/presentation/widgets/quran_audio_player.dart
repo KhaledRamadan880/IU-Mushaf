@@ -13,40 +13,44 @@ class QuranAudioPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(height: 24.responsiveHeight(context)),
-        //! Sourah Name And Qari
-        const SurahAndQariName(),
-        SizedBox(height: 24.responsiveHeight(context)),
-        //! Slider
-        const CustomSlider(),
-        SizedBox(height: 12.responsiveHeight(context)),
-        //! Start & End Time
-        const AudioStrartAndEndTime(),
-        //! Audio Controllers
-        SizedBox(
-          height: 64.responsiveHeight(context),
-          child: const Stack(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                textDirection: TextDirection.ltr,
-                children: [
-                  //! Skip Previous Button
-                  AudioSkipBackwardButton(),
-                  //! Play & Pause Button
-                  PlayAndPauseButton(),
-                  //! Skip Next Button
-                  AudioSkipForwardButton(),
-                ],
-              ),
-              //! Setting Button
-              AudioSettingButton(),
-            ],
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.responsiveWidth(context)),
+      child: Column(
+        children: [
+          SizedBox(height: 24.responsiveHeight(context)),
+          //! Sourah Name And Qari
+          const SurahAndQariName(),
+          SizedBox(height: 24.responsiveHeight(context)),
+          //! Slider
+          const CustomSlider(),
+          SizedBox(height: 12.responsiveHeight(context)),
+          //! Start & End Time
+          const AudioStrartAndEndTime(),
+          //! Audio Controllers
+          Container(
+            height: 64.responsiveHeight(context),
+            margin: EdgeInsets.only(bottom: 114.responsiveHeight(context)),
+            child: const Stack(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  textDirection: TextDirection.ltr,
+                  children: [
+                    //! Skip Previous Button
+                    AudioSkipBackwardButton(),
+                    //! Play & Pause Button
+                    PlayAndPauseButton(),
+                    //! Skip Next Button
+                    AudioSkipForwardButton(),
+                  ],
+                ),
+                //! Setting Button
+                AudioSettingButton(),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

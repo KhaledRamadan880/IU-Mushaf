@@ -17,39 +17,105 @@ class QuranAudioSurahListView extends StatelessWidget {
             ? SizedBox(
                 height: 400.responsiveHeight(context),
                 child: const Center(child: CustomLoadingIndicator()))
-            : SizedBox(
-                height: 400.responsiveHeight(context),
-                child: ListView.separated(
-                  itemCount: cubit.surModel!.sur.length,
-                  padding: EdgeInsets.symmetric(
-                      vertical: 12.responsiveHeight(context)),
-                  separatorBuilder: (context, index) {
-                    return const Divider();
-                  },
-                  itemBuilder: (context, index) {
-                    return BlocBuilder<QuranAudioCubit, QuranAudioState>(
-                      builder: (context, state) {
-                        return QuranAudioSurahCard(
-                          index,
-                          title: cubit.language == "en"
-                              ? cubit.surModel!.sur[index].englishName
-                              : cubit.surModel!.sur[index].name,
-                          onTap: () {
-                            if (index + 1 !=
-                                context
-                                    .read<QuranAudioCubit>()
-                                    .selectedSurahNumber) {
-                              context
-                                  .read<QuranAudioCubit>()
-                                  .playSurah(initialIndex: index);
-                            }
+            : BlocBuilder<QuranAudioCubit, QuranAudioState>(
+                builder: (context, state) {
+                  final quranCubit = context.read<QuranAudioCubit>();
+                  return Expanded(
+                    // height: 400.responsiveHeight(context),
+                    child: ListView.separated(
+                      itemCount:
+                          quranCubit.searchController.value.text.isNotEmpty
+                              ? quranCubit.searchedSur.length
+                              : cubit.surModel!.sur.length,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 12.responsiveHeight(context),
+                        horizontal: 20.responsiveWidth(context),
+                      ),
+                      separatorBuilder: (context, index) {
+                        return const Divider();
+                      },
+                      itemBuilder: (context, index) {
+                        return BlocBuilder<QuranAudioCubit, QuranAudioState>(
+                          builder: (context, state) {
+                            return QuranAudioSurahCard(
+                              index,
+                              surahNumber: quranCubit
+                                      .searchController.value.text.isNotEmpty
+                                  ? quranCubit.searchedSur[index].number - 1
+                                  : cubit.surModel!.sur[index].number - 1,
+                              title: cubit.language == "en"
+                                  ? quranCubit.searchController.value.text
+                                          .isNotEmpty
+                                      ? quranCubit
+                                          .searchedSur[index].englishName
+                                      : cubit.surModel!.sur[index].englishName
+                                  : quranCubit.searchController.value.text
+                                          .isNotEmpty
+                                      ? quranCubit.searchedSur[index].name
+                                      : cubit.surModel!.sur[index].name,
+                              onTap: () {
+                                if (index + 1 !=
+                                    context
+                                        .read<QuranAudioCubit>()
+                                        .selectedSurahNumber) {
+                                  context.read<QuranAudioCubit>().playSurah(
+                                        initialIndex: quranCubit
+                                                .searchController
+                                                .value
+                                                .text
+                                                .isNotEmpty
+                                            ? quranCubit
+                                                    .searchedSur[index].number -
+                                                1
+                                            : cubit.surModel!.sur[index]
+                                                    .number -
+                                                1,
+                                      );
+                                }
+                              },
+                            );
                           },
                         );
                       },
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               );
+        // : Expanded(
+        //     // height: 400.responsiveHeight(context),
+        //     child: ListView.separated(
+        //       itemCount: cubit.surModel!.sur.length,
+        //       padding: EdgeInsets.symmetric(
+        //         vertical: 12.responsiveHeight(context),
+        //         horizontal: 20.responsiveWidth(context),
+        //       ),
+        //       separatorBuilder: (context, index) {
+        //         return const Divider();
+        //       },
+        //       itemBuilder: (context, index) {
+        //         return BlocBuilder<QuranAudioCubit, QuranAudioState>(
+        //           builder: (context, state) {
+        //             return QuranAudioSurahCard(
+        //               index,
+        //               title: cubit.language == "en"
+        //                   ? cubit.surModel!.sur[index].englishName
+        //                   : cubit.surModel!.sur[index].name,
+        //               onTap: () {
+        //                 if (index + 1 !=
+        //                     context
+        //                         .read<QuranAudioCubit>()
+        //                         .selectedSurahNumber) {
+        //                   context
+        //                       .read<QuranAudioCubit>()
+        //                       .playSurah(initialIndex: index);
+        //                 }
+        //               },
+        //             );
+        //           },
+        //         );
+        //       },
+        //     ),
+        //   );
       },
     );
   }

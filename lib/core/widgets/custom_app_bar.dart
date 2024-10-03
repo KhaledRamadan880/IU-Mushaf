@@ -14,7 +14,7 @@ AppBar customAppBar(
     actions: [
       icon ?? Container(),
       SizedBox(
-        width: 40.responsiveWidth(context),
+          width: 20.responsiveWidth(context)
       ),
     ],
     backgroundColor: Theme.of(context).secondaryHeaderColor,
