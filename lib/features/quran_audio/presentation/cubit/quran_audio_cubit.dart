@@ -1,8 +1,7 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
-import 'package:iu_mushaf/core/widgets/custom_toast.dart';
-import 'package:iu_mushaf/features/quran_audio/data/models/sur_reader_audios_model.dart';
 import 'package:iu_mushaf/features/quran_audio/data/models/sur_readers_audios_model.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 
 part 'quran_audio_state.dart';
 
@@ -11,78 +10,85 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
 
   int selectedSurahNumber = 0;
   int selectedReader = 0;
-  SurReaderAudiosModel? surReaderAudiosModel;
-  AudioPlayer audioPlayer = sl<MediaPlayer>().audioPlayer;
+  SurReadersAudiosModel? surReadersAudiosModel;
+  SurModel? surModel;
+  String? language;
 
-  //! Select Surah and Play it
-  Future selectSurah(
-    context, {
-    required int surahNumber,
-    required SurReadersAudiosModel modelList,
-  }) async {
-    selectedSurahNumber = surahNumber;
-    surReaderAudiosModel ??= modelList.surReadersAudios[selectedReader];
-    emit(SelectSurahState());
-    await playSurah(context);
-    audioPlayer.playerStateStream.listen((playerState) async {
-      if (playerState.processingState == ProcessingState.completed) {
-        if (selectedSurahNumber != 114) {
-          selectedSurahNumber++;
-          await playSurah(context);
-        } else {
-          selectedSurahNumber = 1;
-          await playSurah(context);
-        }
-      } else if (playerState.processingState == ProcessingState.buffering ||
-          playerState.processingState == ProcessingState.loading) {
-        emit(LoadingAudioState());
-      } else if (playerState.processingState == ProcessingState.idle) {
-        audioPlayer.pause();
-        emit(AudioIdleState());
-      }
-    });
+  AudioPlayer audioPlayer = sl<MediaPlayer>().audioPlayer;
+  ConcatenatingAudioSource? playList;
+
+  void init(
+      {required SurReadersAudiosModel readersModel,
+      required SurModel allSurModel,
+      required String lang}) {
+    surReadersAudiosModel = readersModel;
+    surModel = allSurModel;
+    language = lang;
+    setAudioPLaylist();
   }
 
-  //! Play Audio from Assets or Links
-  Future<void> playSurah(context) async {
-    String url = surReaderAudiosModel!.surUrls[selectedSurahNumber - 1].url;
+  //! Set Audio Playlist
+  Future<void> setAudioPLaylist() async {
+    playList = ConcatenatingAudioSource(
+      children: List.generate(
+        surReadersAudiosModel!.surReadersAudios[0].surUrls.length,
+        (index) {
+          String url =
+              surReadersAudiosModel!.surReadersAudios[0].surUrls[index].url;
+          if (url.startsWith("http://") || url.startsWith("https://")) {
+            return AudioSource.uri(
+              Uri.parse(url),
+              tag: MediaItem(
+                id: "$selectedSurahNumber",
+                album: language == "en"
+                    ? surReadersAudiosModel!
+                        .surReadersAudios[0].readerNameEnglish
+                    : surReadersAudiosModel!
+                        .surReadersAudios[0].readerNameArabic,
+                title: language == "en"
+                    ? surModel!.sur[index].englishName
+                    : surModel!.sur[index].name,
+                artUri: Uri.parse(
+                    'https://media.licdn.com/dms/image/D4D12AQHpCDFnrmJiiQ/article-cover_image-shrink_600_2000/0/1712430882115?e=2147483647&v=beta&t=D_y1vThNzKM8thNPMKpNy-f5g2t0ePFUXPUynynpmGk'),
+              ),
+            );
+          } else {
+            return AudioSource.asset(
+              url,
+              tag: MediaItem(
+                id: "$selectedSurahNumber",
+                album: language == "en"
+                    ? surReadersAudiosModel!
+                        .surReadersAudios[index].readerNameEnglish
+                    : surReadersAudiosModel!
+                        .surReadersAudios[index].readerNameArabic,
+                title: language == "en"
+                    ? surModel!.sur[index].englishName
+                    : surModel!.sur[index].name,
+                artUri: Uri.parse(
+                    'https://media.licdn.com/dms/image/D4D12AQHpCDFnrmJiiQ/article-cover_image-shrink_600_2000/0/1712430882115?e=2147483647&v=beta&t=D_y1vThNzKM8thNPMKpNy-f5g2t0ePFUXPUynynpmGk'),
+              ),
+            );
+          }
+        },
+      ),
+    );
+  }
 
-    if (url.startsWith("http://") || url.startsWith("https://")) {
-      try {
-        await audioPlayer.setUrl(url);
-        audioPlayer.play();
-      } catch (e) {
-        showToast(context, "No Network");
-      }
-    } else {
-      await audioPlayer.setAsset(url);
-      audioPlayer.play();
-    }
-    emit(SelectSurahState());
+  Future<void> playSurah({int? initialIndex}) async {
+    await audioPlayer.setAudioSource(
+      playList!,
+      initialIndex: initialIndex ?? 0,
+      preload: false,      
+    );
+    await audioPlayer.setLoopMode(LoopMode.all);
+    audioPlayer.play();
   }
 
   //! Audio Seek
   Future audioPlayerSeek(value) async {
     await audioPlayer.seek(Duration(seconds: value.toInt()));
     emit(AudioPlayerSeekState());
-  }
-
-  //! Skip Forward
-  Future audioPlayerSkipFroward(context, modelList) async {
-    selectSurah(
-      context,
-      surahNumber: selectedSurahNumber + 1,
-      modelList: modelList,
-    );
-  }
-
-  //! Skip Backward
-  Future audioPlayerSkipBackward(context, modelList) async {
-    selectSurah(
-      context,
-      surahNumber: selectedSurahNumber - 1,
-      modelList: modelList,
-    );
   }
 
   //! Play & Pause Toggle

@@ -17,26 +17,30 @@ class QuranAudioView extends StatelessWidget {
         title: AppStrings.quranAudio,
         icon: const QuranAudioSearchButton(),
       ),
-      body: CustomGradientBody(
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 20.responsiveWidth(context),
-          ),
-          child: BlocBuilder<QuranAudioCubit, QuranAudioState>(
-            builder: (context, state) {
-              return const Column(
-                children: [
-                  //! Title & Divider
-                  QuranAudioTitleAndDivider(),
-                  //! Surah List View
-                  QuranAudioSurahListView(),
-                  //! Audio Player
-                  QuranAudioPlayer(),
-                ],
-              );
-            },
-          ),
-        ),
+      body: BlocBuilder<GlobalCubit, GlobalState>(
+        builder: (context, state) {
+          return CustomGradientBody(
+            body: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.responsiveWidth(context),
+              ),
+              child: BlocBuilder<QuranAudioCubit, QuranAudioState>(
+                builder: (context, state) {
+                  return const Column(
+                    children: [
+                      //! Title & Divider
+                      QuranAudioTitleAndDivider(),
+                      //! Surah List View
+                      QuranAudioSurahListView(),
+                      //! Audio Player
+                      QuranAudioPlayer(),
+                    ],
+                  );
+                },
+              ),
+            ),
+          );
+        },
       ),
     );
   }

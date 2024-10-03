@@ -2,11 +2,11 @@ import 'package:device_preview/device_preview.dart';
 import 'package:iu_mushaf/app/app.dart';
 import 'package:iu_mushaf/core/imports/imports.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initServiceLocator();
   await sl<Cache>().init();
-  // await sl<MediaPlayer>().inital();
+  await sl<MediaPlayer>().inital();
   runApp(
     DevicePreview(
       // enabled: !kReleaseMode,

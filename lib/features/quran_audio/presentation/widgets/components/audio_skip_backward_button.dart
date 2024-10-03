@@ -8,34 +8,33 @@ class AudioSkipBackwardButton extends StatelessWidget {
     return BlocBuilder<QuranAudioCubit, QuranAudioState>(
       builder: (context, state) {
         final cubit = context.read<QuranAudioCubit>();
-        return GestureDetector(
-          onTap: () {
-            if (cubit.selectedSurahNumber != 1 &&
-                cubit.selectedSurahNumber != 0) {
-              cubit.audioPlayerSkipBackward(
-                context,
-                context.read<GlobalCubit>().surReadersAudiosModel!,
+        return StreamBuilder(
+            stream: cubit.audioPlayer.sequenceStateStream,
+            builder: (context, snapshot) {
+              return GestureDetector(
+                onTap: () {
+                  snapshot.data?.currentSource != null
+                      ? cubit.audioPlayer.seekToPrevious()
+                      : null;
+                },
+                child: BlocBuilder<GlobalCubit, GlobalState>(
+                  builder: (context, state) {
+                    final isDark = context.read<GlobalCubit>().isDark;
+                    return Icon(
+                      Icons.skip_previous_rounded,
+                      size: 48.responsiveHeight(context),
+                      color: snapshot.data?.currentSource != null
+                          ? isDark
+                              ? AppColors.white
+                              : AppColors.black
+                          : isDark
+                              ? AppColors.white.withOpacity(.4)
+                              : AppColors.black.withOpacity(.4),
+                    );
+                  },
+                ),
               );
-            }
-          },
-          child: BlocBuilder<GlobalCubit, GlobalState>(
-            builder: (context, state) {
-              final isDark = context.read<GlobalCubit>().isDark;
-              return Icon(
-                Icons.skip_previous_rounded,
-                size: 48.responsiveHeight(context),
-                color: cubit.selectedSurahNumber != 1 &&
-                        cubit.selectedSurahNumber != 0
-                    ? isDark
-                        ? AppColors.white
-                        : AppColors.black
-                    : isDark
-                        ? AppColors.white.withOpacity(.4)
-                        : AppColors.black.withOpacity(.4),
-              );
-            },
-          ),
-        );
+            });
       },
     );
   }

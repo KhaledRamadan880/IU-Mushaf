@@ -1,4 +1,5 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/core/widgets/custom_toast.dart';
 
 import 'components/audio_setting_button.dart';
 import 'components/audio_skip_backward_button.dart';
@@ -50,4 +51,3 @@ class QuranAudioPlayer extends StatelessWidget {
     );
   }
 }
-

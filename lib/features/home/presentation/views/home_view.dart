@@ -14,7 +14,12 @@ class HomeView extends StatelessWidget {
       const MushafView(),
       //! Quran Audio Screen
       BlocProvider(
-        create: (context) => QuranAudioCubit(),
+        create: (context) => QuranAudioCubit()
+          ..init(
+            readersModel: context.read<GlobalCubit>().surReadersAudiosModel!,
+            allSurModel: context.read<GlobalCubit>().surModel!,
+            lang: context.read<GlobalCubit>().language,
+          ),
         child: const QuranAudioView(),
       ),
       //! Bookmark Screen

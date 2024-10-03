@@ -8,24 +8,29 @@ class SurahAndQariName extends StatelessWidget {
     return BlocBuilder<QuranAudioCubit, QuranAudioState>(
       builder: (context, state) {
         final cubit = context.read<QuranAudioCubit>();
-        return BlocBuilder<GlobalCubit, GlobalState>(
-          builder: (context, state) {
-            return Text(
-              cubit.selectedSurahNumber != 0
-                  ? context.read<GlobalCubit>().language == "en"
-                      ? "${AppStrings.surah.tr(context)} "
-                          "${context.read<GlobalCubit>().surModel!.sur[cubit.selectedSurahNumber - 1].englishName}"
-                          " - ${context.read<GlobalCubit>().surReadersAudiosModel!.surReadersAudios[0].readerNameEnglish}"
-                      : "${context.read<GlobalCubit>().surModel!.sur[cubit.selectedSurahNumber - 1].name}"
-                          " - ${context.read<GlobalCubit>().surReadersAudiosModel!.surReadersAudios[0].readerNameArabic}"
-                  : "",
-              style: Styles.style18SemiBold(context).copyWith(
-                color: context.read<GlobalCubit>().isDark
-                    ? AppColors.white
-                    : AppColors.green,
-              ),
-            );
-          },
+        return StreamBuilder(
+            stream: cubit.audioPlayer.sequenceStateStream,
+            builder: (context, snapshot) {
+              return BlocBuilder<GlobalCubit, GlobalState>(
+                builder: (context, state) {
+                  return Text(                         
+                    snapshot.data?.currentSource == null
+                        ? ""
+                        : context.read<GlobalCubit>().language == "en"
+                            ? "${AppStrings.surah.tr(context)} "
+                                "${cubit.surModel!.sur[snapshot.data!.currentIndex].englishName}"
+                                " - ${cubit.surReadersAudiosModel!.surReadersAudios[0].readerNameEnglish}"
+                            : "${cubit.surModel!.sur[snapshot.data!.currentIndex].name}"
+                                " - ${cubit.surReadersAudiosModel!.surReadersAudios[0].readerNameArabic}",
+                    style: Styles.style18SemiBold(context).copyWith(
+                      color: context.read<GlobalCubit>().isDark
+                          ? AppColors.white
+                          : AppColors.green,
+                    ),
+                  );
+                },
+              );
+            }
         );
       },
     );

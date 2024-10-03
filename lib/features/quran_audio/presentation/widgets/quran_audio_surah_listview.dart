@@ -31,19 +31,17 @@ class QuranAudioSurahListView extends StatelessWidget {
                       builder: (context, state) {
                         return QuranAudioSurahCard(
                           index,
-                          title: cubit.surModel!.sur[index].name,
+                          title: cubit.language == "en"
+                              ? cubit.surModel!.sur[index].englishName
+                              : cubit.surModel!.sur[index].name,
                           onTap: () {
                             if (index + 1 !=
                                 context
                                     .read<QuranAudioCubit>()
                                     .selectedSurahNumber) {
-                              context.read<QuranAudioCubit>().selectSurah(
-                                    context,
-                                    surahNumber: index + 1,
-                                    modelList: context
-                                        .read<GlobalCubit>()
-                                        .surReadersAudiosModel!,
-                                  );
+                              context
+                                  .read<QuranAudioCubit>()
+                                  .playSurah(initialIndex: index);
                             }
                           },
                         );
