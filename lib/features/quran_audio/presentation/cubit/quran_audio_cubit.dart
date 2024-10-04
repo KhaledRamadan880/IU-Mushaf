@@ -11,7 +11,7 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
 
   int selectedSurahNumber = 0;
   int selectedReciter = sl<Cache>().getIntData("reciter") ?? 0;
-  SurrecitersAudiosModel? surrecitersAudiosModel;
+  SurRecitersAudiosModel? surrecitersAudiosModel;
   SurModel? surModel;
   String? language;
 
@@ -19,7 +19,7 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   ConcatenatingAudioSource? playList;
 
   void init(
-      {required SurrecitersAudiosModel recitersModel,
+      {required SurRecitersAudiosModel recitersModel,
       required SurModel allSurModel,
       required String lang}) {
     surrecitersAudiosModel = recitersModel;

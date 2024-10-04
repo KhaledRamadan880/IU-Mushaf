@@ -53,14 +53,13 @@ class GlobalCubit extends Cubit<GlobalState> {
   }
 
   //! Load Sur Audios
-
-  SurrecitersAudiosModel? surrecitersAudiosModel;
+  SurRecitersAudiosModel? surrecitersAudiosModel;
   Future<void> loadSurAudiosFromJson() async {
     emit(LoadSurreciterLoadingState());
     String jsonString =
         await rootBundle.loadString("assets/json/sur_reciters_audios.json");
     Map<String, dynamic> jsonMap = jsonDecode(jsonString);
-    surrecitersAudiosModel = SurrecitersAudiosModel.fromJson(jsonMap);
+    surrecitersAudiosModel = SurRecitersAudiosModel.fromJson(jsonMap);
     emit(LoadSurreciterSuccessState());
   }
 }

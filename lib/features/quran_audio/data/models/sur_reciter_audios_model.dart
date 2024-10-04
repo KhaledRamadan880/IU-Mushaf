@@ -1,18 +1,18 @@
 import 'package:iu_mushaf/features/quran_audio/data/models/surah_url_model.dart';
 
-class SurreciterAudiosModel {
+class SurReciterAudiosModel {
   final String reciterNameEnglish, reciterNameArabic, baseUrl;
   final List<SurahUrlModel> surUrls;
 
-  SurreciterAudiosModel({
+  SurReciterAudiosModel({
     required this.reciterNameEnglish,
     required this.reciterNameArabic,
     required this.baseUrl,
     required this.surUrls,
   });
 
-  factory SurreciterAudiosModel.fromJson(Map<String, dynamic> jsonMap) {
-    return SurreciterAudiosModel(
+  factory SurReciterAudiosModel.fromJson(Map<String, dynamic> jsonMap) {
+    return SurReciterAudiosModel(
       reciterNameEnglish: jsonMap["reciter_name_english"],
       reciterNameArabic: jsonMap["reciter_name_arabic"],
       baseUrl: jsonMap["base_url"],

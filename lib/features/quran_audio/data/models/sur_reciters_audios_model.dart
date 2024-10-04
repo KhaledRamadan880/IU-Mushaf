@@ -1,14 +1,14 @@
 import 'package:iu_mushaf/features/quran_audio/data/models/sur_reciter_audios_model.dart';
 
-class SurrecitersAudiosModel {
-  final List<SurreciterAudiosModel> surrecitersAudios;
+class SurRecitersAudiosModel {
+  final List<SurReciterAudiosModel> surrecitersAudios;
 
-  SurrecitersAudiosModel({required this.surrecitersAudios});
+  SurRecitersAudiosModel({required this.surrecitersAudios});
 
-  factory SurrecitersAudiosModel.fromJson(Map<String, dynamic> jsonMap) {
-    return SurrecitersAudiosModel(
+  factory SurRecitersAudiosModel.fromJson(Map<String, dynamic> jsonMap) {
+    return SurRecitersAudiosModel(
       surrecitersAudios: (jsonMap["reciters"] as List)
-          .map((e) => SurreciterAudiosModel.fromJson(e))
+          .map((e) => SurReciterAudiosModel.fromJson(e))
           .toList(),
     );
   }
