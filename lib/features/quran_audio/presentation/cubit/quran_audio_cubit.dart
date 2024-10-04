@@ -10,7 +10,7 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   QuranAudioCubit() : super(QuranAudioInitial());
 
   int selectedSurahNumber = 0;
-  int selectedReciter = sl<Cache>().getIntData("reciter")!;
+  int selectedReciter = sl<Cache>().getIntData("reciter") ?? 0;
   SurReadersAudiosModel? surReadersAudiosModel;
   SurModel? surModel;
   String? language;
