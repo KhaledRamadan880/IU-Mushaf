@@ -19,9 +19,9 @@ class SurahAndQariName extends StatelessWidget {
                         : context.read<GlobalCubit>().language == "en"
                             ? "${AppStrings.surah.tr(context)} "
                                 "${cubit.surModel!.sur[snapshot.data!.currentIndex].englishName}"
-                                " - ${cubit.surReadersAudiosModel!.surReadersAudios[cubit.selectedReciter].readerNameEnglish}"
+                                " - ${cubit.surrecitersAudiosModel!.surrecitersAudios[cubit.selectedReciter].reciterNameEnglish}"
                             : "${cubit.surModel!.sur[snapshot.data!.currentIndex].name}"
-                                " - ${cubit.surReadersAudiosModel!.surReadersAudios[cubit.selectedReciter].readerNameArabic}",
+                                " - ${cubit.surrecitersAudiosModel!.surrecitersAudios[cubit.selectedReciter].reciterNameArabic}",
                     style: Styles.style18SemiBold(context).copyWith(
                       color: context.read<GlobalCubit>().isDark
                           ? AppColors.white

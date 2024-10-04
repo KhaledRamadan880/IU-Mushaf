@@ -1,6 +1,6 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/surah_model.dart';
-import 'package:iu_mushaf/features/quran_audio/data/models/sur_readers_audios_model.dart';
+import 'package:iu_mushaf/features/quran_audio/data/models/sur_reciters_audios_model.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 
@@ -11,7 +11,7 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
 
   int selectedSurahNumber = 0;
   int selectedReciter = sl<Cache>().getIntData("reciter") ?? 0;
-  SurReadersAudiosModel? surReadersAudiosModel;
+  SurrecitersAudiosModel? surrecitersAudiosModel;
   SurModel? surModel;
   String? language;
 
@@ -19,10 +19,10 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   ConcatenatingAudioSource? playList;
 
   void init(
-      {required SurReadersAudiosModel readersModel,
+      {required SurrecitersAudiosModel recitersModel,
       required SurModel allSurModel,
       required String lang}) {
-    surReadersAudiosModel = readersModel;
+    surrecitersAudiosModel = recitersModel;
     surModel = allSurModel;
     language = lang;
     setAudioPLaylist();
@@ -32,20 +32,21 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   Future<void> setAudioPLaylist() async {
     playList = ConcatenatingAudioSource(
       children: List.generate(
-        surReadersAudiosModel!.surReadersAudios[selectedReciter].surUrls.length,
+        surrecitersAudiosModel!
+            .surrecitersAudios[selectedReciter].surUrls.length,
         (index) {
-          String url = surReadersAudiosModel!
-              .surReadersAudios[selectedReciter].surUrls[index].url;
+          String url = surrecitersAudiosModel!
+              .surrecitersAudios[selectedReciter].surUrls[index].url;
           if (url.startsWith("http://") || url.startsWith("https://")) {
             return AudioSource.uri(
               Uri.parse(url),
               tag: MediaItem(
                 id: "$selectedSurahNumber",
                 album: language == "en"
-                    ? surReadersAudiosModel!
-                        .surReadersAudios[selectedReciter].readerNameEnglish
-                    : surReadersAudiosModel!
-                        .surReadersAudios[selectedReciter].readerNameArabic,
+                    ? surrecitersAudiosModel!
+                        .surrecitersAudios[selectedReciter].reciterNameEnglish
+                    : surrecitersAudiosModel!
+                        .surrecitersAudios[selectedReciter].reciterNameArabic,
                 title: language == "en"
                     ? surModel!.sur[index].englishName
                     : surModel!.sur[index].name,
@@ -59,10 +60,10 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
               tag: MediaItem(
                 id: "$selectedSurahNumber",
                 album: language == "en"
-                    ? surReadersAudiosModel!
-                        .surReadersAudios[index].readerNameEnglish
-                    : surReadersAudiosModel!
-                        .surReadersAudios[index].readerNameArabic,
+                    ? surrecitersAudiosModel!
+                        .surrecitersAudios[index].reciterNameEnglish
+                    : surrecitersAudiosModel!
+                        .surrecitersAudios[index].reciterNameArabic,
                 title: language == "en"
                     ? surModel!.sur[index].englishName
                     : surModel!.sur[index].name,

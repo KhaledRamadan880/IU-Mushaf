@@ -1,0 +1,14 @@
+{
+    "reciters": [
+        {
+            "reciter_name_english": "Al-afasy",
+            "reciter_name_arabic": "العفاسي",
+            "base_url": "https://server8.mp3quran.net/afs/"
+        },
+        {
+            "reciter_name_english": "Fares Abbad",
+            "reciter_name_arabic": "فارس عباد",
+            "base_url": "https://server8.mp3quran.net/frs_a/"
+        }
+    ]
+}

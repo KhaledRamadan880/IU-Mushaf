@@ -34,7 +34,7 @@ class AudioSettingBottomSheetBody extends StatelessWidget {
                   padding: EdgeInsets.symmetric(
                       vertical: 24.responsiveHeight(context)),
                   itemCount:
-                      cubit.surReadersAudiosModel!.surReadersAudios.length,
+                      cubit.surrecitersAudiosModel!.surrecitersAudios.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
@@ -82,13 +82,13 @@ class AudioSettingBottomSheetBody extends StatelessWidget {
                               CustomText(
                                 context.read<GlobalCubit>().language == "ar"
                                     ? cubit
-                                        .surReadersAudiosModel!
-                                        .surReadersAudios[index]
-                                        .readerNameArabic
+                                        .surrecitersAudiosModel!
+                                        .surrecitersAudios[index]
+                                        .reciterNameArabic
                                     : cubit
-                                        .surReadersAudiosModel!
-                                        .surReadersAudios[index]
-                                        .readerNameEnglish,
+                                        .surrecitersAudiosModel!
+                                        .surrecitersAudios[index]
+                                        .reciterNameEnglish,
                                 style: Styles.style16SemiBold(context),
                               ),
                             ],

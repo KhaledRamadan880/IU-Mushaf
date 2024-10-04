@@ -12,6 +12,6 @@ final class ChangeNotificationPermissionState extends GlobalState {}
 
 final class NavBarVisibliltyToggleState extends GlobalState {}
 
-final class LoadSurReaderLoadingState extends GlobalState {}
+final class LoadSurreciterLoadingState extends GlobalState {}
 
-final class LoadSurReaderSuccessState extends GlobalState {}
+final class LoadSurreciterSuccessState extends GlobalState {}

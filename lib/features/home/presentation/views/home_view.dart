@@ -16,7 +16,7 @@ class HomeView extends StatelessWidget {
       BlocProvider(
         create: (context) => QuranAudioCubit()
           ..init(
-            readersModel: context.read<GlobalCubit>().surReadersAudiosModel!,
+            recitersModel: context.read<GlobalCubit>().surrecitersAudiosModel!,
             allSurModel: context.read<GlobalCubit>().surModel!,
             lang: context.read<GlobalCubit>().language,
           ),
