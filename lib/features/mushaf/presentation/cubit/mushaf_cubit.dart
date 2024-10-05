@@ -1,13 +1,28 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/ayah_model.dart';
-
+import 'package:iu_mushaf/features/mushaf/data/models/ayahs_reciters_audios_model.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 
 part 'mushaf_state.dart';
 
 class MushafCubit extends Cubit<MushafState> {
   MushafCubit() : super(MushafInitial());
 
-  //! Fouces on Ayah 
+  bool? wasPlaying;
+
+  AyahsRecitersAudiosModel? ayahsRecitersAudiosModel;
+  init({required AyahsRecitersAudiosModel ayahsAudiosModel}) {
+    ayahsRecitersAudiosModel = ayahsAudiosModel;
+  }
+
+  @override
+  Future<void> close() async {
+    super.close();
+    audioPlayer!.stop();
+  }
+
+  //! Fouces on Ayah
   dynamic focusedAyahNumber;
   changeFocusedAyah(index) {
     focusedAyahNumber = index;
@@ -73,5 +88,49 @@ class MushafCubit extends Cubit<MushafState> {
         }
       }
     }
+  }
+
+  //! Listen To Ayah
+  int nowPlayingAyah = 0;
+  AudioPlayer? audioPlayer = sl<MediaPlayer>().listenToAyahPlayer;
+  Future playAyah() async {
+    final String url = ayahsRecitersAudiosModel!
+        .reciters[0].ayahsUrls[focusedAyahNumber - 1].url;
+    nowPlayingAyah = ayahsRecitersAudiosModel!
+        .reciters[0].ayahsUrls[focusedAyahNumber - 1].ayahNumber;
+    await sl<MediaPlayer>().audioPlayer.stop();
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      audioPlayer!.setUrl(
+        url,
+        tag: MediaItem(
+          id: "",
+          album: "",
+          title: "",
+          artUri: Uri.parse(
+              'https://media.licdn.com/dms/image/D4D12AQHpCDFnrmJiiQ/article-cover_image-shrink_600_2000/0/1712430882115?e=2147483647&v=beta&t=D_y1vThNzKM8thNPMKpNy-f5g2t0ePFUXPUynynpmGk'),
+        ),
+      );
+    } else {
+      audioPlayer!.setAsset(
+        url,
+        tag: MediaItem(
+          id: "",
+          album: "",
+          title: "",
+          artUri: Uri.parse(
+              'https://media.licdn.com/dms/image/D4D12AQHpCDFnrmJiiQ/article-cover_image-shrink_600_2000/0/1712430882115?e=2147483647&v=beta&t=D_y1vThNzKM8thNPMKpNy-f5g2t0ePFUXPUynynpmGk'),
+        ),
+      );
+    }
+    try {
+      await audioPlayer!.play();
+    } catch (e) {
+      await audioPlayer!.stop();
+    }
+    audioPlayer!.processingStateStream.listen((playerState) async {
+      if (playerState == ProcessingState.completed) {
+        await audioPlayer!.stop();
+      }
+    });
   }
 }

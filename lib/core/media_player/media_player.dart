@@ -2,6 +2,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 
 class MediaPlayer {
+  final listenToAyahPlayer = AudioPlayer();
   final audioPlayer = AudioPlayer();
 
   Future inital() async {

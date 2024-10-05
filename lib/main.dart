@@ -14,7 +14,8 @@ Future<void> main() async {
       builder: (context) => BlocProvider(
         create: (context) => GlobalCubit()
           ..loadMushafFromJson()
-          ..loadSurAudiosFromJson(),
+          ..loadSurAudiosFromJson()
+          ..loadAyahsFromJson(),
         child: const UIMushafApp(),
       ),
     ),

@@ -27,9 +27,13 @@ class MushafCardsListView extends StatelessWidget {
                     builder: (context) => BlocProvider(
                       create: (context) =>
                           MushafCubit()
-                        ..surModel = globalCubit.surModel!
+                        ..surModel = globalCubit.surModel!                        
+                        ..hideLayoutAfterNavigate()
                         ..addAyahsToList()
-                        ..hideLayoutAfterNavigate(),
+                        ..init(
+                          ayahsAudiosModel:
+                              globalCubit.ayahsRecitersAudiosModel!,
+                        ),
                       child: const MushafReadingView(),
                     ),
                   ),

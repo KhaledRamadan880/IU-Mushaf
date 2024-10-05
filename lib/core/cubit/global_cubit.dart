@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/mushaf/data/models/ayahs_reciters_audios_model.dart';
 import 'package:iu_mushaf/features/quran_audio/data/models/sur_reciters_audios_model.dart';
 
 part 'global_state.dart';
@@ -61,5 +62,14 @@ class GlobalCubit extends Cubit<GlobalState> {
     Map<String, dynamic> jsonMap = jsonDecode(jsonString);
     surrecitersAudiosModel = SurRecitersAudiosModel.fromJson(jsonMap);
     emit(LoadSurreciterSuccessState());
+  }
+
+  //! Load Ayahs Audios
+  AyahsRecitersAudiosModel? ayahsRecitersAudiosModel;
+  Future<void> loadAyahsFromJson() async {
+    String jsonString =
+        await rootBundle.loadString("assets/json/ayahs_reciters_audios.json");
+    Map<String, dynamic> jsonMap = jsonDecode(jsonString);
+    ayahsRecitersAudiosModel = AyahsRecitersAudiosModel.fromJson(jsonMap);
   }
 }

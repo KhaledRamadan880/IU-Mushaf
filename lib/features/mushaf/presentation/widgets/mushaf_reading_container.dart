@@ -86,13 +86,19 @@ class MushafReadingContainer extends StatelessWidget {
                                   "(${cubit.readingPageAyahs[index1][index2].numberInSurah}) ",
                               style: TextStyle(
                                 backgroundColor:
-                                    index2 == cubit.focusedAyahNumber
+                                    cubit
+                                            .readingPageAyahs[index1][index2]
+                                            .ayahNumber ==
+                                        cubit.focusedAyahNumber
                                         ? AppColors.lightBlue.withOpacity(.5)
                                         : AppColors.transparent,
                               ),
                               recognizer: LongPressGestureRecognizer()
                                 ..onLongPress = () {
-                                  cubit.changeFocusedAyah(index2);
+                                  cubit.changeFocusedAyah(
+                                    cubit.readingPageAyahs[index1][index2]
+                                        .ayahNumber,
+                                  );
                                 },
                             ),
                           ],

@@ -1,4 +1,5 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/mushaf/presentation/widgets/components/listen_to_ayah_button.dart';
 
 class AyahFocusButtons extends StatelessWidget {
   const AyahFocusButtons({
@@ -9,7 +10,8 @@ class AyahFocusButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MushafCubit, MushafState>(
       builder: (context, state) {
-        return context.read<MushafCubit>().focusedAyahNumber == null
+        final cubit = context.read<MushafCubit>();
+        return cubit.focusedAyahNumber == null
             ? Container()
             : Positioned(
                 bottom: 83.responsiveHeight(context),
@@ -21,10 +23,7 @@ class AyahFocusButtons extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         //! Listen to ayah button
-                        CustomButton(
-                          onTap: () {},
-                          title: AppStrings.listenToAyah,
-                        ),
+                        const ListenToAyahButton(),
                         //! Mean of ayah button
                         CustomButton(
                           onTap: () {},
@@ -63,11 +62,13 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.onTap,
-    required this.title,
+    this.title,
+    this.icon,
   });
 
   final Function() onTap;
-  final String title;
+  final String? title;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -90,14 +91,15 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Center(
-              child: Text(
-                title.tr(context),
-                style: Styles.style14Medium(context).copyWith(
-                  color: context.read<GlobalCubit>().isDark
-                      ? AppColors.black
-                      : AppColors.white,
-                ),
-              ),
+              child: icon ??
+                  Text(
+                    title!.tr(context),
+                    style: Styles.style14Medium(context).copyWith(
+                      color: context.read<GlobalCubit>().isDark
+                          ? AppColors.black
+                          : AppColors.white,
+                    ),
+                  ),
             ),
           ),
         );
