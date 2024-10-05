@@ -41,8 +41,10 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
             return AudioSource.uri(
               Uri.parse(url),
               tag: MediaItem(
-                id: "$selectedSurahNumber",
-                album: language == "en"
+                id: surrecitersAudiosModel!.surrecitersAudios[selectedReciter]
+                    .surUrls[index].surahNumber
+                    .toString(),
+                artist: language == "en"
                     ? surrecitersAudiosModel!
                         .surrecitersAudios[selectedReciter].reciterNameEnglish
                     : surrecitersAudiosModel!
@@ -58,8 +60,10 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
             return AudioSource.asset(
               url,
               tag: MediaItem(
-                id: "$selectedSurahNumber",
-                album: language == "en"
+                id: surrecitersAudiosModel!.surrecitersAudios[selectedReciter]
+                    .surUrls[index].surahNumber
+                    .toString(),
+                artist: language == "en"
                     ? surrecitersAudiosModel!
                         .surrecitersAudios[index].reciterNameEnglish
                     : surrecitersAudiosModel!

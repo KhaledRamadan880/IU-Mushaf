@@ -43,7 +43,11 @@ class QuranAudioSurahCard extends StatelessWidget {
                 StreamBuilder(
                     stream: cubit.audioPlayer.currentIndexStream,
                     builder: (context, snapshot) {
-                      return snapshot.data == index
+                      return (cubit.searchController.text.isEmpty
+                              ? snapshot.data == index
+                              : cubit.surModel!.sur[snapshot.data ?? 0]
+                                      .number ==
+                                  cubit.searchedSur[index].number)
                           ? Container(
                         height: 20.responsiveHeight(context),
                         margin: EdgeInsets.symmetric(

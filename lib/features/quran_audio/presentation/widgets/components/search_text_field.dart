@@ -30,6 +30,7 @@ class SearchTextField extends StatelessWidget {
               ? TextField(
                   focusNode: cubit.searchFocusNode,
                   controller: cubit.searchController,
+                  autofocus: true,
                   onChanged: (value) {
                     cubit.search(value);
                   },

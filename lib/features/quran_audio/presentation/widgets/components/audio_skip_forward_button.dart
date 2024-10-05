@@ -16,7 +16,11 @@ class AudioSkipForwardButton extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   snapshot.data?.currentSource != null
-                      ? cubit.audioPlayer.seekToNext()
+                      ? cubit.audioPlayer.seekToNext().whenComplete(() {
+                          if (!cubit.audioPlayer.playing) {
+                            cubit.audioPlayer.play();
+                          }
+                        })
                       : null;
                 },
                 child: BlocBuilder<GlobalCubit, GlobalState>(
