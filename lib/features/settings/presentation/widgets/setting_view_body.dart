@@ -55,6 +55,7 @@ class SettingViewBody extends StatelessWidget {
                     context,
                     screen: const SplashView(
                       showButtons: true,
+                      showPopButton: true,
                     ),
                     withNavBar: false,
                   ).whenComplete(

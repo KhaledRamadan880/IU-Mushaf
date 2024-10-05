@@ -1,11 +1,14 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/home/presentation/views/home_view.dart';
 import 'package:iu_mushaf/features/splash/presentation/widgets/custom_elevated_button.dart';
+import 'package:iu_mushaf/features/splash/presentation/widgets/splash_pop_button.dart';
 import 'package:iu_mushaf/features/splash/presentation/widgets/splash_title_and_subtitle.dart';
 
 class SplashView extends StatefulWidget {
-  const SplashView({super.key, this.showButtons = false});
+  const SplashView(
+      {super.key, this.showButtons = false, this.showPopButton = false});
   final bool? showButtons;
+  final bool? showPopButton;
   @override
   State<SplashView> createState() => _SplashViewState();
 }
@@ -53,9 +56,13 @@ class _SplashViewState extends State<SplashView> {
               parent: NeverScrollableScrollPhysics(),
             ),
             child: Column(
-              children: [
+              children: [                
+                widget.showPopButton ?? false
+                    ? const SplahPopButton()
+                    : SizedBox(height: 80.responsiveHeight(context)),
                 //! Title & Subtitle
                 const SplashTitleAndSubtitle(),
+                //! Animated Height
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 500),
                   height: showButtons

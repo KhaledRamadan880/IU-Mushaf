@@ -10,8 +10,7 @@ class SplashTitleAndSubtitle extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 22.responsiveWidth(context)),
       child: Column(
-        children: [
-          SizedBox(height: 82.responsiveHeight(context)),
+        children: [          
           //! Title
           CustomText(
             AppStrings.iuMushaf.tr(context),
