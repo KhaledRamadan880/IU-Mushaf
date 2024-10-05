@@ -36,7 +36,7 @@ class SettingViewBody extends StatelessWidget {
                   color: AppColors.grey,
                 ),
               ),
-              SizedBox(height: 42.responsiveHeight(context)),
+              SizedBox(height: 32.responsiveHeight(context)),
               //* Push Notification
               const CustomListTile(
                 title: AppStrings.pushNotifications,
@@ -71,6 +71,7 @@ class SettingViewBody extends StatelessWidget {
                 color: AppColors.grey,
                 height: 15.responsiveHeight(context),
               ),
+              SizedBox(height: 18.responsiveHeight(context)),
 
               //! More
               Text(
@@ -79,6 +80,7 @@ class SettingViewBody extends StatelessWidget {
                   color: AppColors.grey,
                 ),
               ),
+              SizedBox(height: 32.responsiveHeight(context)),
               //* About Us
               CustomListTile(
                 title: AppStrings.aboutUs,

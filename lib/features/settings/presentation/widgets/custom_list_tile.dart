@@ -29,7 +29,10 @@ class CustomListTile extends StatelessWidget {
                     ? AppColors.white
                     : AppColors.grey,
               ),
-          contentPadding: EdgeInsets.zero,
+          contentPadding: EdgeInsets.only(
+            bottom: 22.responsiveHeight(context),
+          ),
+          minTileHeight: 29.responsiveHeight(context),
         );
       },
     );
