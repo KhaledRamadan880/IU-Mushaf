@@ -1,5 +1,8 @@
+
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/mushaf/presentation/widgets/components/listen_to_ayah_button.dart';
+
+import 'components/add_to_bookmark_button.dart';
 
 class AyahFocusButtons extends StatelessWidget {
   const AyahFocusButtons({
@@ -38,18 +41,7 @@ class AyahFocusButtons extends StatelessWidget {
                     ),
                     SizedBox(height: 8.responsiveHeight(context)),
                     //! Add to bookmark button
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 160.responsiveWidth(context),
-                          child: CustomButton(
-                            onTap: () {},
-                            title: AppStrings.addToBookmark,
-                          ),
-                        ),
-                      ],
-                    ),
+                    const AddToBookmarkButton(),
                   ],
                 ),
               );
@@ -57,6 +49,8 @@ class AyahFocusButtons extends StatelessWidget {
     );
   }
 }
+
+
 
 class CustomButton extends StatelessWidget {
   const CustomButton({

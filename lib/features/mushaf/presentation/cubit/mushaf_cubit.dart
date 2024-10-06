@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/bookmark/data/models/bookmark_item_model.dart';
+import 'package:iu_mushaf/features/bookmark/data/models/bookmarks_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/ayah_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/ayahs_reciters_audios_model.dart';
 import 'package:just_audio/just_audio.dart';
@@ -12,8 +16,19 @@ class MushafCubit extends Cubit<MushafState> {
   bool? wasPlaying;
 
   AyahsRecitersAudiosModel? ayahsRecitersAudiosModel;
-  init({required AyahsRecitersAudiosModel ayahsAudiosModel}) {
+  void init({
+    required AyahsRecitersAudiosModel ayahsAudiosModel,
+    required BookmarksModel globalBookmarksModel,
+    required String mushafEn,
+    required String mushafAr,
+    int? initPageNumber,
+  }) {
     ayahsRecitersAudiosModel = ayahsAudiosModel;
+    bookmarksModel = globalBookmarksModel;
+    mushafTypeEn = mushafEn;
+    mushafTypeAr = mushafAr;
+    pageNumber = initPageNumber ?? 1;
+    addAyahsToList();
   }
 
   @override
@@ -132,5 +147,35 @@ class MushafCubit extends Cubit<MushafState> {
         await audioPlayer!.stop();
       }
     });
+  }
+
+  //! Add Bookmark
+  int? focusedSurahNumber;
+  String? focusedSurahNameEn;
+  String? focusedSurahNameAr;
+  String? focusedAyahText;
+  String? mushafTypeEn;
+  String? mushafTypeAr;
+  BookmarksModel? bookmarksModel;
+
+  void addBookmark() {
+    emit(AddBookmarkLoadingState());
+    BookmarksModel model = bookmarksModel!;
+    model.bookmarks.insert(
+      0,
+      BookmarkItemModel(
+        surahNameEn: focusedSurahNameEn!,
+        surahNameAr: focusedSurahNameAr!,
+        ayahText:
+            "${focusedAyahText!} (${surModel.sur[focusedSurahNumber! - 1].ayahs[focusedAyahNumber - 1].numberInSurah})",
+        mushafTypeEn: mushafTypeEn!,
+        mushafTypeAr: mushafTypeAr!,
+        surahNumber: focusedSurahNumber!,
+        pageNumber: pageNumber,
+      ),
+    );
+    String newJsonString = jsonEncode(model.toMap());
+    sl<Cache>().setData("bookmarks", newJsonString);
+    emit(AddBookmarkSuccessState());
   }
 }

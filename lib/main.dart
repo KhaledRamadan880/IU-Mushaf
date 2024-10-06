@@ -15,7 +15,8 @@ Future<void> main() async {
         create: (context) => GlobalCubit()
           ..loadMushafFromJson()
           ..loadSurAudiosFromJson()
-          ..loadAyahsFromJson(),
+          ..loadAyahsFromJson()
+          ..getBookmarks(),
         child: const UIMushafApp(),
       ),
     ),

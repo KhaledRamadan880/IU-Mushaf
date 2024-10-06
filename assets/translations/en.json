@@ -14,6 +14,7 @@
     "meanOfAyah" : "Mean of ayah",
     "aboutayah" : "About ayah",
     "addToBookmark" : "Add to bookmark",
+    "saved" : "Saved",
 
     "quranAudio" : "Quran Audio",
     "surah" : "Surah",
@@ -24,6 +25,8 @@
     "bookmark" : "Bookmark",
     "goToAyah" : "Go To Ayah",
     "deleteAyah" : "Delete Ayah",
+    "noBookmarks" : "No Bookmarks",
+    "deleted" : "Deleted",
 
     "setting" : "Setting",
     "prefranceSettings" : "Prefrance Settings",

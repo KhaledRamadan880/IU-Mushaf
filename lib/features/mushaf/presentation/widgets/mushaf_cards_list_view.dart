@@ -5,7 +5,7 @@ import 'package:iu_mushaf/features/mushaf/presentation/widgets/mushaf_card.dart'
 class MushafCardsListView extends StatelessWidget {
   const MushafCardsListView({
     super.key,
-  });
+  });  
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +29,14 @@ class MushafCardsListView extends StatelessWidget {
                           MushafCubit()
                         ..surModel = globalCubit.surModel!                        
                         ..hideLayoutAfterNavigate()
-                        ..addAyahsToList()
                         ..init(
                           ayahsAudiosModel:
                               globalCubit.ayahsRecitersAudiosModel!,
+                          globalBookmarksModel: globalCubit.bookmarksModel!,
+                          mushafEn: globalCubit
+                              .mushafsModel!.mushafs[index].mushafTypeEn,
+                          mushafAr: globalCubit
+                              .mushafsModel!.mushafs[index].mushafTypeAr,
                         ),
                       child: const MushafReadingView(),
                     ),

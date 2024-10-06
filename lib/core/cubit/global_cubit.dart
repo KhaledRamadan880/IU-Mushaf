@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/bookmark/data/models/bookmarks_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/ayahs_reciters_audios_model.dart';
 import 'package:iu_mushaf/features/quran_audio/data/models/sur_reciters_audios_model.dart';
 
@@ -71,5 +72,30 @@ class GlobalCubit extends Cubit<GlobalState> {
         await rootBundle.loadString("assets/json/ayahs_reciters_audios.json");
     Map<String, dynamic> jsonMap = jsonDecode(jsonString);
     ayahsRecitersAudiosModel = AyahsRecitersAudiosModel.fromJson(jsonMap);
+  }
+
+  //! Get Bookmarks from Cache
+  BookmarksModel? bookmarksModel;
+  Future<void> getBookmarks() async {
+    emit(GetBookmarksLoadingState());
+    String jsonString = sl<Cache>().getStringData("bookmarks") ?? "null";
+    if (jsonString != "null") {
+      Map<String, dynamic> jsonMap = jsonDecode(jsonString);
+      bookmarksModel = BookmarksModel.fromJson(jsonMap);
+    } else {
+      bookmarksModel = BookmarksModel(bookmarks: []);
+      emit(GetBookmarksSuccessState());
+    }
+  }
+
+  //! Delete Bookmark
+  void deleteAyah(index) {
+    emit(DeleteAyahLoadingState());
+    BookmarksModel model = bookmarksModel!;
+    model.bookmarks.removeAt(index);
+    String newJsonString = jsonEncode(model.toMap());
+    sl<Cache>().setData("bookmarks", newJsonString);
+    getBookmarks();
+    emit(DeleteAyahSuccessState());
   }
 }

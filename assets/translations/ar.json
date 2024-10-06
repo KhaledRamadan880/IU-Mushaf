@@ -14,6 +14,7 @@
     "meanOfAyah" : "معنى الاية",
     "aboutayah" : "عن الاية",
     "addToBookmark" : "اضافة الي المحفوظات",
+    "saved" : "تم الحفظ",
 
     "quranAudio" : "المصحف الصوتي",
     "surah" : "السور",
@@ -24,6 +25,8 @@
     "bookmark" : "المحفوظات",
     "goToAyah" : "الذهاب الى الاية",
     "deleteAyah" : "حذف الاية",
+    "noBookmarks" : "لا يوجد محفوظات",
+    "deleted" : "تم الحذف",
 
     "setting": "الاعدادات",
     "prefranceSettings": "اعدادات التفضيل",

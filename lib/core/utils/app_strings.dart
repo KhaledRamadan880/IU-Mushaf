@@ -16,6 +16,7 @@ abstract class AppStrings {
   static const String meanOfAyah = "meanOfAyah";
   static const String aboutayah = "aboutayah";
   static const String addToBookmark = "addToBookmark";
+  static const String saved = "saved";
   //! Quran Audio
   static const String quranAudio = "quranAudio";
   static const String surah = "surah";
@@ -26,6 +27,8 @@ abstract class AppStrings {
   static const String bookmark = "bookmark";
   static const String goToAyah = "goToAyah";
   static const String deleteAyah = "deleteAyah";
+  static const String noBookmarks = "noBookmarks";
+  static const String deleted = "deleted";
   //! Settings
   static const String setting = "setting";
   static const String prefranceSettings = "prefranceSettings";

@@ -41,7 +41,6 @@ class MushafReadingContainer extends StatelessWidget {
                   textAlign: TextAlign.center,
                   softWrap: true,
                   textWidthBasis: TextWidthBasis.parent,
-
                   TextSpan(
                     style: Styles.style18SemiBold(context).copyWith(
                       color: context.read<GlobalCubit>().isDark
@@ -65,7 +64,7 @@ class MushafReadingContainer extends StatelessWidget {
                                 text:
                                     "${index1 > 0 ? "\n" : ""}❴ ${cubit.surModel.sur[(cubit.surahNumber - 1 + index1)].name} ❵\n",
                                 style: TextStyle(
-                                  fontSize: 25.responsiveText(context),                                  
+                                  fontSize: 25.responsiveText(context),
                                 ),
                               ),
                             if (cubit.readingPageAyahs[index1][index2]
@@ -85,13 +84,12 @@ class MushafReadingContainer extends StatelessWidget {
                                   "${cubit.readingPageAyahs[index1][index2].text}"
                                   "(${cubit.readingPageAyahs[index1][index2].numberInSurah}) ",
                               style: TextStyle(
-                                backgroundColor:
-                                    cubit
+                                backgroundColor: cubit
                                             .readingPageAyahs[index1][index2]
                                             .ayahNumber ==
                                         cubit.focusedAyahNumber
-                                        ? AppColors.lightBlue.withOpacity(.5)
-                                        : AppColors.transparent,
+                                    ? AppColors.lightBlue.withOpacity(.5)
+                                    : AppColors.transparent,
                               ),
                               recognizer: LongPressGestureRecognizer()
                                 ..onLongPress = () {
@@ -99,6 +97,20 @@ class MushafReadingContainer extends StatelessWidget {
                                     cubit.readingPageAyahs[index1][index2]
                                         .ayahNumber,
                                   );
+                                  cubit.focusedSurahNumber = cubit
+                                      .surModel
+                                      .sur[(cubit.surahNumber - 1 + index1)]
+                                      .number;
+                                  cubit.focusedSurahNameEn = cubit
+                                      .surModel
+                                      .sur[(cubit.surahNumber - 1 + index1)]
+                                      .englishName;
+                                  cubit.focusedSurahNameAr = cubit
+                                      .surModel
+                                      .sur[(cubit.surahNumber - 1 + index1)]
+                                      .name;
+                                  cubit.focusedAyahText = cubit
+                                      .readingPageAyahs[index1][index2].text;
                                 },
                             ),
                           ],

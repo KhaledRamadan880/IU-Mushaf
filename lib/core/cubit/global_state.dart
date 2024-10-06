@@ -15,3 +15,11 @@ final class NavBarVisibliltyToggleState extends GlobalState {}
 final class LoadSurreciterLoadingState extends GlobalState {}
 
 final class LoadSurreciterSuccessState extends GlobalState {}
+
+final class GetBookmarksLoadingState extends GlobalState {}
+
+final class GetBookmarksSuccessState extends GlobalState {}
+
+final class DeleteAyahLoadingState extends GlobalState {}
+
+final class DeleteAyahSuccessState extends GlobalState {}

@@ -22,9 +22,11 @@ class Toast extends StatelessWidget {
             color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(12.0),
           ),
-          child: CustomText(
+          child: Text(
             message,
-            style: Styles.style18(context),
+            style: Styles.style18(context).copyWith(
+              color: AppColors.black,
+            ),
           ),
         ),
       ),
@@ -45,7 +47,7 @@ void showToast(BuildContext context, String message) {
 
   Overlay.of(context).insert(overlayEntry);
 
-  Future.delayed(const Duration(milliseconds: 750), () {
+  Future.delayed(const Duration(seconds: 2), () {
     overlayEntry.remove();
   });
 }

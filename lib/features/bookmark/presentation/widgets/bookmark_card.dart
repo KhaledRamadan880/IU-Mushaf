@@ -6,7 +6,18 @@ import 'bookmark_dots_button.dart';
 class BookmarkCard extends StatelessWidget {
   const BookmarkCard({
     super.key,
+    required this.surahNumber,
+    required this.pageNumber,
+    required this.surahName,
+    required this.ayahText,
+    required this.mushafType,
+    required this.goToAyahOnTap,
+    required this.deleteAyahOnTap,
   });
+
+  final int surahNumber, pageNumber;
+  final String surahName, ayahText, mushafType;
+  final Function() goToAyahOnTap, deleteAyahOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -31,31 +42,36 @@ class BookmarkCard extends StatelessWidget {
           Row(
             children: [
               //! Surah Number
-              const SurahNumberContainer(2),
+              SurahNumberContainer(surahNumber),
               SizedBox(width: 14.responsiveWidth(context)),
               //! Surah Name
               CustomText(
-                "Surah Al-Baqarah",
+                surahName,
                 style: Styles.style15SemiBold(context),
               ),
               const Spacer(),
               //! Dots Button
-              const BookmarkDotsButton(),
+              BookmarkDotsButton(
+                goToAyahOnTap: goToAyahOnTap,
+                deleteAyahOnTap: deleteAyahOnTap,
+              ),
             ],
           ),
           //! Ayah
-          CustomText(
-            "ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ٱلۡحَيُّ ٱلۡقَيُّومُۚ لَا تَأۡخُذُهُۥ سِنَةٞ وَلَا نَوۡمٞۚ لَّهُۥ مَا فِي ٱلسَّمَٰوَٰتِ وَمَا فِي ٱلۡأَرۡضِۗ مَن ذَا ٱلَّذِي يَشۡفَعُ عِندَهُۥٓ إِلَّا بِإِذۡنِهِۦۚ يَعۡلَمُ مَا بَيۡنَ أَيۡدِيهِمۡ وَمَا خَلۡفَهُمۡۖ وَلَا يُحِيطُونَ بِشَيۡءٖ مِّنۡ عِلۡمِهِۦٓ ",
-            style: Styles.style13Light(context)
-                .copyWith(overflow: TextOverflow.clip),
-            textDirection: TextDirection.rtl,
-            textAlign: TextAlign.right,
-            lightColor: AppColors.green,
+          Align(
+            alignment: Alignment.centerRight,
+            child: CustomText(
+              ayahText,
+              style: Styles.style13Light(context)
+                  .copyWith(overflow: TextOverflow.clip),
+              textDirection: TextDirection.rtl,
+              lightColor: AppColors.green,
+            ),
           ),
           SizedBox(height: 7.responsiveHeight(context)),
           //! Mushaf Type
           CustomText(
-            "Mushaf Warsh",
+            "${AppStrings.mushaf.tr(context)} $mushafType",
             style: Styles.style13(context),
             showShadow: true,
           ),
