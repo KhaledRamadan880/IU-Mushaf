@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/bookmark/data/models/bookmarks_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/ayahs_reciters_audios_model.dart';
+import 'package:iu_mushaf/features/mushaf/data/models/tafsers_model.dart';
 import 'package:iu_mushaf/features/quran_audio/data/models/sur_reciters_audios_model.dart';
 
 part 'global_state.dart';
@@ -72,6 +73,14 @@ class GlobalCubit extends Cubit<GlobalState> {
         await rootBundle.loadString("assets/json/ayahs_reciters_audios.json");
     Map<String, dynamic> jsonMap = jsonDecode(jsonString);
     ayahsRecitersAudiosModel = AyahsRecitersAudiosModel.fromJson(jsonMap);
+  }
+
+  //! Load Tafser From Json
+  TafsersModel? tafsersModel;
+  Future<void> loadTafsersFromJson() async {
+    String jsonString = await rootBundle.loadString("assets/json/tafser.json");
+    Map<String, dynamic> jsonMap = jsonDecode(jsonString);
+    tafsersModel = TafsersModel.fromJson(jsonMap);
   }
 
   //! Get Bookmarks from Cache

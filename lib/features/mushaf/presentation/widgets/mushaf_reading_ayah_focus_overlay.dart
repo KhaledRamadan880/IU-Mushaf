@@ -1,8 +1,8 @@
-
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/mushaf/presentation/widgets/components/listen_to_ayah_button.dart';
 
 import 'components/add_to_bookmark_button.dart';
+import 'components/mean_of_ayah_button.dart';
 
 class AyahFocusButtons extends StatelessWidget {
   const AyahFocusButtons({
@@ -22,21 +22,13 @@ class AyahFocusButtons extends StatelessWidget {
                 right: 0,
                 child: Column(
                   children: [
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         //! Listen to ayah button
-                        const ListenToAyahButton(),
+                        ListenToAyahButton(),
                         //! Mean of ayah button
-                        CustomButton(
-                          onTap: () {},
-                          title: AppStrings.meanOfAyah,
-                        ),
-                        //! about ayah button
-                        CustomButton(
-                          onTap: () {},
-                          title: AppStrings.aboutayah,
-                        ),
+                        MeanOfAyahButton(),
                       ],
                     ),
                     SizedBox(height: 8.responsiveHeight(context)),
@@ -49,8 +41,6 @@ class AyahFocusButtons extends StatelessWidget {
     );
   }
 }
-
-
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -73,8 +63,7 @@ class CustomButton extends StatelessWidget {
           child: Container(
             height: 32.responsiveHeight(context),
             padding: EdgeInsets.symmetric(
-              horizontal: 8.responsiveWidth(context),
-              vertical: 6.responsiveHeight(context),
+              horizontal: 16.responsiveWidth(context),
             ),
             margin:
                 EdgeInsets.symmetric(horizontal: 4.responsiveWidth(context)),

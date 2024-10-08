@@ -16,6 +16,7 @@ Future<void> main() async {
           ..loadMushafFromJson()
           ..loadSurAudiosFromJson()
           ..loadAyahsFromJson()
+          ..loadTafsersFromJson()
           ..getBookmarks(),
         child: const UIMushafApp(),
       ),

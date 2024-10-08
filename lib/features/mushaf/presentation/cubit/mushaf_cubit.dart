@@ -5,6 +5,7 @@ import 'package:iu_mushaf/features/bookmark/data/models/bookmark_item_model.dart
 import 'package:iu_mushaf/features/bookmark/data/models/bookmarks_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/ayah_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/ayahs_reciters_audios_model.dart';
+import 'package:iu_mushaf/features/mushaf/data/models/tafser_model.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 
@@ -178,4 +179,7 @@ class MushafCubit extends Cubit<MushafState> {
     sl<Cache>().setData("bookmarks", newJsonString);
     emit(AddBookmarkSuccessState());
   }
+
+  //! Tafser
+  TafserModel? tafserModel;
 }

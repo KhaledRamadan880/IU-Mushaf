@@ -8,31 +8,28 @@ class AddToBookmarkButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          width: 160.responsiveWidth(context),
-          child: BlocConsumer<MushafCubit, MushafState>(
-            listener: (context, state) {
-              if (state is AddBookmarkSuccessState) {
-                showToast(context, AppStrings.saved.tr(context));
-                context.read<GlobalCubit>().getBookmarks();
-                context.read<MushafCubit>().bookmarksModel =
-                    context.read<GlobalCubit>().bookmarksModel;
-              }
-            },
-            builder: (context, state) {
-              return CustomButton(
-                onTap: () {
-                  context.read<MushafCubit>().addBookmark();
-                },
-                title: AppStrings.addToBookmark,
-              );
-            },
-          ),
-        ),
-      ],
+    return BlocConsumer<MushafCubit, MushafState>(
+      listener: (context, state) {
+        if (state is AddBookmarkSuccessState) {
+          showToast(context, AppStrings.saved.tr(context));
+          context.read<GlobalCubit>().getBookmarks();
+          context.read<MushafCubit>().bookmarksModel =
+              context.read<GlobalCubit>().bookmarksModel;
+        }
+      },
+      builder: (context, state) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomButton(
+              onTap: () {
+                context.read<MushafCubit>().addBookmark();
+              },
+              title: AppStrings.addToBookmark,
+            ),
+          ],
+        );
+      },
     );
   }
 }
