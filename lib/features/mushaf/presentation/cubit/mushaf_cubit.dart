@@ -29,6 +29,8 @@ class MushafCubit extends Cubit<MushafState> {
     mushafTypeEn = mushafEn;
     mushafTypeAr = mushafAr;
     quranPageController = PageController(initialPage: initPageNumber ?? 0);
+    isLayoutHiddin = false;
+    hideLayoutAfterNavigate();
   }
 
   @override
@@ -53,7 +55,7 @@ class MushafCubit extends Cubit<MushafState> {
 
   hideLayoutAfterNavigate() {
     Future.delayed(
-        const Duration(milliseconds: 1250), () => changeLayoutVisibility());
+        const Duration(milliseconds: 2000), () => changeLayoutVisibility());
   }
 
   //* Reading

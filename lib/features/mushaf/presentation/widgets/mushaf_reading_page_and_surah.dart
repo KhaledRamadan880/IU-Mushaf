@@ -15,23 +15,26 @@ class MushafReadingPageNumberAndSurah extends StatelessWidget {
               duration: const Duration(milliseconds: 250),
           opacity: cubit.isLayoutHiddin ? 0 : 1,
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: 36.responsiveWidth(context)),
+            padding: EdgeInsets.only(
+              left: 36.responsiveWidth(context),
+              right: 36.responsiveWidth(context),
+              top: 40.responsiveHeight(context),
+            ),
                 child: Row(
                   children: [
+                //! Surah Name
+                    CustomText(
+                  context.read<GlobalCubit>().language == "en"
+                      ? "${AppStrings.surah.tr(context)} ${cubit.surahsModel!.surahs[pageData[cubit.pageNumber - 1][0]["surah"] - 1].englishName}"
+                      : "${AppStrings.surah.tr(context)} "
+                          "${cubit.surahsModel!.surahs[pageData[cubit.pageNumber - 1][0]["surah"] - 1].name}",
+                      style: Styles.style16(context),
+                    ),
+                    const Spacer(),
                 //! Page Number
                     CustomText(
                   "${AppStrings.page.tr(context)} "
                   "${cubit.pageNumber}",
-                      style: Styles.style16(context),
-                    ),
-                    const Spacer(),
-                //! Surah Name
-                    CustomText(
-                  context.read<GlobalCubit>().language == "en"                    
-                      ? "${AppStrings.surah.tr(context)} ${cubit.surahsModel!.surahs[pageData[cubit.pageNumber - 1][0]["surah"] - 1].englishName}"
-                      : ""
-                          "${cubit.surahsModel!.surahs[pageData[cubit.pageNumber - 1][0]["surah"] - 1].name}",
                       style: Styles.style16(context),
                     ),
                   ],

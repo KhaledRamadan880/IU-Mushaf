@@ -16,7 +16,7 @@ class QuranAudioTitleAndDivider extends StatelessWidget {
             width: 81.5.responsiveWidth(context),
             child: Center(
               child: CustomText(
-                AppStrings.surah.tr(context),
+                AppStrings.surahs.tr(context),
                 style: Styles.style16SemiBold(context),
               ),
             ),

@@ -1,11 +1,11 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
-import 'package:iu_mushaf/features/mushaf/presentation/views/mushaf_reading_view.dart';
+import 'package:iu_mushaf/features/mushaf/presentation/views/surahs_view.dart';
 import 'package:iu_mushaf/features/mushaf/presentation/widgets/mushaf_card.dart';
 
 class MushafCardsListView extends StatelessWidget {
   const MushafCardsListView({
     super.key,
-  });  
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +20,12 @@ class MushafCardsListView extends StatelessWidget {
               mushafType: globalCubit.mushafsModel!.mushafs[index].mushafTypeEn,
               accent: globalCubit.mushafsModel!.mushafs[index].accentEn,
               by: globalCubit.mushafsModel!.mushafs[index].byEn,
-              onTap: () {                
+              onTap: () {
                 PersistentNavBarNavigator.pushDynamicScreen(
                   context,
                   screen: MaterialPageRoute(
                     builder: (context) => BlocProvider(
-                      create: (context) =>
-                          MushafCubit()
+                      create: (context) => MushafCubit()
                         ..surahsModel = globalCubit.surahsModel!
                         ..hideLayoutAfterNavigate()
                         ..init(
@@ -36,9 +35,8 @@ class MushafCardsListView extends StatelessWidget {
                           mushafEn: globalCubit
                               .mushafsModel!.mushafs[index].mushafTypeEn,
                           mushafAr: globalCubit
-                              .mushafsModel!.mushafs[index].mushafTypeAr,
-                        ),
-                      child: const MushafReadingView(),
+                                .mushafsModel!.mushafs[index].mushafTypeAr),
+                      child: const SurahsView(),
                     ),
                   ),
                   withNavBar: false,

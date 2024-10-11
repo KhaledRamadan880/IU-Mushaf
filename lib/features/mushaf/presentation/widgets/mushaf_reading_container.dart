@@ -106,9 +106,16 @@ class MushafReadingContainer extends StatelessWidget {
                                                 : AppColors.black,
                                         wordSpacing:
                                             -5.responsiveWidth(context),
-                                        height: 1.75.responsiveHeight(context),
+                                        height: 1.70.responsiveHeight(context),
                                         fontSize:
-                                            MediaQuery.of(context).size.width /
+                                        index == 253
+                                            ? MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                18.5
+                                            : MediaQuery.of(context)
+                                                    .size
+                                                    .width /
                                                 18.3,
                                         fontFamily: "page${(index + 1)}",
                                         backgroundColor:

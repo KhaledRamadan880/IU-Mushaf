@@ -17,7 +17,7 @@ class AyahFocusButtons extends StatelessWidget {
         return cubit.focusedAyahNumber == null
             ? Container()
             : Positioned(
-                bottom: 83.responsiveHeight(context),
+                bottom: 40.responsiveHeight(context),
                 left: 0,
                 right: 0,
                 child: Column(

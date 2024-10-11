@@ -1,4 +1,4 @@
-const List pageData = [
+const List<List<Map<String, dynamic>>> pageData = [
   [
     {"surah": 1, "start": 1, "end": 7}
   ],

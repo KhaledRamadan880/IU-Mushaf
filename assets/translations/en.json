@@ -16,9 +16,11 @@
     "addToBookmark" : "Add to bookmark",
     "saved" : "Saved",
     "tafser" : "Tafser",
+    "index" : "Index",
+    "surah" : "Surah",
 
     "quranAudio" : "Quran Audio",
-    "surah" : "Surah",
+    "surahs" : "Surahs",
     "chooseReciter" : "Choose Reciter",
     "search" : "Search",
     "cancel" : "Cancel",

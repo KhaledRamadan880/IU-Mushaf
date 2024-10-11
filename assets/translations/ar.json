@@ -16,9 +16,11 @@
     "addToBookmark" : "اضافة الي المحفوظات",
     "saved" : "تم الحفظ",
     "tafser" : "تفسير",
+    "index" : "الفهرس",
+    "surah" : "سورة",
 
     "quranAudio" : "المصحف الصوتي",
-    "surah" : "السور",
+    "surahs" : "السور",
     "chooseReciter" : "اختر القارئ",
     "search" : "البحث",
     "cancel" : "إالغاء",
