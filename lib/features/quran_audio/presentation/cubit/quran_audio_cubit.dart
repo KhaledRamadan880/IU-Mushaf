@@ -1,5 +1,6 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/surah_model.dart';
+import 'package:iu_mushaf/features/mushaf/data/models/surahs_model.dart';
 import 'package:iu_mushaf/features/quran_audio/data/models/sur_reciters_audios_model.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
@@ -12,7 +13,7 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   int selectedSurahNumber = 0;
   int selectedReciter = sl<Cache>().getIntData("reciter") ?? 0;
   SurRecitersAudiosModel? surrecitersAudiosModel;
-  SurModel? surModel;
+  SurahsModel? surahsModel;
   String? language;
 
   AudioPlayer audioPlayer = sl<MediaPlayer>().audioPlayer;
@@ -20,10 +21,10 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
 
   void init(
       {required SurRecitersAudiosModel recitersModel,
-      required SurModel allSurModel,
+      required SurahsModel allSurModel,
       required String lang}) {
     surrecitersAudiosModel = recitersModel;
-    surModel = allSurModel;
+    surahsModel = allSurModel;
     language = lang;
     setAudioPLaylist();
   }
@@ -50,8 +51,8 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
                     : surrecitersAudiosModel!
                         .surrecitersAudios[selectedReciter].reciterNameArabic,
                 title: language == "en"
-                    ? surModel!.sur[index].englishName
-                    : surModel!.sur[index].name,
+                    ? surahsModel!.surahs[index].englishName
+                    : surahsModel!.surahs[index].name,
                 artUri: Uri.parse(
                     'https://media.licdn.com/dms/image/D4D12AQHpCDFnrmJiiQ/article-cover_image-shrink_600_2000/0/1712430882115?e=2147483647&v=beta&t=D_y1vThNzKM8thNPMKpNy-f5g2t0ePFUXPUynynpmGk'),
               ),
@@ -69,8 +70,8 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
                     : surrecitersAudiosModel!
                         .surrecitersAudios[index].reciterNameArabic,
                 title: language == "en"
-                    ? surModel!.sur[index].englishName
-                    : surModel!.sur[index].name,
+                    ? surahsModel!.surahs[index].englishName
+                    : surahsModel!.surahs[index].name,
                 artUri: Uri.parse(
                     'https://media.licdn.com/dms/image/D4D12AQHpCDFnrmJiiQ/article-cover_image-shrink_600_2000/0/1712430882115?e=2147483647&v=beta&t=D_y1vThNzKM8thNPMKpNy-f5g2t0ePFUXPUynynpmGk'),
               ),
@@ -130,10 +131,10 @@ class QuranAudioCubit extends Cubit<QuranAudioState> {
   void search(String value) {
     searchedSur.clear();
     if (value.isNotEmpty) {
-      for (var surah in surModel!.sur) {
+      for (var surah in surahsModel!.surahs) {
         if (removeArabicDiacritics(surah.name).contains(value) ||
             surah.englishName.toLowerCase().contains(value.toLowerCase())) {
-          searchedSur.add(surModel!.sur[surah.number - 1]);
+          searchedSur.add(surahsModel!.surahs[surah.number - 1]);
         }
       }
     }

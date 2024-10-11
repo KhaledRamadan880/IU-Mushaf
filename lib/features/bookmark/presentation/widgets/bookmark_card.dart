@@ -63,7 +63,10 @@ class BookmarkCard extends StatelessWidget {
             child: CustomText(
               ayahText,
               style: Styles.style13Light(context)
-                  .copyWith(overflow: TextOverflow.clip),
+                  .copyWith(
+                overflow: TextOverflow.clip,
+                fontFamily: "page$pageNumber",
+              ),
               textDirection: TextDirection.rtl,
               lightColor: AppColors.green,
             ),

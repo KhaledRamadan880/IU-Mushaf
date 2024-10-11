@@ -1,4 +1,5 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/mushaf/data/page_data.dart';
 
 class MushafReadingPageNumberAndSurah extends StatelessWidget {
   const MushafReadingPageNumberAndSurah({
@@ -27,10 +28,10 @@ class MushafReadingPageNumberAndSurah extends StatelessWidget {
                     const Spacer(),
                 //! Surah Name
                     CustomText(
-                  context.read<GlobalCubit>().language == "en"
-                      ? "${AppStrings.surah.tr(context)} ${cubit.surModel.sur[cubit.surahNumber - 1].englishName}"
+                  context.read<GlobalCubit>().language == "en"                    
+                      ? "${AppStrings.surah.tr(context)} ${cubit.surahsModel!.surahs[pageData[cubit.pageNumber - 1][0]["surah"] - 1].englishName}"
                       : ""
-                          "${cubit.surModel.sur[cubit.surahNumber - 1].name}",
+                          "${cubit.surahsModel!.surahs[pageData[cubit.pageNumber - 1][0]["surah"] - 1].name}",
                       style: Styles.style16(context),
                     ),
                   ],

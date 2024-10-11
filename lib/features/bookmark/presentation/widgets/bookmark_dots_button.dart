@@ -51,9 +51,11 @@ class BookmarkDotsButton extends StatelessWidget {
               cubit.navBarVisibliltyToggle(true);
             });
           },
-          icon: const Icon(
+          icon: Icon(
             Icons.more_horiz_outlined,
-            color: AppColors.grey,
+            color: cubit.isDark
+                ? AppColors.white.withOpacity(.4)
+                : AppColors.black.withOpacity(.4),
           ),
         );
       },

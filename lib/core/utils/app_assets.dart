@@ -2,9 +2,9 @@
 class Assets {
   Assets._();
   
-  /// Assets for imagesBesmAllah
-  /// assets/images/besm_allah.png
-  static const String imagesBesmAllah = "assets/images/besm_allah.png";
+  /// Assets for imagesBasmAlah
+  /// assets/images/basm_alah.png
+  static const String imagesBasmAlah = "assets/images/basm_alah.png";
 
   /// Assets for imagesBookIcon
   /// assets/images/book_icon.svg
@@ -37,5 +37,9 @@ class Assets {
   /// Assets for imagesSettingsIcon
   /// assets/images/settings_icon.svg
   static const String imagesSettingsIcon = "assets/images/settings_icon.svg";
+
+  /// Assets for imagesSurahNameFrame
+  /// assets/images/surah_name_frame.png
+  static const String imagesSurahNameFrame = "assets/images/surah_name_frame.png";
 }
 

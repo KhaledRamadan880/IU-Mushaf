@@ -1,9 +1,9 @@
-import 'surah_model.dart';
+import 'surahs_model.dart';
 
 class MushafModel {
   final int id;
   final String mushafTypeEn, mushafTypeAr, accentEn, accentAr, byEn, byAr;
-  final List<SurahModel> sur;
+  final SurahsModel sur;
 
   MushafModel({
     required this.id,

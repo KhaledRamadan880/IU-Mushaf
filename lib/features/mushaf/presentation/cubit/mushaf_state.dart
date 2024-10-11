@@ -13,3 +13,5 @@ final class ReadingPageSwipState extends MushafState {}
 final class AddBookmarkLoadingState extends MushafState {}
 
 final class AddBookmarkSuccessState extends MushafState {}
+
+final class ChangePageState extends MushafState {}

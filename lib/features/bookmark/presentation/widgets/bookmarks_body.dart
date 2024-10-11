@@ -48,26 +48,30 @@ class BookmarksBody extends StatelessWidget {
                         Future.delayed(
                             const Duration(milliseconds: 500),
                             () => PersistentNavBarNavigator.pushDynamicScreen(
+                                  // ignore: use_build_context_synchronously
                                   context,
                                   screen: MaterialPageRoute(
                                     builder: (context) => BlocProvider(
                                       create: (context) => MushafCubit()
-                                        ..surModel = cubit.surModel!
+                                        ..surahsModel = cubit.surahsModel!
                                         ..hideLayoutAfterNavigate()
-                                        ..addAyahsToList()
                                         ..init(
-                                            ayahsAudiosModel:
+                                          ayahsAudiosModel:
                                                 cubit.ayahsRecitersAudiosModel!,
-                                            globalBookmarksModel:
+                                          globalBookmarksModel:
                                                 cubit.bookmarksModel!,
-                                            mushafEn: cubit.bookmarksModel!
+                                          mushafEn: cubit.bookmarksModel!
                                                 .bookmarks[index].mushafTypeEn,
-                                            mushafAr: cubit.bookmarksModel!
+                                          mushafAr: cubit.bookmarksModel!
                                                 .bookmarks[index].mushafTypeAr,
-                                            initPageNumber: cubit
-                                                .bookmarksModel!
-                                                .bookmarks[index]
-                                                .pageNumber),
+                                          initPageNumber: cubit.bookmarksModel!
+                                                  .bookmarks[index].pageNumber -
+                                              1,
+                                        )
+                                        ..pageNumber = cubit.bookmarksModel!
+                                            .bookmarks[index].pageNumber
+                                        ..surahNumber = cubit.bookmarksModel!
+                                            .bookmarks[index].surahNumber,
                                       child: const MushafReadingView(),
                                     ),
                                   ),

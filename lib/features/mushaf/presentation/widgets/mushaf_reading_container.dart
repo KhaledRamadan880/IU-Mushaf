@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/mushaf/data/page_data.dart';
 
 class MushafReadingContainer extends StatelessWidget {
   const MushafReadingContainer({
@@ -10,120 +11,202 @@ class MushafReadingContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MushafCubit, MushafState>(builder: (context, state) {
       final cubit = context.read<MushafCubit>();
-      return GestureDetector(
-        onHorizontalDragEnd: (details) {
-          cubit.readingPageSwip(details);
-        },
-        child: Container(
-          width: 357.responsiveWidth(context),
-          height: 647.responsiveHeight(context),
-          padding: EdgeInsets.symmetric(
-            horizontal: 8.responsiveWidth(context),
-            vertical: 5.responsiveHeight(context),
-          ),
-          margin: EdgeInsets.only(
-            top: 22.responsiveHeight(context),
-            left: 18.responsiveWidth(context),
-            right: 18.responsiveWidth(context),
-            bottom: 25.responsiveHeight(context),
-          ),
-          decoration: BoxDecoration(
-            color: Theme.of(context).secondaryHeaderColor,
-            borderRadius: BorderRadius.circular(25),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              cubit.readingPageAyahs.length,
-              (index1) {
-                return Text.rich(
-                  textDirection: TextDirection.rtl,
-                  textAlign: TextAlign.center,
-                  softWrap: true,
-                  textWidthBasis: TextWidthBasis.parent,
-                  TextSpan(
-                    style: Styles.style18SemiBold(context).copyWith(
-                      color: context.read<GlobalCubit>().isDark
-                          ? AppColors.white
-                          : AppColors.black,
-                      fontFamily: "Uthman",
-                      fontWeight: FontWeight.w700,
-                      fontSize: 18 *
-                          (MediaQuery.of(context).size.width /
-                              345.responsiveWidth(context)),
-                    ),
-                    children: List.generate(
-                      cubit.readingPageAyahs[index1].length,
-                      (index2) {
-                        return TextSpan(
-                          children: [
-                            if (cubit.readingPageAyahs[index1][index2]
-                                    .numberInSurah ==
-                                1)
-                              TextSpan(
-                                text:
-                                    "${index1 > 0 ? "\n" : ""}❴ ${cubit.surModel.sur[(cubit.surahNumber - 1 + index1)].name} ❵\n",
-                                style: TextStyle(
-                                  fontSize: 25.responsiveText(context),
-                                ),
-                              ),
-                            if (cubit.readingPageAyahs[index1][index2]
-                                    .numberInSurah ==
-                                1)
-                              TextSpan(
-                                text: cubit.readingPageAyahs[index1][0]
-                                            .ayahNumber !=
-                                        1
-                                    ? "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ\n"
-                                    : "\n",
-                                style: TextStyle(
-                                    height: 1.7.responsiveHeight(context)),
-                              ),
-                            TextSpan(
-                              text:
-                                  "${cubit.readingPageAyahs[index1][index2].text}"
-                                  "(${cubit.readingPageAyahs[index1][index2].numberInSurah}) ",
-                              style: TextStyle(
-                                backgroundColor: cubit
-                                            .readingPageAyahs[index1][index2]
-                                            .ayahNumber ==
-                                        cubit.focusedAyahNumber
-                                    ? AppColors.lightBlue.withOpacity(.5)
-                                    : AppColors.transparent,
-                              ),
-                              recognizer: LongPressGestureRecognizer()
-                                ..onLongPress = () {
-                                  cubit.changeFocusedAyah(
-                                    cubit.readingPageAyahs[index1][index2]
-                                        .ayahNumber,
-                                  );
-                                  cubit.focusedSurahNumber = cubit
-                                      .surModel
-                                      .sur[(cubit.surahNumber - 1 + index1)]
-                                      .number;
-                                  cubit.focusedSurahNameEn = cubit
-                                      .surModel
-                                      .sur[(cubit.surahNumber - 1 + index1)]
-                                      .englishName;
-                                  cubit.focusedSurahNameAr = cubit
-                                      .surModel
-                                      .sur[(cubit.surahNumber - 1 + index1)]
-                                      .name;
-                                  cubit.focusedAyahText = cubit
-                                      .readingPageAyahs[index1][index2].text;
-                                },
+      return SizedBox(
+        height: 675.responsiveHeight(context),
+        child: PageView.builder(
+            scrollDirection: Axis.horizontal,
+            reverse:
+                context.read<GlobalCubit>().language == "en" ? true : false,
+            controller: cubit.quranPageController,
+            itemCount: pageData.length,
+            onPageChanged: (value) {
+              cubit.changePage(value);
+              cubit.changeFocusedAyah(null);
+              cubit.audioPlayer!.pause();
+            },
+            itemBuilder: (context, index) {
+              return Container(
+                width: 357.responsiveWidth(context),
+                height: 675.responsiveHeight(context),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 8.responsiveWidth(context),
+                  vertical: 5.responsiveHeight(context),
+                ),
+                margin: EdgeInsets.only(
+                  top: 22.responsiveHeight(context),
+                  left: 18.responsiveWidth(context),
+                  right: 18.responsiveWidth(context),
+                  bottom: 25.responsiveHeight(context),
+                ),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).secondaryHeaderColor,
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: Center(
+                  //! Rich Text
+                  child: RichText(
+                    textDirection: TextDirection.rtl,
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: List.generate(
+                        pageData[index].length,
+                        (i) {
+                          int start = pageData[index][i]["start"];
+                          int end = pageData[index][i]["end"];
+                          return TextSpan(
+                            children: List.generate(
+                              end - start + 1,
+                              (ii) {
+                                String qcfData = cubit
+                                    .surahsModel!
+                                    .surahs[pageData[index][i]["surah"] - 1]
+                                    .ayahs
+                                    .ayahs[ii + start - 1]
+                                    .qcfData;
+                                int ayahNumberInQuran = cubit
+                                    .surahsModel!
+                                    .surahs[pageData[index][i]["surah"] - 1]
+                                    .ayahs
+                                    .ayahs[ii + start - 1]
+                                    .numberInQuran;
+                                return TextSpan(
+                                  children: [
+                                    //! Surah Name Frame
+                                    (cubit
+                                                .surahsModel!
+                                                .surahs[pageData[index][i]
+                                                        ["surah"] -
+                                                    1]
+                                                .ayahs
+                                                .ayahs[ii + start - 1]
+                                                .verseNumber ==
+                                            1)
+                                        ? surahFrame(context, cubit, index, i)
+                                        : const TextSpan(),
+                                    //! Basm Allah
+                                    (cubit
+                                                    .surahsModel!
+                                                    .surahs[pageData[index][i]
+                                                            ["surah"] -
+                                                        1]
+                                                    .ayahs
+                                                    .ayahs[ii + start - 1]
+                                                    .verseNumber ==
+                                                1) &&
+                                            (index != 0 && index != 186)
+                                        ? basmAllah(context)
+                                        : const TextSpan(),
+                                    //! Ayah
+                                    TextSpan(
+                                      text: "$qcfData ",
+                                      style: TextStyle(
+                                        color:
+                                            context.read<GlobalCubit>().isDark
+                                                ? AppColors.white
+                                                : AppColors.black,
+                                        wordSpacing:
+                                            -5.responsiveWidth(context),
+                                        height: 1.75.responsiveHeight(context),
+                                        fontSize:
+                                            MediaQuery.of(context).size.width /
+                                                18.3,
+                                        fontFamily: "page${(index + 1)}",
+                                        backgroundColor:
+                                            (cubit.focusedAyahNumber ==
+                                                    ayahNumberInQuran)
+                                                ? AppColors.lightBlue
+                                                    .withOpacity(.4)
+                                                : AppColors.transparent,
+                                      ),
+                                      recognizer: LongPressGestureRecognizer()
+                                        ..onLongPress = () {
+                                          cubit.changeFocusedAyah(
+                                              ayahNumberInQuran);
+                                          cubit.addBookmarksData(
+                                            surahNumber: cubit
+                                                .surahsModel!
+                                                .surahs[pageData[index][i]
+                                                        ["surah"] -
+                                                    1]
+                                                .number,
+                                            surahNameEn: cubit
+                                                .surahsModel!
+                                                .surahs[pageData[index][i]
+                                                        ["surah"] -
+                                                    1]
+                                                .englishName,
+                                            surahNameAr: cubit
+                                                .surahsModel!
+                                                .surahs[pageData[index][i]
+                                                        ["surah"] -
+                                                    1]
+                                                .name,
+                                            ayahText: cubit
+                                                .surahsModel!
+                                                .surahs[pageData[index][i]
+                                                        ["surah"] -
+                                                    1]
+                                                .ayahs
+                                                .ayahs[ii + start - 1]
+                                                .qcfData,
+                                          );
+                                        },
+                                    ),
+                                  ],
+                                );
+                              },
                             ),
-                          ],
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
                   ),
-                );
-              },
-            ),
-          ),
-        ),
+                ),
+              );
+            }),
       );
     });
   }
+}
+
+surahFrame(BuildContext context, MushafCubit cubit, int index, int i) {
+  return WidgetSpan(
+    child: Stack(
+      alignment: Alignment.center,
+      children: [
+        //! Frame
+        Image.asset(
+          Assets.imagesSurahNameFrame,
+          color: context.read<GlobalCubit>().isDark
+              ? AppColors.white.withOpacity(.5)
+              : AppColors.black.withOpacity(.5),
+          height: 48.responsiveHeight(context),
+          fit: BoxFit.fitHeight,
+        ),
+        //! Surah Name
+        CustomText(
+          cubit.surahsModel!.surahs[pageData[index][i]["surah"] - 1].name,
+          style: Styles.style28Bold(context).copyWith(
+            // fontFamily: "",
+            fontSize: 24.responsiveText(context),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+basmAllah(BuildContext context) {
+  return TextSpan(
+    text: "ﱁ ﱂ ﱃ ﱄ\n",
+    style: TextStyle(
+      color: context.read<GlobalCubit>().isDark
+          ? AppColors.white
+          : AppColors.black,
+      wordSpacing: -5.responsiveWidth(context),
+      height: 1.75.responsiveHeight(context),
+      fontSize: MediaQuery.of(context).size.width / 18.3,
+      fontFamily: "page1",
+    ),
+  );
 }

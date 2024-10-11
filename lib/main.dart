@@ -13,11 +13,7 @@ Future<void> main() async {
       enabled: false,
       builder: (context) => BlocProvider(
         create: (context) => GlobalCubit()
-          ..loadMushafFromJson()
-          ..loadSurAudiosFromJson()
-          ..loadAyahsFromJson()
-          ..loadTafsersFromJson()
-          ..getBookmarks(),
+          ..inital(),
         child: const UIMushafApp(),
       ),
     ),

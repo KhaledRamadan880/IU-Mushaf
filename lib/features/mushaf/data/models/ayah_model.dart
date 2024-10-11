@@ -1,31 +1,22 @@
 class AyahModel {
-  final String audio;
-  final String text;
-  final int numberInSurah;
-  final int juz;
-  final int page;
-  final int pageInSurah;
-  final int ayahNumber;
+  final int surahNumber, verseNumber, numberInQuran;
+  final String qcfData, content;
 
   AyahModel({
-    required this.audio,
-    required this.text,
-    required this.numberInSurah,
-    required this.juz,
-    required this.page,
-    required this.pageInSurah,
-    required this.ayahNumber,
+    required this.surahNumber,
+    required this.verseNumber,
+    required this.numberInQuran,
+    required this.qcfData,
+    required this.content,
   });
 
-  factory AyahModel.fromJson(Map<String, dynamic> jsonData) {
+  factory AyahModel.fromJson(Map<String, dynamic> jsonMap, {required int ayahNumber}) {
     return AyahModel(
-      audio: jsonData["audio"],
-      text: jsonData["text"],
-      numberInSurah: jsonData["numberInSurah"],
-      juz: jsonData["juz"],
-      page: jsonData["page"],
-      pageInSurah: jsonData["pageInSurah"],
-      ayahNumber: jsonData["number"],
+      surahNumber: jsonMap["surah_number"],
+      verseNumber: jsonMap["verse_number"],
+      numberInQuran: ayahNumber,
+      qcfData: jsonMap["qcfData"],
+      content: jsonMap["content"],
     );
   }
 }

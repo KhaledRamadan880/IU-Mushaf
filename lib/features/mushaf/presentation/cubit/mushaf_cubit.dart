@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/bookmark/data/models/bookmark_item_model.dart';
 import 'package:iu_mushaf/features/bookmark/data/models/bookmarks_model.dart';
-import 'package:iu_mushaf/features/mushaf/data/models/ayah_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/ayahs_reciters_audios_model.dart';
+import 'package:iu_mushaf/features/mushaf/data/models/surahs_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/tafser_model.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
@@ -28,8 +28,7 @@ class MushafCubit extends Cubit<MushafState> {
     bookmarksModel = globalBookmarksModel;
     mushafTypeEn = mushafEn;
     mushafTypeAr = mushafAr;
-    pageNumber = initPageNumber ?? 1;
-    addAyahsToList();
+    quranPageController = PageController(initialPage: initPageNumber ?? 0);
   }
 
   @override
@@ -60,50 +59,11 @@ class MushafCubit extends Cubit<MushafState> {
   //* Reading
   int pageNumber = 1;
   int surahNumber = 1;
-  List<List<AyahModel>> readingPageAyahs = [];
-  late SurModel surModel;
+  SurahsModel? surahsModel;
 
-  readingPageSwip(DragEndDetails details) {
-    focusedAyahNumber = null;
-
-    //! For Swip Forward
-    if (details.primaryVelocity! > 0 &&
-        pageNumber != surModel.sur.last.ayahs.last.page) {
-      pageNumber += 1;
-
-      addAyahsToList();
-    }
-    //! For Swip Back
-    else if (details.primaryVelocity! < 0 && pageNumber > 1) {
-      pageNumber -= 1;
-      addAyahsToList();
-    }
-    emit(ReadingPageSwipState());
-  }
-
-  void addAyahsToList() {
-    readingPageAyahs.clear();
-    for (var i = 0; i < surModel.sur.length; i++) {
-      List<AyahModel> ayahsInCurrentSur = [];
-      for (var x = 0; x < surModel.sur[i].ayahs.length; x++) {
-        if (surModel.sur[i].ayahs[x].page == pageNumber) {
-          ayahsInCurrentSur.add(surModel.sur[i].ayahs[x]);
-        }
-      }
-      if (ayahsInCurrentSur.isNotEmpty) {
-        readingPageAyahs.add(ayahsInCurrentSur);
-      }
-    }
-
-    outerLoop:
-    for (var surah in surModel.sur) {
-      for (var ayah in surah.ayahs) {
-        if (ayah.ayahNumber == readingPageAyahs.first.first.ayahNumber) {
-          surahNumber = surah.number;
-          break outerLoop;
-        }
-      }
-    }
+  changePage(value) {
+    pageNumber = value + 1;
+    emit(ChangePageState());
   }
 
   //! Listen To Ayah
@@ -158,7 +118,7 @@ class MushafCubit extends Cubit<MushafState> {
   String? mushafTypeEn;
   String? mushafTypeAr;
   BookmarksModel? bookmarksModel;
-
+  PageController? quranPageController;
   void addBookmark() {
     emit(AddBookmarkLoadingState());
     BookmarksModel model = bookmarksModel!;
@@ -167,8 +127,7 @@ class MushafCubit extends Cubit<MushafState> {
       BookmarkItemModel(
         surahNameEn: focusedSurahNameEn!,
         surahNameAr: focusedSurahNameAr!,
-        ayahText:
-            "${focusedAyahText!} (${surModel.sur[focusedSurahNumber! - 1].ayahs[focusedAyahNumber - 1].numberInSurah})",
+        ayahText: focusedAyahText!,
         mushafTypeEn: mushafTypeEn!,
         mushafTypeAr: mushafTypeAr!,
         surahNumber: focusedSurahNumber!,
@@ -178,6 +137,18 @@ class MushafCubit extends Cubit<MushafState> {
     String newJsonString = jsonEncode(model.toMap());
     sl<Cache>().setData("bookmarks", newJsonString);
     emit(AddBookmarkSuccessState());
+  }
+
+  addBookmarksData({
+    required int surahNumber,
+    required String surahNameEn,
+    required String surahNameAr,
+    required String ayahText,
+  }) {
+    focusedSurahNumber = surahNumber;
+    focusedSurahNameEn = surahNameEn;
+    focusedSurahNameAr = surahNameAr;
+    focusedAyahText = ayahText;
   }
 
   //! Tafser

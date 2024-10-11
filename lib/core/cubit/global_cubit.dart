@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/bookmark/data/models/bookmarks_model.dart';
+import 'package:iu_mushaf/features/mushaf/data/models/ayahs_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/ayahs_reciters_audios_model.dart';
+import 'package:iu_mushaf/features/mushaf/data/models/surahs_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/tafsers_model.dart';
 import 'package:iu_mushaf/features/quran_audio/data/models/sur_reciters_audios_model.dart';
 
@@ -45,14 +47,31 @@ class GlobalCubit extends Cubit<GlobalState> {
     emit(NavBarVisibliltyToggleState());
   }
 
+  inital() {
+    loadSurahsAndAyahsFromJson();
+    loadSurAudiosFromJson();
+    loadAyahsFromJson();
+    loadTafsersFromJson();
+    getBookmarks();
+  }
+
   //! Mushaf
   MushafsModel? mushafsModel = MushafsModel(mushafs: MushafsModel.allMushafs);
-  SurModel? surModel;
 
-  Future loadMushafFromJson() async {
-    String jsonString = await rootBundle.loadString("assets/json/quran.json");
-    Map<String, dynamic> jsonMap = jsonDecode(jsonString);
-    surModel = SurModel.fromJson(jsonMap);
+  //! Load Surahs & Ayahs From Json
+  SurahsModel? surahsModel;
+  AyahsModel? ayahsModel;
+  Future<void> loadSurahsAndAyahsFromJson() async {
+    String surahsJsonString =
+        await rootBundle.loadString("assets/json/surahs.json");
+    String ayahsJsonString =
+        await rootBundle.loadString("assets/json/ayahs.json");
+
+    Map<String, dynamic> surahsMap = jsonDecode(surahsJsonString);
+    Map<String, dynamic> ayahsMap = jsonDecode(ayahsJsonString);
+
+    ayahsModel = AyahsModel.fromJson(ayahsMap);
+    surahsModel = SurahsModel.fromJson(surahsMap, ayahsModel!);
   }
 
   //! Load Sur Audios

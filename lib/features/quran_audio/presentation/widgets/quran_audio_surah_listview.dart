@@ -25,7 +25,7 @@ class QuranAudioSurahListView extends StatelessWidget {
                       itemCount:
                           quranCubit.searchController.value.text.isNotEmpty
                               ? quranCubit.searchedSur.length
-                              : cubit.surModel!.sur.length,
+                              : cubit.surahsModel!.surahs.length,
                       padding: EdgeInsets.symmetric(
                         vertical: 12.responsiveHeight(context),
                         horizontal: 20.responsiveWidth(context),
@@ -41,17 +41,17 @@ class QuranAudioSurahListView extends StatelessWidget {
                               surahNumber: quranCubit
                                       .searchController.value.text.isNotEmpty
                                   ? quranCubit.searchedSur[index].number - 1
-                                  : cubit.surModel!.sur[index].number - 1,
+                                  : cubit.surahsModel!.surahs[index].number - 1,
                               title: cubit.language == "en"
                                   ? quranCubit.searchController.value.text
                                           .isNotEmpty
                                       ? quranCubit
                                           .searchedSur[index].englishName
-                                      : cubit.surModel!.sur[index].englishName
+                                      : cubit.surahsModel!.surahs[index].englishName
                                   : quranCubit.searchController.value.text
                                           .isNotEmpty
                                       ? quranCubit.searchedSur[index].name
-                                      : cubit.surModel!.sur[index].name,
+                                      : cubit.surahsModel!.surahs[index].name,
                               onTap: () {
                                 if (index + 1 !=
                                     context
@@ -66,7 +66,7 @@ class QuranAudioSurahListView extends StatelessWidget {
                                             ? quranCubit
                                                     .searchedSur[index].number -
                                                 1
-                                            : cubit.surModel!.sur[index]
+                                            : cubit.surahsModel!.surahs[index]
                                                     .number -
                                                 1,
                                       );

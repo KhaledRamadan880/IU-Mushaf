@@ -1,5 +1,7 @@
 import 'package:iu_mushaf/features/mushaf/data/models/mushaf_model.dart';
 
+import 'surahs_model.dart';
+
 class MushafsModel {
   final List<MushafModel> mushafs;
 
@@ -15,7 +17,7 @@ class MushafsModel {
       accentAr: "القارء",
       byEn: "Hafs",
       byAr: "حفص",
-      sur: [],
+      sur: SurahsModel(surahs: []),
     ),
   ];
 }

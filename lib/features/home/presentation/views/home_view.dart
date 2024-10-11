@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
         create: (context) => QuranAudioCubit()
           ..init(
             recitersModel: context.read<GlobalCubit>().surrecitersAudiosModel!,
-            allSurModel: context.read<GlobalCubit>().surModel!,
+            allSurModel: context.read<GlobalCubit>().surahsModel!,
             lang: context.read<GlobalCubit>().language,
           ),
         child: const QuranAudioView(),
