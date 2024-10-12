@@ -4,6 +4,7 @@ import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/bookmark/data/models/bookmark_item_model.dart';
 import 'package:iu_mushaf/features/bookmark/data/models/bookmarks_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/ayahs_reciters_audios_model.dart';
+import 'package:iu_mushaf/features/mushaf/data/models/surah_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/surahs_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/tafser_model.dart';
 import 'package:just_audio/just_audio.dart';
@@ -155,4 +156,41 @@ class MushafCubit extends Cubit<MushafState> {
 
   //! Tafser
   TafserModel? tafserModel;
+
+  //! Search
+  //* Surahs Search
+  TextEditingController surahsSearchController = TextEditingController();
+  bool showSurahsSearchTextField = false;
+  FocusNode surahsSearchFocusNode = FocusNode();
+
+  void changeSearchTextFieldVisibility(bool isVisible) {
+    showSurahsSearchTextField = isVisible;
+    emit(ChangeSurahsSearchTextFieldVisibilityState());
+  }
+
+  List<SurahModel> searchedSur = [];
+  void surahsSearch(String value) {
+    searchedSur.clear();
+    if (value.isNotEmpty) {
+      for (var surah in surahsModel!.surahs) {
+        if (removeArabicDiacritics(surah.name).contains(value) ||
+            surah.englishName.toLowerCase().contains(value.toLowerCase())) {
+          searchedSur.add(surahsModel!.surahs[surah.number - 1]);
+        }
+      }
+    }
+    emit(SurahsSearchOnChangeState());
+  }
+
+  String removeArabicDiacritics(String text) {
+    RegExp regExp = RegExp(
+        r'[\u064B-\u065F\u0670-\u0672\u0674-\u0675\u0678-\u0679\u06D6-\u06ED]');
+
+    String cleanedText = text.replaceAll(regExp, '');
+
+    cleanedText = cleanedText.replaceAll('ٱ', 'ا');
+
+    cleanedText = cleanedText.replaceAll('ل', 'ل'); // Ensure space remains
+    return text.replaceAll(regExp, '');
+  }
 }

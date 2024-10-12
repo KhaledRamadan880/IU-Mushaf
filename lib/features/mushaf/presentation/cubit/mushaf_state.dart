@@ -15,3 +15,7 @@ final class AddBookmarkLoadingState extends MushafState {}
 final class AddBookmarkSuccessState extends MushafState {}
 
 final class ChangePageState extends MushafState {}
+
+final class ChangeSurahsSearchTextFieldVisibilityState extends MushafState {}
+
+final class SurahsSearchOnChangeState extends MushafState {}
