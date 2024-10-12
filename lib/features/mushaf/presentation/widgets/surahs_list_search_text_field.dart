@@ -19,7 +19,9 @@ class SurahsListSearchTextField extends StatelessWidget {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           width: double.infinity,
-          height: cubit.showSurahsSearchTextField ? 68.responsiveHeight(context) : 0,
+          height: cubit.showSurahsSearchTextField
+              ? 68.responsiveHeight(context)
+              : 0,
           padding: EdgeInsets.only(
             bottom: 16.responsiveHeight(context),
             left: 16.responsiveWidth(context),
@@ -27,49 +29,12 @@ class SurahsListSearchTextField extends StatelessWidget {
           ),
           color: Theme.of(context).secondaryHeaderColor,
           child: cubit.showSurahsSearchTextField
-              ? TextField(
+              ? CustomTextField(
                   focusNode: cubit.surahsSearchFocusNode,
                   controller: cubit.surahsSearchController,
-                  autofocus: true,
                   onChanged: (value) {
                     cubit.surahsSearch(value);
                   },
-                  cursorColor: Theme.of(context).primaryColor,
-                  style: Styles.style16SemiBold(context).copyWith(
-                    color: context.read<GlobalCubit>().isDark
-                        ? AppColors.white
-                        : AppColors.black,
-                  ),
-                  decoration: InputDecoration(
-                    hintText: AppStrings.search.tr(context),
-                    hintStyle: Styles.style16(context).copyWith(
-                      color: context.read<GlobalCubit>().isDark
-                          ? AppColors.white.withOpacity(.4)
-                          : AppColors.black.withOpacity(.4),
-                    ),
-                    prefixIcon: const Icon(Icons.search),
-                    prefixIconColor: context.read<GlobalCubit>().isDark
-                        ? AppColors.white.withOpacity(.4)
-                        : AppColors.black.withOpacity(.4),
-                    contentPadding: EdgeInsets.symmetric(
-                        horizontal: 24.responsiveWidth(context)),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25),
-                      borderSide: BorderSide(
-                        color: context.read<GlobalCubit>().isDark
-                            ? AppColors.white.withOpacity(.4)
-                            : AppColors.black.withOpacity(.4),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25),
-                      borderSide: BorderSide(
-                        color: context.read<GlobalCubit>().isDark
-                            ? AppColors.white
-                            : AppColors.black,
-                      ),
-                    ),
-                  ),
                 )
               : Container(),
         );

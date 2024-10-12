@@ -27,49 +27,12 @@ class SearchTextField extends StatelessWidget {
           ),
           color: Theme.of(context).secondaryHeaderColor,
           child: cubit.showSearchTextField
-              ? TextField(
+              ? CustomTextField(                
                   focusNode: cubit.searchFocusNode,
                   controller: cubit.searchController,
-                  autofocus: true,
                   onChanged: (value) {
                     cubit.search(value);
                   },
-                  cursorColor: Theme.of(context).primaryColor,
-                  style: Styles.style16SemiBold(context).copyWith(
-                    color: context.read<GlobalCubit>().isDark
-                        ? AppColors.white
-                        : AppColors.black,
-                  ),
-                  decoration: InputDecoration(
-                    hintText: AppStrings.search.tr(context),
-                    hintStyle: Styles.style16(context).copyWith(
-                      color: context.read<GlobalCubit>().isDark
-                          ? AppColors.white.withOpacity(.4)
-                          : AppColors.black.withOpacity(.4),
-                    ),
-                    prefixIcon: const Icon(Icons.search),
-                    prefixIconColor: context.read<GlobalCubit>().isDark
-                        ? AppColors.white.withOpacity(.4)
-                        : AppColors.black.withOpacity(.4),
-                    contentPadding: EdgeInsets.symmetric(
-                        horizontal: 24.responsiveWidth(context)),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25),
-                      borderSide: BorderSide(
-                        color: context.read<GlobalCubit>().isDark
-                            ? AppColors.white.withOpacity(.4)
-                            : AppColors.black.withOpacity(.4),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25),
-                      borderSide: BorderSide(
-                        color: context.read<GlobalCubit>().isDark
-                            ? AppColors.white
-                            : AppColors.black,
-                      ),
-                    ),
-                  ),
                 )
               : Container(),
         );
