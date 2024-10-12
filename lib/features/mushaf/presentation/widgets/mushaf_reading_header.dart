@@ -1,4 +1,5 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/mushaf/presentation/views/ayah_search_view.dart';
 
 class MushafReadingHeader extends StatelessWidget {
   const MushafReadingHeader({
@@ -9,6 +10,7 @@ class MushafReadingHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MushafCubit, MushafState>(
       builder: (context, state) {
+        final cubit = context.read<MushafCubit>();
         return GestureDetector(
           onTap: () {},
           child: AnimatedOpacity(
@@ -39,8 +41,19 @@ class MushafReadingHeader extends StatelessWidget {
                     style: Styles.style18SemiBold(context),
                   ),
                   const Spacer(),
+                  //! Search Button
                   CustomButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BlocProvider.value(
+                            value: cubit,
+                            child: const AyahSearchView(),
+                          ),
+                        ),
+                      );
+                    },
                     icon: Icons.search,
                   ),
                 ],

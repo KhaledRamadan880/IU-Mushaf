@@ -18,4 +18,10 @@ final class ChangePageState extends MushafState {}
 
 final class ChangeSurahsSearchTextFieldVisibilityState extends MushafState {}
 
+final class ChangeAyahSearchTextFieldVisibilityState extends MushafState {}
+
 final class SurahsSearchOnChangeState extends MushafState {}
+
+final class AyahsSearchOnChangeState extends MushafState {}
+
+final class GetPageNumberState extends MushafState {}

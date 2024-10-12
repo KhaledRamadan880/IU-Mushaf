@@ -15,7 +15,7 @@ class SurahsListSearchButton extends StatelessWidget {
             return cubit.showSurahsSearchTextField
                 ? GestureDetector(
                     onTap: () {
-                      cubit.changeSearchTextFieldVisibility(false);
+                      cubit.changeSurahsSearchTextFieldVisibility(false);
                       cubit.surahsSearchController.clear();
                     },
                     child: CustomText(
@@ -25,7 +25,7 @@ class SurahsListSearchButton extends StatelessWidget {
                   )
                 : IconButton(
                     onPressed: () {
-                      cubit.changeSearchTextFieldVisibility(true);
+                      cubit.changeSurahsSearchTextFieldVisibility(true);
                     },
                     icon: Icon(
                       Icons.search,

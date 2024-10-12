@@ -12,7 +12,7 @@ class SurahsListSearchTextField extends StatelessWidget {
         final cubit = context.read<MushafCubit>();
         cubit.surahsSearchFocusNode.addListener(() {
           if (!cubit.surahsSearchFocusNode.hasFocus) {
-            cubit.changeSearchTextFieldVisibility(false);
+            cubit.changeSurahsSearchTextFieldVisibility(false);
             cubit.surahsSearchController.clear();
           }
         });

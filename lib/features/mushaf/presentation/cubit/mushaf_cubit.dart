@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/bookmark/data/models/bookmark_item_model.dart';
 import 'package:iu_mushaf/features/bookmark/data/models/bookmarks_model.dart';
+import 'package:iu_mushaf/features/mushaf/data/models/ayah_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/ayahs_reciters_audios_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/surah_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/surahs_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/tafser_model.dart';
+import 'package:iu_mushaf/features/mushaf/data/page_data.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 
@@ -163,7 +165,7 @@ class MushafCubit extends Cubit<MushafState> {
   bool showSurahsSearchTextField = false;
   FocusNode surahsSearchFocusNode = FocusNode();
 
-  void changeSearchTextFieldVisibility(bool isVisible) {
+  void changeSurahsSearchTextFieldVisibility(bool isVisible) {
     showSurahsSearchTextField = isVisible;
     emit(ChangeSurahsSearchTextFieldVisibilityState());
   }
@@ -173,7 +175,8 @@ class MushafCubit extends Cubit<MushafState> {
     searchedSur.clear();
     if (value.isNotEmpty) {
       for (var surah in surahsModel!.surahs) {
-        if (removeArabicDiacritics(surah.name).contains(value) ||
+        if (removeArabicDiacritics(surah.name)
+                .contains(removeArabicDiacritics(value)) ||
             surah.englishName.toLowerCase().contains(value.toLowerCase())) {
           searchedSur.add(surahsModel!.surahs[surah.number - 1]);
         }
@@ -182,15 +185,86 @@ class MushafCubit extends Cubit<MushafState> {
     emit(SurahsSearchOnChangeState());
   }
 
+  //* Ayahs Search
+  TextEditingController ayahsSearchController = TextEditingController();
+  bool showAyahsSearchTextField = false;
+  FocusNode ayahsSearchFocusNode = FocusNode();
+
+  void changeAyahsSearchTextFieldVisibility(bool isVisible) {
+    showSurahsSearchTextField = isVisible;
+    emit(ChangeAyahSearchTextFieldVisibilityState());
+  }
+
+  List<AyahModel> searchedAyahs = [];
+  void ayahsSearch(String value) {
+    searchedAyahs.clear();
+    if (value.isNotEmpty) {
+      for (var surah in surahsModel!.surahs) {
+        for (var ayah in surah.ayahs.ayahs) {
+          if (removeArabicDiacritics(ayah.content)
+              .contains(removeArabicDiacritics(value))) {
+            searchedAyahs.add(ayah);
+          }
+        }
+      }
+    }
+    emit(AyahsSearchOnChangeState());
+  }
+
+  getSurahFromSearchedAyahs(index) {
+    for (var surah in surahsModel!.surahs) {
+      for (var ayah in surah.ayahs.ayahs) {
+        if (ayah.numberInQuran == searchedAyahs[index].numberInQuran) {
+          return surah;
+        }
+      }
+    }
+  }
+
+  getPageNumberFromSurahSearch(index, GlobalCubit cubit) {
+    int surahNumber = searchedSur.isNotEmpty
+        ? searchedSur[index].number
+        : cubit.surahsModel!.surahs[index].number;
+    for (var i = 0; i < pageData.length; i++) {
+      for (var ii = 0; ii < pageData[i].length; ii++) {
+        if (pageData[i][ii]["surah"] == surahNumber &&
+            pageData[i][ii]["start"] == 1) {
+          return i;
+        }
+      }
+    }
+    emit(GetPageNumberState());
+  }
+
+  int getPageNumberForAyahSearch(index) {
+    int surahNumber = searchedAyahs[index].surahNumber;
+    for (var i = 0; i < pageData.length; i++) {
+      for (var ii = 0; ii < pageData[i].length; ii++) {
+        if (pageData[i][ii]["surah"] == surahNumber &&
+            (searchedAyahs[index].verseNumber >= pageData[i][ii]["start"] &&
+                searchedAyahs[index].verseNumber <= pageData[i][ii]["end"])) {
+          print(0);
+          return i;
+        }
+      }
+    }
+    return 0;
+  }
+
   String removeArabicDiacritics(String text) {
     RegExp regExp = RegExp(
-        r'[\u064B-\u065F\u0670-\u0672\u0674-\u0675\u0678-\u0679\u06D6-\u06ED]');
+        r'[\u064B-\u065F\u0618-\u061A\u06D6-\u06DC\u06DF-\u06E8\u06EA-\u06ED]');
 
     String cleanedText = text.replaceAll(regExp, '');
 
     cleanedText = cleanedText.replaceAll('ٱ', 'ا');
+    cleanedText = cleanedText.replaceAll('إ', 'ا');
+    cleanedText = cleanedText.replaceAll('أ', 'ا');
+    cleanedText = cleanedText.replaceAll('آ', 'ا');
+    cleanedText = cleanedText.replaceAll('ى', 'ي');
+    cleanedText = cleanedText.replaceAll('ؤ', 'و');
+    cleanedText = cleanedText.replaceAll('ئ', 'ي');
 
-    cleanedText = cleanedText.replaceAll('ل', 'ل'); // Ensure space remains
-    return text.replaceAll(regExp, '');
+    return cleanedText;
   }
 }

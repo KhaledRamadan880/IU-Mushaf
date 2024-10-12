@@ -1,6 +1,5 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/core/widgets/custom_app_bar.dart';
-import 'package:iu_mushaf/features/mushaf/data/page_data.dart';
 import 'package:iu_mushaf/features/quran_audio/presentation/widgets/surah_number_container.dart';
 
 import '../widgets/components/surahs_list_search_button.dart';
@@ -26,12 +25,19 @@ class SurahsView extends StatelessWidget {
           return Column(
             children: [
               const SurahsListSearchTextField(),
-              Expanded(
+              mushafCubit.searchedSur.isEmpty &&
+                      mushafCubit.surahsSearchController.text.isNotEmpty
+                  ? Expanded(
+                      child: Center(
+                          child: CustomText(
+                      AppStrings.thereIsNoResults.tr(context),
+                      style: Styles.style28Bold(context),
+                    )))
+                  : Expanded(
                 child: ListView.separated(
-                  itemCount:
-                      mushafCubit.surahsSearchController.value.text.isNotEmpty
-                          ? mushafCubit.searchedSur.length
-                          : cubit.surahsModel!.surahs.length,
+                        itemCount: mushafCubit.searchedSur.isNotEmpty
+                            ? mushafCubit.searchedSur.length
+                            : cubit.surahsModel!.surahs.length,
                   separatorBuilder: (context, index) {
                     return const Divider();
                   },
@@ -44,6 +50,8 @@ class SurahsView extends StatelessWidget {
                       cubit: cubit,
                       mushafCubit: mushafCubit,
                       index: index,
+                            pageNumber: mushafCubit
+                                .getPageNumberFromSurahSearch(index, cubit),
                     );
                   },
                 ),
@@ -56,57 +64,24 @@ class SurahsView extends StatelessWidget {
   }
 }
 
-class SurahCard extends StatefulWidget {
+class SurahCard extends StatelessWidget {
   const SurahCard({
     super.key,
     required this.cubit,
     required this.mushafCubit,
-    required this.index,
+    required this.index, 
+    required this.pageNumber,
   });
 
   final GlobalCubit cubit;
   final MushafCubit mushafCubit;
   final int index;
-
-  @override
-  State<SurahCard> createState() => _SurahCardState();
-}
-
-class _SurahCardState extends State<SurahCard> {
-  dynamic pageNumber;
-  @override
-  void initState() {
-    super.initState();
-    getPageNumber();
-    setState(() {});
-  }
-
-  getPageNumber() {
-    int surahNumber =
-        widget.mushafCubit.surahsSearchController.value.text.isNotEmpty
-            ? widget.mushafCubit.searchedSur[widget.index].number
-            : widget.cubit.surahsModel!.surahs[widget.index].number;
-    for (var i = 0; i < pageData.length; i++) {
-      print(surahNumber);
-      for (var ii = 0; ii < pageData[i].length; ii++) {
-        if (pageData[i][ii]["surah"] == surahNumber &&
-            pageData[i][ii]["start"] == 1) {
-          pageNumber = i;
-          break;
-        }
-      }
-    }
-  }
+  final int pageNumber;
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MushafCubit, MushafState>(
-      listener: (context, state) {
-        if (state is SurahsSearchOnChangeState) {
-          getPageNumber();
-          setState(() {});
-        }
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return GestureDetector(
           onTap: () {
@@ -115,20 +90,20 @@ class _SurahCardState extends State<SurahCard> {
               context,
               MaterialPageRoute(
                 builder: (context) => BlocProvider.value(
-                  value: widget.mushafCubit
-                    ..surahsModel = widget.cubit.surahsModel!
+                  value: mushafCubit
+                    ..surahsModel = cubit.surahsModel!
                     ..init(
                       initPageNumber: pageNumber,
-                      ayahsAudiosModel: widget.cubit.ayahsRecitersAudiosModel!,
-                      globalBookmarksModel: widget.cubit.bookmarksModel!,
+                      ayahsAudiosModel: cubit.ayahsRecitersAudiosModel!,
+                      globalBookmarksModel: cubit.bookmarksModel!,
                       mushafEn:
-                          widget.cubit.mushafsModel!.mushafs[0].mushafTypeEn,
+                          cubit.mushafsModel!.mushafs[0].mushafTypeEn,
                       mushafAr:
-                          widget.cubit.mushafsModel!.mushafs[0].mushafTypeAr,
+                          cubit.mushafsModel!.mushafs[0].mushafTypeAr,
                     )
                     ..pageNumber = pageNumber + 1
                     ..surahNumber =
-                        widget.cubit.surahsModel!.surahs[widget.index].number,
+                        cubit.surahsModel!.surahs[index].number,
                   child: const MushafReadingView(),
                 ),
               ),
@@ -145,26 +120,22 @@ class _SurahCardState extends State<SurahCard> {
               children: [
                 //! Surah Number
                 SurahNumberContainer(
-                  widget.mushafCubit.surahsSearchController.value.text
-                          .isNotEmpty
-                      ? widget.mushafCubit.searchedSur[widget.index].number - 1
-                      : widget.cubit.surahsModel!.surahs[widget.index].number -
+                  mushafCubit.searchedSur.isNotEmpty
+                      ? mushafCubit.searchedSur[index].number - 1
+                      : cubit.surahsModel!.surahs[index].number -
                           1,
                 ),
                 SizedBox(width: 23.responsiveWidth(context)),
                 //! Surah Name
                 CustomText(
-                  widget.cubit.language == "en"
-                      ? widget.mushafCubit.surahsSearchController.value.text
-                              .isNotEmpty
-                          ? widget
-                              .mushafCubit.searchedSur[widget.index].englishName
-                          : widget.cubit.surahsModel!.surahs[widget.index]
+                  cubit.language == "en"
+                      ? mushafCubit.searchedSur.isNotEmpty
+                          ? mushafCubit.searchedSur[index].englishName
+                          : cubit.surahsModel!.surahs[index]
                               .englishName
-                      : widget.mushafCubit.surahsSearchController.value.text
-                              .isNotEmpty
-                          ? widget.mushafCubit.searchedSur[widget.index].name
-                          : widget.cubit.surahsModel!.surahs[widget.index].name,
+                      : mushafCubit.searchedSur.isNotEmpty
+                          ? mushafCubit.searchedSur[index].name
+                          : cubit.surahsModel!.surahs[index].name,
                   style: Styles.style16(context),
                 ),
                 const Spacer(),
@@ -177,7 +148,7 @@ class _SurahCardState extends State<SurahCard> {
                 Icon(
                   Icons.arrow_forward_ios_rounded,
                   size: 16.responsiveHeight(context),
-                  color: widget.cubit.isDark
+                  color: cubit.isDark
                       ? AppColors.white.withOpacity(.6)
                       : AppColors.black.withOpacity(.6),
                 ),
