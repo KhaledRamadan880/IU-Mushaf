@@ -12,7 +12,9 @@ class MushafReadingHeader extends StatelessWidget {
       builder: (context, state) {
         final cubit = context.read<MushafCubit>();
         return GestureDetector(
-          onTap: () {},
+          onTap: () {
+            cubit.changeLayoutVisibility();
+          },
           child: AnimatedOpacity(
             duration: const Duration(milliseconds: 250),
             opacity: context.read<MushafCubit>().isLayoutHiddin ? 0 : 1,
@@ -30,7 +32,9 @@ class MushafReadingHeader extends StatelessWidget {
                   //! Pop Button
                   CustomButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      cubit.isLayoutHiddin == false
+                          ? Navigator.pop(context)
+                          : cubit.changeLayoutVisibility();
                     },
                     icon: Icons.arrow_back,
                   ),
@@ -44,6 +48,8 @@ class MushafReadingHeader extends StatelessWidget {
                   //! Search Button
                   CustomButton(
                     onPressed: () {
+                      cubit.isLayoutHiddin == false
+                          ?
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -52,7 +58,8 @@ class MushafReadingHeader extends StatelessWidget {
                             child: const AyahSearchView(),
                           ),
                         ),
-                      );
+                            )
+                          : cubit.changeLayoutVisibility();
                     },
                     icon: Icons.search,
                   ),
@@ -78,17 +85,20 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: onPressed,
-      icon: BlocBuilder<GlobalCubit, GlobalState>(
-        builder: (context, state) {
-          return Icon(
-            icon,
-            color: context.read<GlobalCubit>().isDark
-                ? AppColors.white
-                : AppColors.grey,
-          );
-        },
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 8.responsiveWidth(context)),
+      child: GestureDetector(
+        onTap: onPressed,
+        child: BlocBuilder<GlobalCubit, GlobalState>(
+          builder: (context, state) {
+            return Icon(
+              icon,
+              color: context.read<GlobalCubit>().isDark
+                  ? AppColors.white
+                  : AppColors.grey,
+            );
+          },
+        ),
       ),
     );
   }

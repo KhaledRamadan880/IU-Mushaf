@@ -26,6 +26,7 @@ class BookmarksBody extends StatelessWidget {
                   itemCount: cubit.bookmarksModel!.bookmarks.length,
                   padding: EdgeInsets.only(
                     top: 40.responsiveHeight(context),
+                    bottom: 90.responsiveHeight(context),
                   ),
                   itemBuilder: (context, index) {
                     return BookmarkCard(
@@ -57,13 +58,13 @@ class BookmarksBody extends StatelessWidget {
                                         ..hideLayoutAfterNavigate()
                                         ..init(
                                           ayahsAudiosModel:
-                                                cubit.ayahsRecitersAudiosModel!,
+                                              cubit.ayahsRecitersAudiosModel!,
                                           globalBookmarksModel:
-                                                cubit.bookmarksModel!,
+                                              cubit.bookmarksModel!,
                                           mushafEn: cubit.bookmarksModel!
-                                                .bookmarks[index].mushafTypeEn,
+                                              .bookmarks[index].mushafTypeEn,
                                           mushafAr: cubit.bookmarksModel!
-                                                .bookmarks[index].mushafTypeAr,
+                                              .bookmarks[index].mushafTypeAr,
                                           initPageNumber: cubit.bookmarksModel!
                                                   .bookmarks[index].pageNumber -
                                               1,
@@ -87,7 +88,7 @@ class BookmarksBody extends StatelessWidget {
                   },
                 ),
               )
-              //! If No Bookmarks
+            //! If No Bookmarks
             : Center(
                 child: CustomText(
                 AppStrings.noBookmarks.tr(context),

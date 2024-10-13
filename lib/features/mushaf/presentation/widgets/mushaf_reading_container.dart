@@ -112,14 +112,25 @@ class MushafReadingContainer extends StatelessWidget {
                                           : const TextSpan(),
                                       //! Ayah
                                       TextSpan(
-                                        text: qcfData.replaceAll(" ", ""),
+                                        text: pageData[index][i]["start"] ==
+                                                cubit
+                                                    .surahsModel!
+                                                    .surahs[pageData[index][i]
+                                                            ["surah"] -
+                                                        1]
+                                                    .ayahs
+                                                    .ayahs[ii + start - 1]
+                                                    .verseNumber
+                                            ? removeSpacesExceptFirstTwoWords(
+                                                qcfData)
+                                            : qcfData.replaceAll(" ", ""),
                                         style: TextStyle(
                                           color:
                                               context.read<GlobalCubit>().isDark
                                                   ? AppColors.white
                                                   : AppColors.black,
                                           fontSize: 20.3.sp,
-                                          wordSpacing: 0,
+                                          wordSpacing: -3.w,
                                           letterSpacing: 0.w,
                                           height: 1.5.sp,
                                           fontFamily: "page${(index + 1)}",
@@ -227,4 +238,23 @@ basmAllah(BuildContext context) {
       fontFamily: "page1",
     ),
   );
+}
+
+String removeSpacesExceptFirstTwoWords(String input) {
+  // Split the string by spaces
+  List<String> words = input.split(" ");
+
+  // If there are less than 3 words, return the input as is (or handle accordingly)
+  if (words.length < 3) {
+    return input;
+  }
+
+  // Keep the first two words with a space between them
+  String firstTwoWords = '${words[0]} ${words[1]}';
+
+  // Join the rest of the words without spaces
+  String remainingWords = words.sublist(2).join("");
+
+  // Return the result
+  return firstTwoWords + remainingWords;
 }

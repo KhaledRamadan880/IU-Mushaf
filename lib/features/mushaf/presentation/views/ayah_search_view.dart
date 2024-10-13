@@ -39,6 +39,8 @@ class AyahSearchView extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
+                        cubit.searchedAyahs.clear();
+                        cubit.ayahsSearchController.clear();
                       },
                       child: CustomText(
                         AppStrings.cancel.tr(context),
@@ -57,7 +59,8 @@ class AyahSearchView extends StatelessWidget {
                             itemBuilder: (context, index) {
                               SurahModel surah =
                                   cubit.getSurahFromSearchedAyahs(index);
-                              int pageNumber = cubit.getPageNumberForAyahSearch(index);
+                              int pageNumber =
+                                  cubit.getPageNumberForAyahSearch(index);
                               return AyahSearchedCard(
                                 surahName:
                                     context.read<GlobalCubit>().language == "en"

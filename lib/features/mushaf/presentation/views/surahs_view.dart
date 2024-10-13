@@ -34,28 +34,28 @@ class SurahsView extends StatelessWidget {
                       style: Styles.style28Bold(context),
                     )))
                   : Expanded(
-                child: ListView.separated(
+                      child: ListView.separated(
                         itemCount: mushafCubit.searchedSur.isNotEmpty
                             ? mushafCubit.searchedSur.length
                             : cubit.surahsModel!.surahs.length,
-                  separatorBuilder: (context, index) {
-                    return const Divider();
-                  },
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.responsiveWidth(context),
-                    vertical: 24.responsiveHeight(context),
-                  ),
-                  itemBuilder: (context, index) {
-                    return SurahCard(
-                      cubit: cubit,
-                      mushafCubit: mushafCubit,
-                      index: index,
+                        separatorBuilder: (context, index) {
+                          return const Divider();
+                        },
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.responsiveWidth(context),
+                          vertical: 24.responsiveHeight(context),
+                        ),
+                        itemBuilder: (context, index) {
+                          return SurahCard(
+                            cubit: cubit,
+                            mushafCubit: mushafCubit,
+                            index: index,
                             pageNumber: mushafCubit
                                 .getPageNumberFromSurahSearch(index, cubit),
-                    );
-                  },
-                ),
-              ),
+                          );
+                        },
+                      ),
+                    ),
             ],
           );
         },
@@ -69,7 +69,7 @@ class SurahCard extends StatelessWidget {
     super.key,
     required this.cubit,
     required this.mushafCubit,
-    required this.index, 
+    required this.index,
     required this.pageNumber,
   });
 
@@ -86,24 +86,22 @@ class SurahCard extends StatelessWidget {
         return GestureDetector(
           onTap: () {
             //! Navigat Method
+            mushafCubit.focusedAyahNumber = null;
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => BlocProvider.value(
-                  value: mushafCubit
+                builder: (context) => BlocProvider(
+                  create: (context) => MushafCubit()
                     ..surahsModel = cubit.surahsModel!
                     ..init(
                       initPageNumber: pageNumber,
                       ayahsAudiosModel: cubit.ayahsRecitersAudiosModel!,
                       globalBookmarksModel: cubit.bookmarksModel!,
-                      mushafEn:
-                          cubit.mushafsModel!.mushafs[0].mushafTypeEn,
-                      mushafAr:
-                          cubit.mushafsModel!.mushafs[0].mushafTypeAr,
+                      mushafEn: cubit.mushafsModel!.mushafs[0].mushafTypeEn,
+                      mushafAr: cubit.mushafsModel!.mushafs[0].mushafTypeAr,
                     )
                     ..pageNumber = pageNumber + 1
-                    ..surahNumber =
-                        cubit.surahsModel!.surahs[index].number,
+                    ..surahNumber = cubit.surahsModel!.surahs[index].number,
                   child: const MushafReadingView(),
                 ),
               ),
@@ -122,8 +120,7 @@ class SurahCard extends StatelessWidget {
                 SurahNumberContainer(
                   mushafCubit.searchedSur.isNotEmpty
                       ? mushafCubit.searchedSur[index].number - 1
-                      : cubit.surahsModel!.surahs[index].number -
-                          1,
+                      : cubit.surahsModel!.surahs[index].number - 1,
                 ),
                 SizedBox(width: 23.responsiveWidth(context)),
                 //! Surah Name
@@ -131,8 +128,7 @@ class SurahCard extends StatelessWidget {
                   cubit.language == "en"
                       ? mushafCubit.searchedSur.isNotEmpty
                           ? mushafCubit.searchedSur[index].englishName
-                          : cubit.surahsModel!.surahs[index]
-                              .englishName
+                          : cubit.surahsModel!.surahs[index].englishName
                       : mushafCubit.searchedSur.isNotEmpty
                           ? mushafCubit.searchedSur[index].name
                           : cubit.surahsModel!.surahs[index].name,
