@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/core/local/localization_settings.dart';
 import 'package:iu_mushaf/core/theme/theme.dart';
@@ -13,28 +14,31 @@ class UIMushafApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return BlocBuilder<GlobalCubit, GlobalState>(
-      builder: (context, state) {
-        return MaterialApp(
-          builder: (context, child) {
-            return MediaQuery(
-              data: MediaQuery.of(context)
-                  .copyWith(textScaler: TextScaler.noScaling),
-              child: child!,
-            );
-          },
-          debugShowCheckedModeBanner: false,
-          //!Localization Settings
-          localizationsDelegates: localizationsDelegatesList,
-          supportedLocales: supportedLocalesList,
-          locale: Locale(context.read<GlobalCubit>().language),
-          //! Theme
-          theme:
-              context.read<GlobalCubit>().isDark ? darkTheme() : lightTheme(),
-          //! Home
-          home: const SplashView(),
-        );
-      },
+    return ScreenUtilInit(
+      designSize: const Size(374, 852),
+      builder: (context, child) => BlocBuilder<GlobalCubit, GlobalState>(
+        builder: (context, state) {
+          return MaterialApp(
+            builder: (context, child) {
+              return MediaQuery(
+                data: MediaQuery.of(context)
+                    .copyWith(textScaler: TextScaler.noScaling),
+                child: child!,
+              );
+            },
+            debugShowCheckedModeBanner: false,
+            //!Localization Settings
+            localizationsDelegates: localizationsDelegatesList,
+            supportedLocales: supportedLocalesList,
+            locale: Locale(context.read<GlobalCubit>().language),
+            //! Theme
+            theme:
+                context.read<GlobalCubit>().isDark ? darkTheme() : lightTheme(),
+            //! Home
+            home: const SplashView(),
+          );
+        },
+      ),
     );
   }
 }

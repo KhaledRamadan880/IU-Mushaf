@@ -36,6 +36,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_localizations:
     sdk: flutter
+  flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.10+1
   get_it: ^7.7.0
   just_audio: ^0.9.40
@@ -79,7 +80,7 @@ flutter:
     - family: Uthman
       fonts:
         - asset: assets/fonts/UthmanicHafs_V20.ttf
-        
+
     - family: SurahName
       fonts:
         - asset: assets/fonts/surah_names.ttf

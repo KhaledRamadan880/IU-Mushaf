@@ -1,4 +1,5 @@
 import 'package:flutter/gestures.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/mushaf/data/page_data.dart';
 
@@ -76,8 +77,8 @@ class MushafReadingContainer extends StatelessWidget {
                                       .numberInQuran;
                                   //! Responsive Text
                                   double fontSize = minDimension / 19;
-                                  double wordSpacing = fontSize / -5.1;
-                                  double lineHeight = fontSize / 13;
+                                  // double wordSpacing = fontSize / -5.1;
+                                  // double lineHeight = fontSize / 13;
                                   return TextSpan(
                                     children: [
                                       //! Surah Name Frame
@@ -113,9 +114,12 @@ class MushafReadingContainer extends StatelessWidget {
                                               context.read<GlobalCubit>().isDark
                                                   ? AppColors.white
                                                   : AppColors.black,
-                                          wordSpacing: wordSpacing,
-                                          height: lineHeight,
-                                          fontSize: fontSize,
+                                          // wordSpacing: wordSpacing,
+                                          // height: lineHeight,
+                                          // fontSize: fontSize,
+                                          fontSize: 20.550.sp,
+                                          wordSpacing: -5.w,
+                                          height: 1.7.h,
                                           fontFamily: "page${(index + 1)}",
                                           backgroundColor:
                                               (cubit.focusedAyahNumber ==

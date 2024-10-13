@@ -243,7 +243,6 @@ class MushafCubit extends Cubit<MushafState> {
         if (pageData[i][ii]["surah"] == surahNumber &&
             (searchedAyahs[index].verseNumber >= pageData[i][ii]["start"] &&
                 searchedAyahs[index].verseNumber <= pageData[i][ii]["end"])) {
-          print(0);
           return i;
         }
       }
