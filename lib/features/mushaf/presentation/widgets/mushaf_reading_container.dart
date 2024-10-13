@@ -108,7 +108,7 @@ class MushafReadingContainer extends StatelessWidget {
                                           : const TextSpan(),
                                       //! Ayah
                                       TextSpan(
-                                        text: "$qcfData ",
+                                        text: qcfData.replaceAll(" ", ""),
                                         style: TextStyle(
                                           color:
                                               context.read<GlobalCubit>().isDark
@@ -117,9 +117,10 @@ class MushafReadingContainer extends StatelessWidget {
                                           // wordSpacing: wordSpacing,
                                           // height: lineHeight,
                                           // fontSize: fontSize,
-                                          fontSize: 20.550.sp,
-                                          wordSpacing: -5.w,
-                                          height: 1.7.h,
+                                          fontSize: 20.sp,
+                                          wordSpacing: 0,
+                                          letterSpacing: 0.w,
+                                          height: 1.95.h,
                                           fontFamily: "page${(index + 1)}",
                                           backgroundColor:
                                               (cubit.focusedAyahNumber ==
