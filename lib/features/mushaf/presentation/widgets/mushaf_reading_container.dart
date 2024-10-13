@@ -10,10 +10,6 @@ class MushafReadingContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-    double minDimension =
-        screenWidth < screenHeight ? screenWidth : screenHeight;
     return BlocBuilder<MushafCubit, MushafState>(builder: (context, state) {
       final cubit = context.read<MushafCubit>();
       return SizedBox(
@@ -75,10 +71,6 @@ class MushafReadingContainer extends StatelessWidget {
                                       .ayahs
                                       .ayahs[ii + start - 1]
                                       .numberInQuran;
-                                  //! Responsive Text
-                                  double fontSize = minDimension / 19;
-                                  // double wordSpacing = fontSize / -5.1;
-                                  // double lineHeight = fontSize / 13;
                                   return TextSpan(
                                     children: [
                                       //! Surah Name Frame
@@ -93,6 +85,18 @@ class MushafReadingContainer extends StatelessWidget {
                                               1)
                                           ? surahFrame(context, cubit, index, i)
                                           : const TextSpan(),
+                                      (index == 0 || index == 1) &&
+                                              cubit
+                                                      .surahsModel!
+                                                      .surahs[pageData[index][i]
+                                                              ["surah"] -
+                                                          1]
+                                                      .ayahs
+                                                      .ayahs[ii + start - 1]
+                                                      .verseNumber ==
+                                                  1
+                                          ? const TextSpan(text: "\n\n\n\n")
+                                          : const TextSpan(text: ""),
                                       //! Basm Allah
                                       (cubit
                                                       .surahsModel!
@@ -104,7 +108,7 @@ class MushafReadingContainer extends StatelessWidget {
                                                       .verseNumber ==
                                                   1) &&
                                               (index != 0 && index != 186)
-                                          ? basmAllah(context, fontSize)
+                                          ? basmAllah(context)
                                           : const TextSpan(),
                                       //! Ayah
                                       TextSpan(
@@ -114,13 +118,10 @@ class MushafReadingContainer extends StatelessWidget {
                                               context.read<GlobalCubit>().isDark
                                                   ? AppColors.white
                                                   : AppColors.black,
-                                          // wordSpacing: wordSpacing,
-                                          // height: lineHeight,
-                                          // fontSize: fontSize,
-                                          fontSize: 20.sp,
+                                          fontSize: 20.3.sp,
                                           wordSpacing: 0,
                                           letterSpacing: 0.w,
-                                          height: 1.95.h,
+                                          height: 1.5.sp,
                                           fontFamily: "page${(index + 1)}",
                                           backgroundColor:
                                               (cubit.focusedAyahNumber ==
@@ -202,7 +203,7 @@ surahFrame(BuildContext context, MushafCubit cubit, int index, int i) {
           CustomText(
             cubit.surahsModel!.surahs[pageData[index][i]["surah"] - 1].name,
             style: Styles.style28Bold(context).copyWith(
-              fontSize: 23.responsiveText(context),
+              fontSize: 20.sp,
               fontFamily: "Uthman",
             ),
           ),
@@ -212,16 +213,17 @@ surahFrame(BuildContext context, MushafCubit cubit, int index, int i) {
   );
 }
 
-basmAllah(BuildContext context, fontSize) {
+basmAllah(BuildContext context) {
   return TextSpan(
     text: "ﱁ ﱂ ﱃ ﱄ\n",
     style: TextStyle(
       color: context.read<GlobalCubit>().isDark
           ? AppColors.white
           : AppColors.black,
-      wordSpacing: -5.responsiveWidth(context),
-      height: 1.75.responsiveHeight(context),
-      fontSize: fontSize,
+      fontSize: 20.sp,
+      wordSpacing: 0,
+      letterSpacing: 0.w,
+      height: 1.7.h,
       fontFamily: "page1",
     ),
   );
