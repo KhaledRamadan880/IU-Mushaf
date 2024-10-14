@@ -95,7 +95,7 @@ class MushafReadingContainer extends StatelessWidget {
                                                       .ayahs[ii + start - 1]
                                                       .verseNumber ==
                                                   1
-                                          ? const TextSpan(text: "\n\n\n\n")
+                                          ? const TextSpan(text: "\n\n\n")
                                           : const TextSpan(text: ""),
                                       //! Basm Allah
                                       (cubit
@@ -129,7 +129,30 @@ class MushafReadingContainer extends StatelessWidget {
                                               context.read<GlobalCubit>().isDark
                                                   ? AppColors.white
                                                   : AppColors.black,
-                                          fontSize: 20.3.sp,
+                                          fontSize:
+                                              (index == 75 || index == 416)
+                                                  ? 20.5.sp
+                                                  : (index == 155 ||
+                                                          index == 158 ||
+                                                          index == 179 ||
+                                                          index == 183 ||
+                                                          index == 189 ||
+                                                          index == 200 ||
+                                                          index == 208 ||
+                                                          index == 318 ||
+                                                          index == 357 ||
+                                                          index == 387 ||
+                                                          index == 499 ||
+                                                          index == 500 ||
+                                                          index == 524 ||
+                                                          index == 546)
+                                                      ? 20.4.sp
+                                                      : index == 574
+                                                          ? 20.sp
+                                                          : (index == 50 ||
+                                                                  index == 52)
+                                                              ? 20.3.sp
+                                                              : 20.1.sp,
                                           wordSpacing: -3.w,
                                           letterSpacing: 0.w,
                                           height: 1.5.sp,
