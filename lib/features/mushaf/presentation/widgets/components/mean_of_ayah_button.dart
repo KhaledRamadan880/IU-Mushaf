@@ -1,6 +1,8 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
+import 'package:iu_mushaf/features/mushaf/data/models/recitation_model.dart';
 
 import '../mushaf_reading_ayah_focus_overlay.dart';
+import 'recitations_container.dart';
 import 'tafser_container.dart';
 
 class MeanOfAyahButton extends StatelessWidget {
@@ -13,6 +15,24 @@ class MeanOfAyahButton extends StatelessWidget {
         final cubit = context.read<MushafCubit>();
         return CustomButton(
           onTap: () {
+            final List<RecitationModel> recitationsList = [];
+            if (cubit.focusedSurahNumber! - 1 >= 0 &&
+                cubit.focusedSurahNumber! - 1 <
+                    context
+                        .read<GlobalCubit>()
+                        .recitationsModel!
+                        .recitations
+                        .length) {
+              for (var ayah in context
+                  .read<GlobalCubit>()
+                  .recitationsModel!
+                  .recitations[cubit.focusedSurahNumber! - 1]
+                  .ayahsRecitation) {
+                if (ayah.ayahNumber == cubit.focusedAyahNumber) {
+                  recitationsList.add(ayah);
+                }
+              }
+            }
             showModalBottomSheet(
               context: context,
               showDragHandle: true,
@@ -28,13 +48,18 @@ class MeanOfAyahButton extends StatelessWidget {
                   ),
                   color: Theme.of(context).scaffoldBackgroundColor,
                   child: ListView(
-                    children: const [
+                    children: [
+                      //! Recitations Container
+                      RecitationsContainer(recitationsList),
                       //! Tafser Container
-                      TafserContainer(),
+                      const TafserContainer(),
                     ],
                   ),
                 ),
               ),
+            ).whenComplete(() async {
+              await cubit.audioPlayer!.stop();
+            }
             );
           },
           title: AppStrings.meanOfAyah,

@@ -5,6 +5,7 @@ import 'package:iu_mushaf/core/imports/imports.dart';
 import 'package:iu_mushaf/features/bookmark/data/models/bookmarks_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/ayahs_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/ayahs_reciters_audios_model.dart';
+import 'package:iu_mushaf/features/mushaf/data/models/recitations_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/surahs_model.dart';
 import 'package:iu_mushaf/features/mushaf/data/models/tafsers_model.dart';
 import 'package:iu_mushaf/features/quran_audio/data/models/sur_reciters_audios_model.dart';
@@ -49,6 +50,7 @@ class GlobalCubit extends Cubit<GlobalState> {
 
   inital() {
     loadSurahsAndAyahsFromJson();
+    loadRecitationsFromJson();
     loadSurAudiosFromJson();
     loadAyahsFromJson();
     loadTafsersFromJson();
@@ -72,6 +74,15 @@ class GlobalCubit extends Cubit<GlobalState> {
 
     ayahsModel = AyahsModel.fromJson(ayahsMap);
     surahsModel = SurahsModel.fromJson(surahsMap, ayahsModel!);
+  }
+
+  //! Load Recitaions
+  RecitationsModel? recitationsModel;
+  Future<void> loadRecitationsFromJson() async {
+    String recitationsJsonString =
+        await rootBundle.loadString("assets/json/recitation-data.json");
+    Map<String, dynamic> recitationsMap = jsonDecode(recitationsJsonString);
+    recitationsModel = RecitationsModel.fromJson(recitationsMap);
   }
 
   //! Load Sur Audios

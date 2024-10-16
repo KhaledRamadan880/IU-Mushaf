@@ -74,11 +74,49 @@ class MushafCubit extends Cubit<MushafState> {
   //! Listen To Ayah
   int nowPlayingAyah = 0;
   AudioPlayer? audioPlayer = sl<MediaPlayer>().listenToAyahPlayer;
-  Future playAyah() async {
+  Future playAyah() async {    
     final String url = ayahsRecitersAudiosModel!
         .reciters[0].ayahsUrls[focusedAyahNumber - 1].url;
     nowPlayingAyah = ayahsRecitersAudiosModel!
         .reciters[0].ayahsUrls[focusedAyahNumber - 1].ayahNumber;
+    await sl<MediaPlayer>().audioPlayer.stop();
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      audioPlayer!.setUrl(
+        url,
+        tag: MediaItem(
+          id: "",
+          album: "",
+          title: "",
+          artUri: Uri.parse(
+              'https://media.licdn.com/dms/image/D4D12AQHpCDFnrmJiiQ/article-cover_image-shrink_600_2000/0/1712430882115?e=2147483647&v=beta&t=D_y1vThNzKM8thNPMKpNy-f5g2t0ePFUXPUynynpmGk'),
+        ),
+      );
+    } else {
+      audioPlayer!.setAsset(
+        url,
+        tag: MediaItem(
+          id: "",
+          album: "",
+          title: "",
+          artUri: Uri.parse(
+              'https://media.licdn.com/dms/image/D4D12AQHpCDFnrmJiiQ/article-cover_image-shrink_600_2000/0/1712430882115?e=2147483647&v=beta&t=D_y1vThNzKM8thNPMKpNy-f5g2t0ePFUXPUynynpmGk'),
+        ),
+      );
+    }
+    try {
+      await audioPlayer!.play();
+    } catch (e) {
+      await audioPlayer!.stop();
+    }
+    audioPlayer!.processingStateStream.listen((playerState) async {
+      if (playerState == ProcessingState.completed) {
+        await audioPlayer!.stop();
+      }
+    });
+  }
+
+  //! Play Recitation
+  Future playRecitation({required String url}) async {
     await sl<MediaPlayer>().audioPlayer.stop();
     if (url.startsWith("http://") || url.startsWith("https://")) {
       audioPlayer!.setUrl(

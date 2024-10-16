@@ -1,0 +1,80 @@
+{
+	"recitation_data": [
+		{
+			"sura_name_ar": "الفَاتِحة",
+			"surah_number": 1,
+			"recitations": [
+				{
+					"id": 1,
+					"page": 1,
+					"aya_no": 4,
+					"aya_text_emlaey": "مَالِك: عاصم, الكسائي, يعقوب, خلف.",
+					"audio_url": "assets/audios/001.mp3"
+				},
+				{
+					"id": 2,
+					"page": 1,
+					"aya_no": 4,
+					"aya_text_emlaey": "مَلِكِ : نافع, ابن كثير, أبو عمرو, ابن عامر, حمزة, أبو جعفر.",
+					"audio_url": "assets/audios/001.mp3"
+				},
+				{
+					"id": 3,
+					"page": 1,
+					"aya_no": 6,
+					"aya_text_emlaey": "الصراط:  عاصم, الكسائي, خلف, نافع, أبو عمرو, ابن عامر, أبو جعفر,",
+					"audio_url": "assets/audios/001.mp3"
+				},
+				{
+					"id": 4,
+					"page": 1,
+					"aya_no": 6,
+					"aya_text_emlaey": "السراط: ابن كثير, يعقوب",
+					"audio_url": "assets/audios/001.mp3"
+				},
+				{
+					"id": 5,
+					"page": 1,
+					"aya_no": 6,
+					"aya_text_emlaey": "الزراط:  حمزة",
+					"audio_url": "assets/audios/001.mp3"
+				},
+				{
+					"id": 6,
+					"page": 1,
+					"aya_no": 7,
+					"aya_text_emlaey": "صراط:  عاصم, الكسائي, خلف, نافع, أبو عمرو, ابن عامر, أبو جعفر",
+					"audio_url": "assets/audios/001.mp3"
+				},
+				{
+					"id": 7,
+					"page": 1,
+					"aya_no": 7,
+					"aya_text_emlaey": "سراط: ابن كثير, يعقوب",
+					"audio_url": "assets/audios/001.mp3"
+				},
+				{
+					"id": 8,
+					"page": 1,
+					"aya_no": 7,
+					"aya_text_emlaey": "زراط:  حمزة",
+					"audio_url": "assets/audios/001.mp3"
+				},
+				{
+					"id": 9,
+					"page": 1,
+					"aya_no": 7,
+					"aya_text_emlaey": "عليهُم: حمزة, يعقوب.",
+					"audio_url": "assets/audios/001.mp3"
+				},
+				{
+					"id": 10,
+					"page": 1,
+					"aya_no": 7,
+					"aya_text_emlaey": "عليهِم: عاصم, الكسائي, نافع, ابن كثير, أبو عمرو, ابن عامر, خلف, أبو جعفر",
+					"audio_url": "assets/audios/001.mp3"
+				}
+			]
+		}
+	]
+}

@@ -14,8 +14,8 @@ class TafserContainer extends StatelessWidget {
             horizontal: 8.responsiveWidth(context),
             vertical: 16.responsiveHeight(context),
           ),
-          margin: EdgeInsets.symmetric(
-            vertical: 24.responsiveHeight(context),
+          margin: EdgeInsets.only(
+              top: 16.responsiveHeight(context),
           ),
           decoration: BoxDecoration(
             color: Theme.of(context).secondaryHeaderColor,
