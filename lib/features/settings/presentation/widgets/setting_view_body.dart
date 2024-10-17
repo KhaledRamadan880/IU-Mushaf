@@ -4,10 +4,23 @@ import 'package:iu_mushaf/features/settings/presentation/widgets/components/push
 import 'package:iu_mushaf/features/settings/presentation/widgets/custom_list_tile.dart';
 import 'package:iu_mushaf/features/splash/presentation/views/splash_view.dart';
 
+import '../views/about_us_view.dart';
+import '../views/contact_us_view.dart';
+import '../views/privacy_policy_view.dart';
+import '../views/terms_and_conditions_view.dart';
+
 class SettingViewBody extends StatelessWidget {
   const SettingViewBody({
     super.key,
   });
+
+  navigator(context, Widget screen) {
+    return PersistentNavBarNavigator.pushNewScreen(
+      context,
+      screen: screen,
+      withNavBar: false,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,22 +103,30 @@ class SettingViewBody extends StatelessWidget {
               //* About Us
               CustomListTile(
                 title: AppStrings.aboutUs,
-                onTap: () {},
+                onTap: () {
+                  navigator(context, const AboutUsView());
+                },
               ),
               //* Privacy Policy
               CustomListTile(
                 title: AppStrings.privacyPolicy,
-                onTap: () {},
+                onTap: () {
+                  navigator(context, const PrivacyPolicyView());
+                },
               ),
               //* Terms and Conditions
               CustomListTile(
                 title: AppStrings.termsAndConditions,
-                onTap: () {},
+                onTap: () {
+                  navigator(context, const TermsAndConditionsView());
+                },
               ),
               //* Contact Us
               CustomListTile(
                 title: AppStrings.contactUs,
-                onTap: () {},
+                onTap: () {
+                  navigator(context, const ContactUsView());
+                },
               ),
             ],
           ),

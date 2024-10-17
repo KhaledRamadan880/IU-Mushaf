@@ -4,7 +4,7 @@ class CustomText extends StatelessWidget {
   const CustomText(
     this.title, {
     super.key,
-    this.style,
+    required this.style,
     this.textDirection,
     this.textAlign,
     this.lightColor,
@@ -12,7 +12,7 @@ class CustomText extends StatelessWidget {
   });
 
   final String title;
-  final TextStyle? style;
+  final TextStyle style;
   final TextDirection? textDirection;
   final TextAlign? textAlign;
   final Color? lightColor;
@@ -24,7 +24,7 @@ class CustomText extends StatelessWidget {
       builder: (context, state) {
         return Text(
           title,
-          style: style!.copyWith(
+          style: style.copyWith(
             color: context.read<GlobalCubit>().isDark
                 ? AppColors.white
                 : lightColor ?? AppColors.black,

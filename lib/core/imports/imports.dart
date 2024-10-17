@@ -17,3 +17,4 @@ export 'package:iu_mushaf/features/mushaf/data/models/mushafs_model.dart';
 export 'package:iu_mushaf/core/media_player/media_player.dart';
 export 'package:iu_mushaf/features/quran_audio/presentation/cubit/quran_audio_cubit.dart';
 export 'package:iu_mushaf/core/widgets/custom_text_field.dart';
+export 'package:iu_mushaf/core/widgets/custom_app_bar.dart';
