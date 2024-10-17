@@ -1,9 +1,10 @@
 {
     "reciters": [
         {
+            "id": 1,
             "reciter_name_english": "Al-afasy",
             "reciter_name_arabic": "العفاسي",
             "base_url": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/"
-        }        
+        }
     ]
 }

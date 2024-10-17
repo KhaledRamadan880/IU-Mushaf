@@ -9,6 +9,11 @@
             "reciter_name_english": "Fares Abbad",
             "reciter_name_arabic": "فارس عباد",
             "base_url": "https://server8.mp3quran.net/frs_a/"
+        },
+        {
+            "reciter_name_english": "Yasir al-Dawsari",
+            "reciter_name_arabic": "ياسر الدوسري",
+            "base_url": "https://server11.mp3quran.net/yasser/"
         }
     ]
 }

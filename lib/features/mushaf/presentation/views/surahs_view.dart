@@ -102,6 +102,7 @@ class SurahCard extends StatelessWidget {
                       globalBookmarksModel: cubit.bookmarksModel!,
                       mushafEn: cubit.mushafsModel!.mushafs[0].mushafTypeEn,
                       mushafAr: cubit.mushafsModel!.mushafs[0].mushafTypeAr,
+                      narraterId: mushafCubit.reciterId,
                     )
                     ..pageNumber = pageNumber + 1
                     ..surahNumber = cubit.surahsModel!.surahs[index].number,
@@ -134,7 +135,7 @@ class SurahCard extends StatelessWidget {
                           : cubit.surahsModel!.surahs[index].englishName
                       : mushafCubit.searchedSur.isNotEmpty
                           ? mushafCubit.searchedSur[index].name
-                              : cubit.surahsModel!.surahs[index].name}",
+                          : cubit.surahsModel!.surahs[index].name}",
                   style: Styles.style16(context),
                 ),
                 const Spacer(),

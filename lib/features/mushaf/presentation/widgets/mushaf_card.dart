@@ -57,7 +57,7 @@ class MushafCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20.responsiveHeight(context)),
+                  SizedBox(height: 14.responsiveHeight(context)),
                   //! Mushaf Type
                   Text(
                     "${AppStrings.mushaf.tr(context)} $mushafType",

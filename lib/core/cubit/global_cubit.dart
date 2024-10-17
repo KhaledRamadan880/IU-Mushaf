@@ -49,6 +49,7 @@ class GlobalCubit extends Cubit<GlobalState> {
   }
 
   inital() {
+    loadMushafsFromJson();
     loadSurahsAndAyahsFromJson();
     loadRecitationsFromJson();
     loadSurAudiosFromJson();
@@ -58,7 +59,13 @@ class GlobalCubit extends Cubit<GlobalState> {
   }
 
   //! Mushaf
-  MushafsModel? mushafsModel = MushafsModel(mushafs: MushafsModel.allMushafs);
+  MushafsModel? mushafsModel;
+  Future<void> loadMushafsFromJson() async {
+    String mushafsJsonString =
+        await rootBundle.loadString("assets/json/mushafs.json");
+    Map<String, dynamic> mushafsMap = jsonDecode(mushafsJsonString);
+    mushafsModel = MushafsModel.fromJson(mushafsMap);
+  }
 
   //! Load Surahs & Ayahs From Json
   SurahsModel? surahsModel;

@@ -1,19 +1,16 @@
-import 'surahs_model.dart';
-
 class MushafModel {
-  final int id;
-  final String mushafTypeEn, mushafTypeAr, accentEn, accentAr, byEn, byAr;
-  final SurahsModel sur;
+  final int id, narratedId;
+  final String mushafTypeEn, mushafTypeAr, narratedEn, narratedAr, byEn, byAr;
 
   MushafModel({
     required this.id,
+    required this.narratedId,
     required this.mushafTypeEn,
     required this.mushafTypeAr,
-    required this.accentEn,
-    required this.accentAr,
+    required this.narratedEn,
+    required this.narratedAr,
     required this.byEn,
     required this.byAr,
-    required this.sur,
   });
 
   factory MushafModel.fromJson(Map<String, dynamic> jsonData) {
@@ -21,11 +18,11 @@ class MushafModel {
       id: jsonData["id"],
       mushafTypeEn: jsonData["mushafTypeEn"],
       mushafTypeAr: jsonData["mushafTypeAr"],
-      accentEn: jsonData["accentEn"],
-      accentAr: jsonData["accentAr"],
+      narratedId: jsonData["narratedId"],
+      narratedEn: jsonData["narratedEn"],
+      narratedAr: jsonData["narratedAr"],
       byEn: jsonData["byEn"],
       byAr: jsonData["byAr"],
-      sur: jsonData["sur"],
     );
   }
 }

@@ -26,6 +26,7 @@ class MushafCubit extends Cubit<MushafState> {
     required String mushafEn,
     required String mushafAr,
     int? initPageNumber,
+    int? narraterId,
   }) {
     ayahsRecitersAudiosModel = ayahsAudiosModel;
     bookmarksModel = globalBookmarksModel;
@@ -33,6 +34,7 @@ class MushafCubit extends Cubit<MushafState> {
     mushafTypeAr = mushafAr;
     quranPageController = PageController(initialPage: initPageNumber ?? 0);
     isLayoutHiddin = false;
+    reciterId = narraterId;
     hideLayoutAfterNavigate();
   }
 
@@ -74,12 +76,13 @@ class MushafCubit extends Cubit<MushafState> {
 
   //! Listen To Ayah
   int nowPlayingAyah = 0;
+  int? reciterId;
   AudioPlayer? audioPlayer = sl<MediaPlayer>().listenToAyahPlayer;
   Future playAyah() async {
     final String url = ayahsRecitersAudiosModel!
-        .reciters[0].ayahsUrls[focusedAyahNumber - 1].url;
-    nowPlayingAyah = ayahsRecitersAudiosModel!
-        .reciters[0].ayahsUrls[focusedAyahNumber - 1].ayahNumber;
+        .reciters[(reciterId ?? 1) - 1].ayahsUrls[focusedAyahNumber - 1].url;
+    nowPlayingAyah = ayahsRecitersAudiosModel!.reciters[(reciterId ?? 1) - 1]
+        .ayahsUrls[focusedAyahNumber - 1].ayahNumber;
     await sl<MediaPlayer>().audioPlayer.stop();
     if (url.startsWith("http://") || url.startsWith("https://")) {
       audioPlayer!.setUrl(
