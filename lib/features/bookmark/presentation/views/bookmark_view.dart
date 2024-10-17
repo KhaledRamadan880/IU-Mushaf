@@ -1,5 +1,4 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
-import 'package:iu_mushaf/core/widgets/custom_app_bar.dart';
 
 import '../widgets/bookmarks_body.dart';
 

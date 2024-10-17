@@ -1,5 +1,4 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
-import 'package:iu_mushaf/core/widgets/custom_app_bar.dart';
 import 'package:iu_mushaf/features/quran_audio/presentation/widgets/surah_number_container.dart';
 
 import '../widgets/components/surahs_list_search_button.dart';

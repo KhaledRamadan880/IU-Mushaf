@@ -1,5 +1,4 @@
 import 'package:iu_mushaf/core/imports/imports.dart';
-import 'package:iu_mushaf/core/widgets/custom_app_bar.dart';
 import 'package:iu_mushaf/features/quran_audio/presentation/widgets/quran_audio_player.dart';
 import 'package:iu_mushaf/features/quran_audio/presentation/widgets/quran_audio_surah_listview.dart';
 
