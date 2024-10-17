@@ -44,6 +44,7 @@ class MushafCubit extends Cubit<MushafState> {
 
   //! Fouces on Ayah
   dynamic focusedAyahNumber;
+  dynamic focusedAyahNumberInSurah;
   changeFocusedAyah(index) {
     focusedAyahNumber = index;
     emit(ChageFocusedAyahState());
@@ -74,7 +75,7 @@ class MushafCubit extends Cubit<MushafState> {
   //! Listen To Ayah
   int nowPlayingAyah = 0;
   AudioPlayer? audioPlayer = sl<MediaPlayer>().listenToAyahPlayer;
-  Future playAyah() async {    
+  Future playAyah() async {
     final String url = ayahsRecitersAudiosModel!
         .reciters[0].ayahsUrls[focusedAyahNumber - 1].url;
     nowPlayingAyah = ayahsRecitersAudiosModel!

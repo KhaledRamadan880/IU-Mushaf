@@ -166,6 +166,15 @@ class MushafReadingContainer extends StatelessWidget {
                                         ),
                                         recognizer: LongPressGestureRecognizer()
                                           ..onLongPress = () {
+                                            cubit.focusedAyahNumberInSurah =
+                                                cubit
+                                                    .surahsModel!
+                                                    .surahs[pageData[index][i]
+                                                            ["surah"] -
+                                                        1]
+                                                    .ayahs
+                                                    .ayahs[ii + start - 1]
+                                                    .verseNumber;
                                             cubit.changeFocusedAyah(
                                                 ayahNumberInQuran);
                                             cubit.addBookmarksData(

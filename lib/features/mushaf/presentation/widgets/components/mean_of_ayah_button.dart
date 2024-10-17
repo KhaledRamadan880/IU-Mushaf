@@ -28,7 +28,7 @@ class MeanOfAyahButton extends StatelessWidget {
                   .recitationsModel!
                   .recitations[cubit.focusedSurahNumber! - 1]
                   .ayahsRecitation) {
-                if (ayah.ayahNumber == cubit.focusedAyahNumber) {
+                if (ayah.ayahNumber == cubit.focusedAyahNumberInSurah) {
                   recitationsList.add(ayah);
                 }
               }

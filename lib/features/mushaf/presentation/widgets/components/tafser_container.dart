@@ -32,7 +32,7 @@ class TafserContainer extends StatelessWidget {
               SizedBox(height: 16.responsiveHeight(context)),
               //! Tafser
               CustomText(
-                cubit.tafserModel!.ayahsTafserList[cubit.focusedAyahNumber - 1]
+                cubit.tafserModel!.ayahsTafserList[cubit.focusedAyahNumberInSurah - 1]
                     .text,
                 style: Styles.style18(context).copyWith(
                   overflow: TextOverflow.clip,
