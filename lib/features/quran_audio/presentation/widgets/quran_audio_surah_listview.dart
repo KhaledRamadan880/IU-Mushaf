@@ -31,7 +31,11 @@ class QuranAudioSurahListView extends StatelessWidget {
                         horizontal: 20.responsiveWidth(context),
                       ),
                       separatorBuilder: (context, index) {
-                        return const Divider();
+                        return Divider(
+                          color: cubit.isDark
+                              ? AppColors.white.withOpacity(.5)
+                              : AppColors.black.withOpacity(.5),
+                        );
                       },
                       itemBuilder: (context, index) {
                         return BlocBuilder<QuranAudioCubit, QuranAudioState>(

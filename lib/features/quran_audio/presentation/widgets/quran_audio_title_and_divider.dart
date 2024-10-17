@@ -21,23 +21,27 @@ class QuranAudioTitleAndDivider extends StatelessWidget {
               ),
             ),
           ),
-          Stack(
-            children: [
-              const Divider(),
-              SizedBox(
-                width: 81.5.responsiveWidth(context),
-                child: BlocBuilder<GlobalCubit, GlobalState>(
-                  builder: (context, state) {
-                    return Divider(
+          BlocBuilder<GlobalCubit, GlobalState>(
+            builder: (context, state) {
+              return Stack(
+                children: [
+                  Divider(
+                    color: context.read<GlobalCubit>().isDark
+                        ? AppColors.white.withOpacity(.5)
+                        : AppColors.black.withOpacity(.5),
+                  ),
+                  SizedBox(
+                    width: 81.5.responsiveWidth(context),
+                    child: Divider(
                       thickness: 3.responsiveHeight(context),
                       color: context.read<GlobalCubit>().isDark
                           ? AppColors.white
                           : AppColors.black,
-                    );
-                  },
-                ),
-              ),
-            ],
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),

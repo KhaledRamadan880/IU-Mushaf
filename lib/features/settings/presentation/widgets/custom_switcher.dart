@@ -30,7 +30,13 @@ class CustomSwitcher extends StatelessWidget {
             child: AnimatedAlign(
               duration: const Duration(milliseconds: 300),
               alignment:
-                  isActive ? Alignment.centerRight : Alignment.centerLeft,
+                  isActive
+                  ? context.read<GlobalCubit>().language == "en"
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft
+                  : context.read<GlobalCubit>().language == "en"
+                      ? Alignment.centerLeft
+                      : Alignment.centerRight,
               child: const CircleAvatar(
                 backgroundColor: AppColors.white,
               ),

@@ -33,7 +33,9 @@ class SettingViewBody extends StatelessWidget {
               Text(
                 AppStrings.prefranceSettings.tr(context),
                 style: Styles.style18(context).copyWith(
-                  color: AppColors.grey,
+                  color: cubit.isDark
+                      ? AppColors.white.withOpacity(.5)
+                      : AppColors.black.withOpacity(.5),
                 ),
               ),
               SizedBox(height: 32.responsiveHeight(context)),
@@ -68,7 +70,9 @@ class SettingViewBody extends StatelessWidget {
 
               //! Divider
               Divider(
-                color: AppColors.grey,
+                color: cubit.isDark
+                    ? AppColors.white.withOpacity(.5)
+                    : AppColors.black.withOpacity(.5),
                 height: 15.responsiveHeight(context),
               ),
               SizedBox(height: 18.responsiveHeight(context)),
@@ -77,7 +81,9 @@ class SettingViewBody extends StatelessWidget {
               Text(
                 AppStrings.more.tr(context),
                 style: Styles.style18(context).copyWith(
-                  color: AppColors.grey,
+                  color: cubit.isDark
+                      ? AppColors.white.withOpacity(.5)
+                      : AppColors.black.withOpacity(.5),
                 ),
               ),
               SizedBox(height: 32.responsiveHeight(context)),

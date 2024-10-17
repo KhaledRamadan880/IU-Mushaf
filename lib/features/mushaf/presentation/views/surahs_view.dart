@@ -39,7 +39,11 @@ class SurahsView extends StatelessWidget {
                             ? mushafCubit.searchedSur.length
                             : cubit.surahsModel!.surahs.length,
                         separatorBuilder: (context, index) {
-                          return const Divider();
+                          return Divider(
+                            color: cubit.isDark
+                                ? AppColors.white.withOpacity(.5)
+                                : AppColors.black.withOpacity(.5),
+                          );
                         },
                         padding: EdgeInsets.symmetric(
                           horizontal: 16.responsiveWidth(context),
@@ -125,13 +129,13 @@ class SurahCard extends StatelessWidget {
                 SizedBox(width: 23.responsiveWidth(context)),
                 //! Surah Name
                 CustomText(
-                  cubit.language == "en"
+                  "${AppStrings.surah.tr(context)} ${cubit.language == "en"
                       ? mushafCubit.searchedSur.isNotEmpty
                           ? mushafCubit.searchedSur[index].englishName
                           : cubit.surahsModel!.surahs[index].englishName
                       : mushafCubit.searchedSur.isNotEmpty
                           ? mushafCubit.searchedSur[index].name
-                          : cubit.surahsModel!.surahs[index].name,
+                              : cubit.surahsModel!.surahs[index].name}",
                   style: Styles.style16(context),
                 ),
                 const Spacer(),

@@ -26,8 +26,8 @@ class CustomListTile extends StatelessWidget {
               Icon(
                 Icons.arrow_forward_ios_outlined,
                 color: context.read<GlobalCubit>().isDark
-                    ? AppColors.white
-                    : AppColors.grey,
+                    ? AppColors.white.withOpacity(.5)
+                    : AppColors.black.withOpacity(.5),
               ),
           contentPadding: EdgeInsets.only(
             bottom: 22.responsiveHeight(context),

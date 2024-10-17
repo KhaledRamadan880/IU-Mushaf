@@ -18,7 +18,7 @@ class MushafReadingPageNumberAndSurah extends StatelessWidget {
             padding: EdgeInsets.only(
               left: 36.responsiveWidth(context),
               right: 36.responsiveWidth(context),
-              top: 40.responsiveHeight(context),
+              top: 30.responsiveHeight(context),
             ),
                 child: Row(
                   children: [

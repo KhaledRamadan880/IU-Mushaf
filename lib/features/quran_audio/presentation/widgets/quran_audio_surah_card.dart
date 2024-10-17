@@ -35,7 +35,7 @@ class QuranAudioSurahCard extends StatelessWidget {
                 SizedBox(width: 23.responsiveWidth(context)),
                 //! Surah Name
                 CustomText(
-                  title,
+                  "${AppStrings.surah.tr(context)} $title",
                   style: Styles.style16(context),
                 ),
                 const Spacer(),
